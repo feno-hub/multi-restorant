@@ -25,3 +25,8 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+/public/assets/images
+/public/assets/videos
+/public/assets/aos
+/public/assets/bootstrap
+/public/assets/fontawesome-free-6.0.0-web
