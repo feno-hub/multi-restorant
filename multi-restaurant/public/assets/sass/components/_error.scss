@@ -1,0 +1,30 @@
+.error-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 12px;
+    background: $colore-btn-delete;
+    border-left: 4px solid $color-free;
+    border-radius: 6px;
+    color: $color-free;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 4px;
+    line-height: 1.4;
+
+    i {
+        font-size: 15px;
+        flex-shrink: 0;
+        margin-top: 1px;
+    }
+
+    &.general-error {
+        padding: 12px 16px;
+        background: rgba($color-free, 0.12);
+        border-radius: 10px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        font-size: 14px;
+        align-items: center;
+    }
+}

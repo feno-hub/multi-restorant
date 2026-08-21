@@ -1,0 +1,819 @@
+.reservation {
+
+    $primary: rgba(80, 11, 11, 0.996);
+    $secondary: #2C3E50;
+    $white: #FFFFFF;
+    $gold: rgb(201, 118, 16);
+
+    min-height: 100vh;
+
+    padding: 4rem 2rem;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(80, 11, 11, 0.08),
+            rgba(201, 118, 16, 0.05)
+        );
+
+
+    // ==============================
+    // CONTAINER
+    // ==============================
+
+    &-container {
+
+        width: min(1200px, 100%);
+
+        margin: 0 auto;
+    }
+
+
+    // ==============================
+    // HEADER
+    // ==============================
+
+    &-header {
+
+        margin-top: 4rem;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 1.2rem;
+
+        margin-bottom: 2.5rem;
+
+
+        &-icon {
+
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background: $primary;
+
+            color: $white;
+
+            font-size: 1.5rem;
+
+            box-shadow:
+                0 10px 25px rgba(80, 11, 11, .18);
+        }
+
+
+        &-content {
+
+            span {
+
+                color: $gold;
+
+                font-size: .75rem;
+
+                font-weight: 700;
+
+                letter-spacing: 2px;
+            }
+
+
+            h1 {
+
+                margin: .2rem 0;
+
+                color: $color;
+
+                font-size: 2rem;
+
+                font-weight: 700;
+            }
+
+
+            p {
+
+                margin: 0;
+
+                color: $color-free;
+
+                font-size: .95rem;
+            }
+        }
+    }
+
+
+    // ==============================
+    // CONTENT
+    // ==============================
+
+    &-content {
+
+        display: grid;
+
+        grid-template-columns: 350px 1fr;
+
+        gap: 2rem;
+
+        align-items: start;
+    }
+
+
+    // ==============================
+    // RESTAURANT
+    // ==============================
+
+    &-restaurant {
+
+        overflow: hidden;
+
+        border-radius: 18px;
+
+        background: $white;
+
+        box-shadow:
+            0 10px 35px rgba(44, 62, 80, .10);
+
+
+        &-image {
+
+            position: relative;
+
+            height: 230px;
+
+
+            img {
+
+                width: 100%;
+                height: 100%;
+
+                object-fit: cover;
+            }
+
+
+            &-badge {
+
+                position: absolute;
+
+                top: 1rem;
+                right: 1rem;
+
+                display: flex;
+
+                align-items: center;
+
+                gap: .4rem;
+
+                padding: .5rem .8rem;
+
+                border-radius: 30px;
+
+                background: $white;
+
+                color: $secondary;
+
+                font-size: .85rem;
+
+                font-weight: 700;
+
+                box-shadow:
+                    0 5px 15px rgba(0, 0, 0, .15);
+
+
+                i {
+
+                    color: $gold;
+                }
+            }
+        }
+
+
+        &-info {
+
+            padding: 1.5rem;
+        }
+
+
+        &-category {
+
+            display: inline-block;
+
+            padding: .35rem .7rem;
+
+            border-radius: 20px;
+
+            background: rgba(201, 118, 16, .10);
+
+            color: $gold;
+
+            font-size: .72rem;
+
+            font-weight: 700;
+        }
+
+
+        h2 {
+
+            margin: .8rem 0 .5rem;
+
+            color: $secondary;
+
+            font-size: 1.5rem;
+        }
+
+
+        &-description {
+
+            margin-bottom: 1.5rem;
+
+            color: #64748B;
+
+            font-size: .9rem;
+
+            line-height: 1.6;
+        }
+
+
+        &-details {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 1rem;
+        }
+
+
+        &-detail {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: .8rem;
+
+
+            > span {
+
+                width: 38px;
+                height: 38px;
+
+                flex-shrink: 0;
+
+                display: flex;
+
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 10px;
+
+                background: rgba(80, 11, 11, .07);
+
+                color: $primary;
+            }
+
+
+            strong {
+
+                display: block;
+
+                margin-bottom: .15rem;
+
+                color: $secondary;
+
+                font-size: .8rem;
+            }
+
+
+            p {
+
+                margin: 0;
+
+                color: #64748B;
+
+                font-size: .8rem;
+            }
+        }
+
+
+        &-footer {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: .6rem;
+
+            margin-top: 1.5rem;
+
+            padding-top: 1rem;
+
+            border-top: 1px solid #E2E8F0;
+
+            color: #16803C;
+
+            font-size: .8rem;
+
+            font-weight: 600;
+
+
+            i {
+
+                font-size: .9rem;
+            }
+        }
+    }
+
+
+    // ==============================
+    // FORM CARD
+    // ==============================
+
+    &-form-card {
+
+        padding: 2rem;
+
+        border-radius: 18px;
+
+        background: $white;
+
+        box-shadow:
+            0 10px 35px rgba(44, 62, 80, .10);
+    }
+
+
+    &-form-header {
+
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 2rem;
+
+        padding-bottom: 1.5rem;
+
+        border-bottom: 1px solid #E2E8F0;
+
+
+        span {
+
+            color: $gold;
+
+            font-size: .7rem;
+
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        h2 {
+
+            margin: .3rem 0 0;
+
+            color: $secondary;
+
+            font-size: 1.4rem;
+        }
+
+
+        &-icon {
+
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: $primary;
+
+            color: $white;
+        }
+    }
+
+
+    // ==============================
+    // ROW
+    // ==============================
+
+    &-row {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 1rem;
+    }
+
+
+    // ==============================
+    // FIELD
+    // ==============================
+
+    &-field {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: .5rem;
+
+        margin-bottom: 1.2rem;
+
+
+        label {
+
+            color: $secondary;
+
+            font-size: .85rem;
+
+            font-weight: 600;
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: .85rem 1rem;
+
+            border: 1px solid #E2E8F0;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            background: #F8FAFC;
+
+            color: $secondary;
+
+            font-family: inherit;
+
+            font-size: .9rem;
+
+            transition: .25s;
+
+
+            &:focus {
+
+                border-color: $gold;
+
+                background: $white;
+
+                box-shadow:
+                    0 0 0 3px rgba(201, 118, 16, .10);
+            }
+        }
+
+
+        textarea {
+
+            resize: vertical;
+        }
+    }
+
+
+    // ==============================
+    // INPUT WITH ICON
+    // ==============================
+
+    &-input {
+
+        position: relative;
+
+
+        i {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 1rem;
+
+            transform: translateY(-50%);
+
+            color: $gold;
+        }
+
+
+        input,
+        select {
+
+            padding-left: 2.7rem;
+        }
+    }
+
+
+    // ==============================
+    // FORM SECTION
+    // ==============================
+
+    &-form-section {
+
+        margin-top: 1.5rem;
+
+        padding-top: 1.5rem;
+
+        border-top: 1px solid #E2E8F0;
+
+
+        &-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: .8rem;
+
+            margin-bottom: 1.2rem;
+
+
+            > span {
+
+                width: 40px;
+                height: 40px;
+
+                display: flex;
+
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 10px;
+
+                background: rgba(80, 11, 11, .07);
+
+                color: $primary;
+            }
+
+
+            h3 {
+
+                margin: 0;
+
+                color: $secondary;
+
+                font-size: 1rem;
+            }
+
+
+            p {
+
+                margin: .2rem 0 0;
+
+                color: #94A3B8;
+
+                font-size: .75rem;
+            }
+        }
+    }
+
+
+    // ==============================
+    // INFORMATION
+    // ==============================
+
+    &-info {
+
+        display: flex;
+
+        gap: .8rem;
+
+        margin-top: .5rem;
+
+        padding: 1rem;
+
+        border-radius: 10px;
+
+        background: rgba(201, 118, 16, .07);
+
+
+        &-icon {
+
+            color: $gold;
+
+            font-size: 1.1rem;
+        }
+
+
+        strong {
+
+            display: block;
+
+            margin-bottom: .3rem;
+
+            color: $secondary;
+
+            font-size: .8rem;
+        }
+
+
+        p {
+
+            margin: 0;
+
+            color: #64748B;
+
+            font-size: .75rem;
+
+            line-height: 1.5;
+        }
+    }
+
+
+    // ==============================
+    // SUBMIT
+    // ==============================
+
+    &-submit {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: .7rem;
+
+        margin-top: 1.5rem;
+
+        padding: 1rem;
+
+        border: none;
+
+        border-radius: 10px;
+
+        background: $primary;
+
+        color: $white;
+
+        font-size: .95rem;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: .25s;
+
+
+        &:hover {
+
+            background: $gold;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(201, 118, 16, .25);
+        }
+    }
+}
+
+@media (max-width: 992px) {
+
+    .reservation {
+
+        &-content {
+
+            grid-template-columns: 1fr;
+        }
+
+        &-restaurant {
+
+            display: grid;
+
+            grid-template-columns: 280px 1fr;
+
+            &-image {
+
+                height: 100%;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .reservation {
+
+        padding: 3rem 1rem;
+
+
+        &-header {
+
+            &-icon {
+
+                width: 55px;
+                height: 55px;
+            }
+
+
+            &-content {
+
+                h1 {
+                    font-size: 1.6rem;
+                }
+            }
+        }
+
+
+        &-restaurant {
+
+            display: block;
+
+
+            &-image {
+
+                height: 220px;
+            }
+        }
+
+
+        &-row {
+
+            grid-template-columns: 1fr;
+        }
+
+
+        &-form-card {
+
+            padding: 1.5rem;
+        }
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .reservation {
+
+        padding: 2rem .8rem;
+
+
+        &-header {
+
+            align-items: flex-start;
+
+
+            &-icon {
+
+                width: 48px;
+                height: 48px;
+
+                font-size: 1.1rem;
+            }
+
+
+            &-content {
+
+                span {
+                    font-size: .65rem;
+                }
+
+
+                h1 {
+                    font-size: 1.35rem;
+                }
+
+
+                p {
+                    font-size: .8rem;
+                }
+            }
+        }
+
+
+        &-form-card {
+
+            padding: 1.2rem;
+        }
+
+
+        &-restaurant-info {
+
+            padding: 1.2rem;
+        }
+
+
+        &-form-header {
+
+            h2 {
+                font-size: 1.15rem;
+            }
+        }
+    }
+}

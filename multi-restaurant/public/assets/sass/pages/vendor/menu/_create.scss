@@ -1,0 +1,187 @@
+.add-menu {
+    padding: 2rem 0;
+    font-family: $font;
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        gap: 1rem;
+
+        h1 {
+            color: $color-secondary;
+            font-size: 2rem;
+            margin-bottom: .3rem;
+        }
+
+        p {
+            color: $color-btn-back;
+            font-size: .95rem;
+        }
+    }
+
+    &-form {
+        background: $color-free;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+}
+
+/*=========================
+        GRID
+==========================*/
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1.5rem;
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+/*=========================
+        INPUTS
+==========================*/
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    // label {
+    //     color: $color-secondary;
+    //     font-weight: 600;
+    //     margin-bottom: .6rem;
+    // }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: .9rem 1rem;
+        border: 1px solid rgba($color-secondary,.15);
+        border-radius: 10px;
+        // background: $color-primary;
+        font-family: inherit;
+        font-size: .95rem;
+        transition: .3s;
+        outline: none;
+
+        &:focus {
+            background: $color-free;
+            border-color: $colore-btn-update;
+            box-shadow: 0 0 0 3px rgba($colore-btn-update,.15);
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 180px;
+    }
+
+    input[type=file] {
+        background: $color-free;
+        padding: .75rem;
+        cursor: pointer;
+    }
+
+    input[type=file]::file-selector-button {
+        background: $colore-btn-update;
+        color: $color-free;
+        border: none;
+        padding: .65rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-right: 1rem;
+        transition: .3s;
+
+        &:hover {
+            background: $color-secondary;
+        }
+    }
+}
+
+/*=========================
+        FOOTER
+==========================*/
+
+.form-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/*=========================
+      RESPONSIVE
+==========================*/
+
+@include respond($bp-992) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+}
+
+@include respond($bp-768) {
+
+    .add-menu {
+
+        &-header {
+
+            flex-direction: column;
+            align-items: flex-start;
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+        }
+
+        &-form {
+            padding: 1.5rem;
+        }
+
+    }
+
+    .form-footer {
+        flex-direction: column;
+
+        .btn-save,
+        .btn-cancel,
+        .btn-back {
+            width: 100%;
+        }
+    }
+
+}
+
+@include respond($bp-480) {
+
+    .add-menu {
+
+        &-form {
+            padding: 1.2rem;
+        }
+
+    }
+
+    .form-group {
+
+        input,
+        select,
+        textarea {
+            padding: .8rem;
+        }
+
+    }
+
+}

@@ -1,0 +1,449 @@
+
+// ======================================================
+// FORMULAIRE ABONNEMENT
+// ======================================================
+
+.subscription-form {
+    width: 100%;
+    padding: 2rem;
+
+    // ------------------------------------------
+    // HEADER
+    // ------------------------------------------
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+
+        h1 {
+            margin: 0 0 .5rem;
+            font-family: $font;
+            font-size: 2rem;
+            font-weight: 700;
+            color: $color-secondary;
+        }
+
+        p {
+            margin: 0;
+            color: #777;
+            font-family: $font;
+            font-size: .95rem;
+        }
+    }
+
+
+    &__back {
+        display: inline-flex;
+        align-items: center;
+        gap: .6rem;
+        padding: .75rem 1.2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: $color-free;
+        background: $color-btn-back;
+        font-family: $font;
+        font-weight: 600;
+        transition: .3s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            opacity: .9;
+        }
+    }
+
+
+    // ------------------------------------------
+    // ERREURS
+    // ------------------------------------------
+
+    &__errors {
+        margin-bottom: 1.5rem;
+        padding: 1rem 1.25rem;
+        border-left: 4px solid $color-btn-add;
+        border-radius: 8px;
+        background: rgba(231, 76, 60, .08);
+
+        &-title {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: .5rem;
+            color: $color-btn-add;
+            font-weight: 700;
+        }
+
+        ul {
+            margin: .5rem 0 0 1.5rem;
+            padding: 0;
+
+            li {
+                margin-bottom: .25rem;
+                color: #555;
+                font-size: .9rem;
+            }
+        }
+    }
+
+
+    // ------------------------------------------
+    // CONTENU
+    // ------------------------------------------
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+
+    // ------------------------------------------
+    // CARD
+    // ------------------------------------------
+
+    &__card {
+        padding: 1.8rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        background: $color-free;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, .04);
+    }
+
+
+    &__card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.8rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 1px solid #eeeeee;
+
+        h2 {
+            margin: 0 0 .3rem;
+            color: $color-secondary;
+            font-family: $font;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin: 0;
+            color: #888;
+            font-family: $font;
+            font-size: .85rem;
+        }
+    }
+
+
+    &__card-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        height: 45px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: rgba(201, 118, 16, .12);
+        color: $color;
+        font-size: 1.2rem;
+    }
+
+
+    // ------------------------------------------
+    // GRID
+    // ------------------------------------------
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+
+    // ------------------------------------------
+    // FORM GROUP
+    // ------------------------------------------
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        &--full {
+            margin-top: 1.5rem;
+        }
+
+        label {
+            color: $color-secondary;
+            font-family: $font;
+            font-size: .9rem;
+            font-weight: 600;
+
+            span {
+                color: $color-btn-add;
+            }
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: .85rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            background: #fff;
+            color: $color-secondary;
+            font-family: $font;
+            font-size: .9rem;
+            transition: .3s ease;
+
+            &:focus {
+                border-color: $color;
+                box-shadow: 0 0 0 3px rgba(201, 118, 16, .12);
+            }
+
+            &::placeholder {
+                color: #aaa;
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        small {
+            color: $color-btn-add;
+            font-size: .8rem;
+        }
+    }
+
+
+    // ------------------------------------------
+    // PRIX
+    // ------------------------------------------
+
+    .input-price,
+    .input-duration {
+        display: flex;
+
+        input {
+            border-radius: 8px 0 0 8px;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 55px;
+            padding: 0 .8rem;
+            border: 1px solid #ddd;
+            border-left: 0;
+            border-radius: 0 8px 8px 0;
+            background: #f7f7f7;
+            color: $color-secondary;
+            font-size: .85rem;
+            font-weight: 600;
+        }
+    }
+
+
+    // ------------------------------------------
+    // AIDE
+    // ------------------------------------------
+
+    .form-help {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+        margin-top: .2rem;
+        color: #888;
+        font-size: .8rem;
+
+        i {
+            color: $color;
+        }
+    }
+
+
+    // ------------------------------------------
+    // STATUT
+    // ------------------------------------------
+
+    .status-choice {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+
+        &__item {
+            position: relative;
+            cursor: pointer;
+
+            input {
+                position: absolute;
+                opacity: 0;
+                pointer-events: none;
+
+                &:checked + .status-choice__box {
+                    border-color: $color;
+                    background: rgba(201, 118, 16, .06);
+                }
+            }
+        }
+
+        &__box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            transition: .3s ease;
+
+            &:hover {
+                border-color: $color;
+            }
+
+            > i {
+                font-size: 1.5rem;
+                color: $color;
+            }
+
+            strong {
+                display: block;
+                margin-bottom: .25rem;
+                color: $color-secondary;
+                font-size: .95rem;
+            }
+
+            small {
+                color: #888;
+                font-size: .8rem;
+            }
+        }
+    }
+
+
+    // ------------------------------------------
+    // ACTIONS
+    // ------------------------------------------
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        padding-top: .5rem;
+    }
+
+
+    .btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: .6rem;
+        padding: .85rem 1.4rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        font-family: $font;
+        font-size: .9rem;
+        font-weight: 600;
+        transition: .3s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+
+        &--cancel {
+            color: $color-secondary;
+            background: #eeeeee;
+
+            &:hover {
+                background: #e2e2e2;
+            }
+        }
+
+        &--submit {
+            color: $color-free;
+            background: $color;
+
+            &:hover {
+                opacity: .9;
+                box-shadow: 0 5px 15px rgba(201, 118, 16, .25);
+            }
+        }
+    }
+}
+
+
+// ======================================================
+// RESPONSIVE
+// ======================================================
+
+@media (max-width: 768px) {
+
+    .subscription-form {
+        padding: 1rem;
+
+        &__header {
+            flex-direction: column;
+            align-items: flex-start;
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            &__back {
+                width: 100%;
+            }
+        }
+
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .status-choice {
+            grid-template-columns: 1fr;
+        }
+
+        &__actions {
+            flex-direction: column;
+
+            .btn {
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .subscription-form {
+        padding: .75rem;
+
+        &__card {
+            padding: 1.2rem;
+        }
+
+        &__card-header {
+            align-items: flex-start;
+
+            h2 {
+                font-size: 1rem;
+            }
+        }
+
+        &__card-icon {
+            width: 38px;
+            height: 38px;
+            font-size: 1rem;
+        }
+    }
+}
+

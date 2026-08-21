@@ -1,0 +1,35 @@
+
+// ===== RESET & BASE =====
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-weight: lighter;
+}
+
+.success {
+    background: $colore-btn-update;
+    color: white;
+    font-family: $font;
+    text-align: center;
+    padding: 1rem;
+    margin: auto;
+    border-radius: 4px;
+}
+
+.error {
+    color: $colore-btn-delete;
+    margin: .5rem 0 .5rem 0;
+}

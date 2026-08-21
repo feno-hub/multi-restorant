@@ -1,0 +1,561 @@
+
+// ======================================================
+// PAGE ADMIN - ABONNEMENTS
+// ======================================================
+
+.page-admin-subscription {
+
+    // ==================================================
+    // STATISTIQUES
+    // ==================================================
+
+    &-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin: 1.5rem 0;
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            background: $color-free;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, .04);
+        }
+
+        .stat-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(80, 11, 11, .08);
+            color: $color-secondary;
+            font-size: 1.2rem;
+        }
+
+        .gratuit-icon {
+            color: #22C55E;
+            background: rgba(34, 197, 94, .1);
+        }
+
+        .premium-icon {
+            color: #F59E0B;
+            background: rgba(245, 158, 11, .1);
+        }
+
+        .pro-icon {
+            color: #8B5CF6;
+            background: rgba(139, 92, 246, .1);
+        }
+
+        .stat-number {
+            margin-bottom: .2rem;
+            color: $color-secondary;
+            font-family: $font;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: #888;
+            font-family: $font;
+            font-size: .85rem;
+        }
+    }
+}
+
+
+
+// ======================================================
+// BARRE D'OUTILS
+// ======================================================
+
+.subscription-toolbar {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+
+    .filter-group {
+        display: flex;
+        align-items: center;
+        gap: .7rem;
+        flex: 1;
+    }
+
+
+    // INPUT RECHERCHE
+
+    .filter-input {
+        position: relative;
+        width: 350px;
+
+        i {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: .8rem 1rem .8rem 2.7rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            background: $color-free;
+            color: $color-secondary;
+            font-family: $font;
+
+            &:focus {
+                border-color: $color;
+                box-shadow: 0 0 0 3px rgba(201, 118, 16, .1);
+            }
+        }
+    }
+
+
+    // BOUTON RECHERCHE
+
+    .filter-search {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .8rem 1.1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: $color-secondary;
+        color: $color-free;
+        font-family: $font;
+        font-weight: 600;
+        transition: .3s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            opacity: .9;
+        }
+    }
+
+
+    // AJOUT
+
+    .subscription-add-btn {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        padding: .8rem 1.2rem;
+        border-radius: 8px;
+        background: $color;
+        color: $color-free;
+        text-decoration: none;
+        font-family: $font;
+        font-size: .9rem;
+        font-weight: 600;
+        transition: .3s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 118, 16, .25);
+        }
+    }
+}
+
+
+
+// ======================================================
+// TABLEAU
+// ======================================================
+
+.subscription-table-container {
+
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    background: $color-free;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .04);
+}
+
+
+// ======================================================
+// HEADER TABLEAU
+// ======================================================
+
+.subscription-table-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.3rem 1.5rem;
+    border-bottom: 1px solid #eeeeee;
+
+    h2 {
+        margin: 0 0 .3rem;
+        color: $color-secondary;
+        font-family: $font;
+        font-size: 1.15rem;
+    }
+
+    p {
+        margin: 0;
+        color: #888;
+        font-family: $font;
+        font-size: .82rem;
+    }
+
+    .subscription-count {
+        padding: .45rem .8rem;
+        border-radius: 20px;
+        background: rgba(201, 118, 16, .1);
+        color: $color;
+        font-size: .8rem;
+        font-weight: 600;
+    }
+}
+
+
+
+// ======================================================
+// TABLE
+// ======================================================
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+.subscribe {
+
+    width: 100%;
+    min-width: 1100px;
+    border-collapse: collapse;
+
+
+    // ==================================================
+    // HEADER
+    // ==================================================
+
+    .subscribe-title {
+
+        background: #f8f9fa;
+
+        th {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #e5e5e5;
+            color: $color-secondary;
+            font-family: $font;
+            font-size: .78rem;
+            font-weight: 700;
+            text-align: left;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+    }
+
+
+    // ==================================================
+    // LIGNES
+    // ==================================================
+
+    .subscribe-list {
+
+        transition: .2s ease;
+
+        td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #eeeeee;
+            vertical-align: middle;
+        }
+
+        &:last-child {
+
+            td {
+                border-bottom: none;
+            }
+        }
+
+        &:hover {
+            background: #fafafa;
+        }
+    }
+}
+
+
+
+// ======================================================
+// NOM ABONNEMENT
+// ======================================================
+
+.subscription-name {
+
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+
+    .subscription-icon {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        height: 45px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        font-size: 1.1rem;
+
+        &.gratuit {
+            background: rgba(34, 197, 94, .1);
+            color: #22C55E;
+        }
+
+        &.premium {
+            background: rgba(245, 158, 11, .1);
+            color: #F59E0B;
+        }
+
+        &.pro {
+            background: rgba(139, 92, 246, .1);
+            color: #8B5CF6;
+        }
+    }
+
+
+    strong {
+        display: block;
+        margin-bottom: .25rem;
+        color: $color-secondary;
+        font-family: $font;
+        font-size: .95rem;
+    }
+
+    span {
+        color: #888;
+        font-size: .78rem;
+    }
+}
+
+
+
+// ======================================================
+// PRIX
+// ======================================================
+
+.price {
+
+    color: $color-secondary;
+    font-family: $font;
+    font-size: .95rem;
+    white-space: nowrap;
+}
+
+
+
+// ======================================================
+// DUREE
+// ======================================================
+
+.duration {
+
+    display: inline-block;
+    padding: .4rem .7rem;
+    border-radius: 6px;
+    background: #f3f4f6;
+    color: $color-secondary;
+    font-size: .78rem;
+    font-weight: 600;
+}
+
+
+
+// ======================================================
+// FONCTIONNALITES
+// ======================================================
+
+.features {
+
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+
+        display: flex;
+        align-items: center;
+        gap: .45rem;
+        color: #666;
+        font-family: $font;
+        font-size: .78rem;
+
+        i {
+            color: #22C55E;
+            font-size: .7rem;
+        }
+    }
+}
+
+
+
+// ======================================================
+// STATUT
+// ======================================================
+
+.status {
+
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .4rem .7rem;
+    border-radius: 20px;
+    font-size: .75rem;
+    font-weight: 600;
+
+    i {
+        font-size: .45rem;
+    }
+
+    &.active {
+        background: rgba(34, 197, 94, .1);
+        color: #16A34A;
+    }
+
+    &.inactive {
+        background: rgba(239, 68, 68, .1);
+        color: #DC2626;
+    }
+}
+
+
+
+// ======================================================
+// ACTIONS
+// ======================================================
+
+.subscription-actions {
+
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+
+    .action {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 34px;
+        height: 34px;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: .2s ease;
+
+
+        &.edit {
+
+            background: rgba(52, 152, 219, .1);
+            color: $colore-btn-update;
+
+            &:hover {
+                background: $colore-btn-update;
+                color: $color-free;
+            }
+        }
+
+
+        &.delete {
+
+            background: rgba(231, 76, 60, .1);
+            color: $color-btn-add;
+
+            &:hover {
+                background: $color-btn-add;
+                color: $color-free;
+            }
+        }
+    }
+}
+
+
+
+// ======================================================
+// RESPONSIVE
+// ======================================================
+
+@media (max-width: 1200px) {
+
+    .page-admin-subscription-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .subscription-toolbar {
+
+        flex-direction: column;
+        align-items: stretch;
+
+        .filter-group {
+            width: 100%;
+        }
+
+        .filter-input {
+            width: 100%;
+        }
+
+        .subscription-add-btn {
+            justify-content: center;
+        }
+    }
+
+
+    .page-admin-subscription-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .subscription-table-header {
+
+        align-items: flex-start;
+        gap: 1rem;
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .subscription-toolbar {
+
+        .filter-group {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .filter-search {
+            justify-content: center;
+        }
+    }
+
+
+    .subscription-table-header {
+        padding: 1rem;
+    }
+}
+

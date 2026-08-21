@@ -1,0 +1,485 @@
+.restaurants-page {
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+
+    background: $color-primary;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    .restaurants-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    // ==================================
+    // HEADER
+    // ==================================
+
+    .restaurants-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+
+        background: $color-free;
+
+        border-radius: 12px;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .restaurants-title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .restaurants-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 55px;
+            height: 55px;
+
+            background: $color-primary;
+            color: $color-free;
+
+            border-radius: 10px;
+
+            font-size: 1.3rem;
+        }
+
+        h1 {
+            margin: 0 0 0.3rem;
+
+            color: $color-primary;
+
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin: 0;
+
+            color: $color-secondary;
+
+            font-size: 0.9rem;
+        }
+    }
+
+    // ==================================
+    // BOUTON AJOUT
+    // ==================================
+
+    .btn-add {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 0.5rem;
+
+        padding: 0.8rem 1.2rem;
+
+        background: $color-primary;
+        color: $color-free;
+
+        border-radius: 8px;
+
+        text-decoration: none;
+
+        font-size: 0.9rem;
+        font-weight: 600;
+
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: $color;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 15px rgba(201, 118, 16, 0.25);
+        }
+    }
+
+    // ==================================
+    // LISTE
+    // ==================================
+
+    .restaurants-list {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 1.5rem;
+    }
+
+    // ==================================
+    // CARD RESTAURANT
+    // ==================================
+
+    .restaurant-card {
+        display: flex;
+
+        min-height: 230px;
+
+        overflow: hidden;
+
+        background: $color-free;
+
+        border-radius: 12px;
+
+        box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.15);
+
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.22);
+        }
+    }
+
+    // ==================================
+    // IMAGE
+    // ==================================
+
+    .restaurant-image {
+        width: 190px;
+        min-width: 190px;
+
+        background: #eee;
+
+        img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .no-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(80, 11, 11, 0.08);
+
+            color: $color-primary;
+
+            font-size: 2.5rem;
+        }
+    }
+
+    // ==================================
+    // CONTENU
+    // ==================================
+
+    .restaurant-content {
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 1.3rem;
+    }
+
+    // ==================================
+    // NOM + STATUT
+    // ==================================
+
+    .restaurant-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        gap: 1rem;
+
+        h2 {
+            margin: 0 0 0.4rem;
+
+            color: $color-primary;
+
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .restaurant-category {
+            color: $color-secondary;
+
+            font-size: 0.8rem;
+        }
+    }
+
+    // ==================================
+    // STATUT
+    // ==================================
+
+    .status {
+        display: inline-flex;
+        align-items: center;
+
+        gap: 0.35rem;
+
+        padding: 0.4rem 0.6rem;
+
+        border-radius: 20px;
+
+        white-space: nowrap;
+
+        font-size: 0.72rem;
+        font-weight: 600;
+    }
+
+    .status-approved {
+        background: rgba(39, 174, 96, 0.12);
+        color: #27ae60;
+    }
+
+    .status-pending {
+        background: rgba(201, 118, 16, 0.12);
+        color: $color;
+    }
+
+    .status-rejected {
+        background: rgba(80, 11, 11, 0.10);
+        color: $color-primary;
+    }
+
+    // ==================================
+    // INFORMATIONS
+    // ==================================
+
+    .restaurant-info {
+        margin-top: 1rem;
+
+        p {
+            display: flex;
+            align-items: center;
+
+            gap: 0.6rem;
+
+            margin: 0 0 0.5rem;
+
+            color: $color-secondary;
+
+            font-size: 0.8rem;
+
+            i {
+                width: 16px;
+
+                color: $color-primary;
+
+                text-align: center;
+            }
+        }
+    }
+
+    // ==================================
+    // ACTIONS
+    // ==================================
+
+    .restaurant-actions {
+        display: flex;
+
+        gap: 0.6rem;
+
+        margin-top: auto;
+        padding-top: 1rem;
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 0.4rem;
+
+            padding: 0.55rem 0.8rem;
+
+            border-radius: 6px;
+
+            text-decoration: none;
+
+            font-size: 0.78rem;
+            font-weight: 600;
+
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background: $color-primary;
+            color: $color-free;
+
+            &:hover {
+                background: $color;
+            }
+        }
+
+        .btn-edit {
+            background: rgba(44, 62, 80, 0.1);
+            color: $color-secondary;
+
+            &:hover {
+                background: $color-secondary;
+                color: $color-free;
+            }
+        }
+    }
+
+    // ==================================
+    // AUCUN RESTAURANT
+    // ==================================
+
+    .empty-restaurants {
+        grid-column: 1 / -1;
+
+        padding: 4rem 2rem;
+
+        background: $color-free;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+        box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.15);
+
+        .empty-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 1rem;
+
+            background: rgba(80, 11, 11, 0.08);
+
+            color: $color-primary;
+
+            border-radius: 50%;
+
+            font-size: 1.8rem;
+        }
+
+        h2 {
+            margin: 0 0 0.5rem;
+
+            color: $color-primary;
+
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+
+            color: $color-secondary;
+        }
+    }
+
+    // ==================================
+    // TABLETTE
+    // ==================================
+
+    @media (max-width: 992px) {
+
+        .restaurants-list {
+            grid-template-columns: 1fr;
+        }
+
+        .restaurant-card {
+            min-height: 220px;
+        }
+    }
+
+    // ==================================
+    // MOBILE
+    // ==================================
+
+    @media (max-width: 768px) {
+
+        padding: 2rem 1rem;
+
+        .restaurants-header {
+            flex-direction: column;
+
+            align-items: stretch;
+
+            gap: 1.2rem;
+        }
+
+        .restaurants-title {
+
+            .restaurants-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+
+        .restaurants-header {
+
+            .btn-add {
+                width: 100%;
+            }
+        }
+
+        .restaurant-card {
+            flex-direction: column;
+        }
+
+        .restaurant-image {
+            width: 100%;
+            min-width: 100%;
+            height: 180px;
+
+            .no-logo {
+                height: 180px;
+            }
+        }
+    }
+
+    // ==================================
+    // PETIT MOBILE
+    // ==================================
+
+    @media (max-width: 480px) {
+
+        padding: 1rem 0.7rem;
+
+        .restaurants-header {
+            padding: 1.2rem;
+        }
+
+        .restaurant-content {
+            padding: 1rem;
+        }
+
+        .restaurant-top {
+            flex-direction: column;
+        }
+
+        .restaurant-actions {
+            flex-direction: column;
+
+            a {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,37 @@
+// ===== VARIABLES =====
+$color-primary: rgba(80, 11, 11, 0.996);
+$color-secondary: #2C3E50;
+$color-free: #FFFFFF;
+$color: rgb(201, 118, 16);
+$colore-btn-update: #3498DB;
+$colore-btn-delete: #E74C3C;
+$color-btn-back: #7F8C8D;
+$bg: linear-gradient(135deg, #667eea, #764ba2);
+
+$font: Arial, Helvetica, sans-serif;
+
+// Breakpoints (min-width based - mobile first)
+$bp-320: 320px;
+$bp-375: 375px;
+$bp-480: 480px;
+$bp-576: 576px;
+$bp-768: 768px;
+$bp-992: 992px;
+$bp-1024: 1024px;
+$bp-1200: 1200px;
+$bp-1440: 1440px;
+$bp-1920: 1920px;
+$bp-2400: 2400px;
+
+// Mixin responsive
+@mixin respond($breakpoint) {
+    @media (max-width: $breakpoint) {
+        @content;
+    }
+}
+
+@mixin respond-min($breakpoint) {
+    @media (min-width: $breakpoint) {
+        @content;
+    }
+}

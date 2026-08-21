@@ -1,0 +1,187 @@
+.container {
+
+    &-coment {
+        padding: 4rem 2rem;
+
+        &-header {
+
+            &-title {
+                color: $color-secondary;
+                font-family: $font;
+                text-align: center;
+                text-shadow: 0px 0px 4px $colore-btn-update;
+            }
+            
+            &-para {
+                font-family: $font;
+                margin-top: 1rem;
+                text-align: center;
+                color: $color-secondary;
+            }
+            
+        }
+        
+        &-section1 {
+            background: $color-free;
+            width: 70%;
+            margin: 4rem auto;
+            padding: 1rem;
+            border-radius: 16px;
+            box-shadow: 0 0 1px black;
+            
+            &-card {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+                &-form {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+    
+                    textarea {
+                        color: $color-secondary;
+                        padding: 1rem 1.2rem;
+                        border: 2px solid #eef2f6;
+                        outline: none;
+                        border-radius: 12px;
+                        font-family: $font;
+                        font-size: 0.95rem;
+                        @include transition;
+                        resize: vertical;
+                        min-height: 120px;
+               
+                        &:focus {
+                           border-color: $colore-btn-update;
+                            @include shadow(1);
+                        }
+    
+                        &::placeholder {
+                            color: #94a3b8;
+                            font-family: $font;
+                        }
+    
+                        &:hover {
+                            border-color: #cbd5e1;
+                        }
+    
+                    }
+    
+                }
+                
+                &-notif {
+                    color: $color-btn-add;
+                    font-family: $font;
+                    font-weight: bold;
+                }
+
+            }
+
+        }
+
+        &-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+
+            @include respond($bp-1200) {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            @include respond($bp-768) {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            &-card {
+                width: 25rem;
+                padding: 1rem;
+                background: $color-free;
+                border-radius: 10px;
+                box-shadow: 3px 4px 10px black;
+
+                &-profil {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    &-parent {
+                        display: flex;
+                        gap: 1rem;
+                        align-items: center;
+
+                        &-image {
+                            border-radius: 50%;
+                            height: 3rem;
+                            width: 3rem;
+                            overflow: hidden;
+                            
+                            &-img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
+                            
+                        }
+
+                        h1 {
+                            color: $color-free;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background: $color-btn-add;
+                            font-size: 1.5rem;
+                        }
+
+                        &-name {
+                            font-family: $font;
+                            font-weight: 600;
+                            color: $color-secondary;
+                            text-transform: capitalize;
+                        }
+
+                    }
+
+                    &-time {
+                        color: $colore-btn-update;
+                        font-family: $font;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+
+                }
+
+                &-content {
+                    margin-top: 1rem;
+
+                    &-para {
+                        margin-bottom: 1rem;
+                        color: $color-secondary;
+                    }
+
+                    &-icon {
+                        color: yellow;
+                    }
+
+                }
+
+                &-hr {
+                    margin: 1rem 0;
+                }
+
+                &-resto {
+                    color: $color-btn-add;
+                    font-family: $font;
+                    font-size: .8rem;
+                }
+
+            }
+
+        }
+
+    }
+
+}

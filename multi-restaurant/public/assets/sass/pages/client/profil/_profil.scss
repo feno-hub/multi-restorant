@@ -1,0 +1,962 @@
+
+.client-profile {
+    padding: 3rem 1rem;
+
+    // =========================
+    // HEADER
+    // =========================
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        padding: 2rem;
+        background: $color-free;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        margin-bottom: 2rem;
+    }
+
+    &__header-content {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    &__avatar {
+        width: 110px;
+        height: 110px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid $color;
+    }
+
+    &__avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__avatar-default {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $color-secondary;
+        color: $color-free;
+        font-size: 2.5rem;
+    }
+
+    &__identity {
+        h1 {
+            margin: 0 0 0.5rem;
+            color: $color-primary;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin: 0 0 0.7rem;
+            color: $color-secondary;
+
+            i {
+                color: $color;
+                margin-right: 0.4rem;
+            }
+        }
+    }
+
+    &__status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        color: $color;
+
+        i {
+            font-size: 0.55rem;
+        }
+    }
+
+
+    // =========================
+    // ACTIONS
+    // =========================
+
+    &__actions {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+    }
+
+    &__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+
+        &--edit {
+            background: $color-primary;
+            color: $color-free;
+
+            &:hover {
+                background: $color-secondary;
+                color: $color-free;
+            }
+        }
+
+        &--password {
+            border: 1px solid $color-secondary;
+            color: $color-secondary;
+            background: $color-free;
+
+            &:hover {
+                background: $color-secondary;
+                color: $color-free;
+            }
+        }
+    }
+
+
+    // =========================
+    // STATISTIQUES
+    // =========================
+
+    &__stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    &__stat {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: $color-free;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    &__stat-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: $color-primary;
+        color: $color-free;
+        font-size: 1.3rem;
+    }
+
+    &__stat-number {
+        display: block;
+        color: $color-primary;
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    &__stat-label {
+        display: block;
+        color: $color-secondary;
+        font-size: 0.9rem;
+    }
+
+
+    // =========================
+    // CONTENT
+    // =========================
+
+    &__content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+    }
+
+
+    // =========================
+    // CARD
+    // =========================
+
+    &__card {
+        background: $color-free;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    &__card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(44, 62, 80, 0.12);
+
+        h2 {
+            margin: 0 0 0.3rem;
+            color: $color-primary;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin: 0;
+            color: $color-secondary;
+            font-size: 0.9rem;
+        }
+
+        > i {
+            color: $color;
+            font-size: 1.5rem;
+        }
+    }
+
+
+    // =========================
+    // INFORMATIONS
+    // =========================
+
+    &__information {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        strong {
+            color: $color-primary;
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+    }
+
+    &__field-label {
+        color: $color-secondary;
+        font-size: 0.85rem;
+        font-weight: 600;
+
+        i {
+            width: 20px;
+            color: $color;
+            margin-right: 0.3rem;
+        }
+    }
+
+    &__account-status {
+        color: $color !important;
+    }
+
+
+    // =========================
+    // SECURITE
+    // =========================
+
+    &__security-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__security-icon {
+        width: 45px;
+        height: 45px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $color-primary;
+        color: $color-free;
+        border-radius: 10px;
+    }
+
+    &__security-info {
+        flex: 1;
+
+        strong {
+            display: block;
+            color: $color-primary;
+            margin-bottom: 0.2rem;
+        }
+
+        span {
+            color: $color-secondary;
+            font-size: 0.8rem;
+        }
+    }
+
+    &__security-item > a {
+        color: $color;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__verified {
+        color: $color;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+
+    // =========================
+    // TABLETTE
+    // =========================
+
+    @media (max-width: 992px) {
+
+        &__header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        &__actions {
+            width: 100%;
+        }
+
+        &__content {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+    // =========================
+    // MOBILE
+    // =========================
+
+    @media (max-width: 768px) {
+
+        padding: 2rem 0;
+
+        &__header {
+            padding: 1.5rem;
+        }
+
+        &__header-content {
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        &__avatar {
+            width: 80px;
+            height: 80px;
+        }
+
+        &__identity {
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            p {
+                font-size: 0.85rem;
+            }
+        }
+
+        &__actions {
+            flex-direction: column;
+        }
+
+        &__btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        &__stats {
+            grid-template-columns: 1fr;
+        }
+
+        &__information {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+    // =========================
+    // PETIT MOBILE
+    // =========================
+
+    @media (max-width: 480px) {
+
+        &__header-content {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        &__avatar {
+            width: 95px;
+            height: 95px;
+        }
+
+        &__card {
+            padding: 1.3rem;
+        }
+
+        &__card-header {
+            h2 {
+                font-size: 1.1rem;
+            }
+        }
+
+        &__security-item {
+            align-items: flex-start;
+        }
+
+        &__security-item > a {
+            margin-left: auto;
+        }
+    }
+}
+
+
+// ========================================
+// ANIMATIONS PROFIL CLIENT
+// ========================================
+
+@keyframes profileFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes profileScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes profileSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+// ========================================
+// CONTENEUR PRINCIPAL
+// ========================================
+
+.client-profile {
+    animation: profileFadeIn 0.7s ease-out both;
+
+
+    // ========================================
+    // HEADER
+    // ========================================
+
+    &__header {
+        animation: profileFadeIn 0.7s ease-out 0.1s both;
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.10);
+        }
+    }
+
+
+    // ========================================
+    // PHOTO
+    // ========================================
+
+    &__avatar {
+        animation: profileScaleIn 0.6s ease-out 0.2s both;
+
+        transition:
+            transform 0.3s ease,
+            border-color 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+
+    &__identity {
+        animation: profileSlideIn 0.6s ease-out 0.3s both;
+    }
+
+
+    // ========================================
+    // BOUTONS
+    // ========================================
+
+    &__btn {
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            background 0.25s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        &:active {
+            transform: scale(0.97);
+        }
+    }
+
+
+    // ========================================
+    // STATISTIQUES
+    // ========================================
+
+    &__stats {
+
+        .client-profile__stat {
+
+            opacity: 0;
+
+            animation: profileFadeIn 0.6s ease-out forwards;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+
+            &:nth-child(1) {
+                animation-delay: 0.3s;
+            }
+
+            &:nth-child(2) {
+                animation-delay: 0.45s;
+            }
+
+            &:nth-child(3) {
+                animation-delay: 0.6s;
+            }
+
+
+            &:hover {
+                transform: translateY(-5px);
+
+                box-shadow:
+                    0 10px 25px rgba(0, 0, 0, 0.10);
+            }
+        }
+    }
+
+
+    // ========================================
+    // ICÔNES STATISTIQUES
+    // ========================================
+
+    &__stat-icon {
+
+        transition:
+            transform 0.3s ease;
+
+        .client-profile__stat:hover & {
+            transform: rotate(5deg) scale(1.08);
+        }
+    }
+
+
+    // ========================================
+    // NOMBRE DES STATISTIQUES
+    // ========================================
+
+    &__stat-number {
+        transition:
+            transform 0.3s ease;
+
+        .client-profile__stat:hover & {
+            transform: translateX(3px);
+        }
+    }
+
+
+    // ========================================
+    // CARTES
+    // ========================================
+
+    &__card {
+
+        opacity: 0;
+
+        animation: profileFadeIn 0.7s ease-out forwards;
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+
+
+        &:nth-child(1) {
+            animation-delay: 0.7s;
+        }
+
+
+        &:nth-child(2) {
+            animation-delay: 0.85s;
+        }
+
+
+        &:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.09);
+        }
+    }
+
+
+    // ========================================
+    // CHAMPS INFORMATIONS
+    // ========================================
+
+    &__field {
+
+        transition:
+            transform 0.25s ease;
+
+        &:hover {
+            transform: translateX(4px);
+        }
+    }
+
+
+    // ========================================
+    // ICÔNES INFORMATIONS
+    // ========================================
+
+    &__field-label {
+
+        i {
+            transition:
+                transform 0.25s ease;
+        }
+
+        &:hover i {
+            transform: scale(1.15);
+        }
+    }
+
+
+    // ========================================
+    // SÉCURITÉ
+    // ========================================
+
+    &__security-item {
+
+        transition:
+            transform 0.25s ease,
+            padding-left 0.25s ease;
+
+        &:hover {
+            transform: translateX(4px);
+            padding-left: 0.4rem;
+        }
+    }
+
+
+    &__security-icon {
+
+        transition:
+            transform 0.3s ease;
+
+        .client-profile__security-item:hover & {
+            transform: scale(1.08) rotate(-3deg);
+        }
+    }
+
+
+    // ========================================
+    // STATUT VÉRIFIÉ
+    // ========================================
+
+    &__verified {
+
+        i {
+            transition:
+                transform 0.3s ease;
+        }
+
+        &:hover i {
+            transform: scale(1.2);
+        }
+    }
+}
+
+
+// ========================================
+// ANIMATION DU STATUT ACTIF
+// ========================================
+
+.client-profile__status i {
+    animation: statusPulse 1.8s infinite;
+}
+
+
+@keyframes statusPulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+// ========================================
+// ACCESSIBILITÉ
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+
+    .client-profile,
+    .client-profile * {
+
+        animation: none !important;
+
+        transition: none !important;
+    }
+}
+
+
+// ========================================
+// ANIMATIONS INFINIES - PROFIL CLIENT
+// ========================================
+
+// Animation flottante
+@keyframes profileFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+// Animation légère des icônes
+@keyframes profileIconFloat {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-4px) rotate(3deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+
+// Animation pulsation
+@keyframes profilePulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+// ========================================
+// PHOTO DE PROFIL
+// ========================================
+
+.client-profile__avatar {
+
+    animation:
+        profileFloat
+        3s
+        ease-in-out
+        infinite;
+}
+
+
+// ========================================
+// ICÔNES DES STATISTIQUES
+// ========================================
+
+.client-profile__stat-icon {
+
+    animation:
+        profileIconFloat
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+
+// Décalage entre les icônes
+.client-profile__stat:nth-child(1)
+.client-profile__stat-icon {
+
+    animation-delay: 0s;
+}
+
+
+.client-profile__stat:nth-child(2)
+.client-profile__stat-icon {
+
+    animation-delay: 0.4s;
+}
+
+
+.client-profile__stat:nth-child(3)
+.client-profile__stat-icon {
+
+    animation-delay: 0.8s;
+}
+
+
+// ========================================
+// ICÔNES DE SÉCURITÉ
+// ========================================
+
+.client-profile__security-icon {
+
+    animation:
+        profileIconFloat
+        3s
+        ease-in-out
+        infinite;
+}
+
+
+// Décalage des icônes
+.client-profile__security-item:nth-child(1)
+.client-profile__security-icon {
+
+    animation-delay: 0.2s;
+}
+
+
+.client-profile__security-item:nth-child(2)
+.client-profile__security-icon {
+
+    animation-delay: 0.7s;
+}
+
+
+.client-profile__security-item:nth-child(3)
+.client-profile__security-icon {
+
+    animation-delay: 1.2s;
+}
+
+
+// ========================================
+// STATUT CLIENT ACTIF
+// ========================================
+
+.client-profile__status i {
+
+    animation:
+        profilePulse
+        1.8s
+        ease-in-out
+        infinite;
+}
+
+
+// ========================================
+// STATUT VÉRIFIÉ
+// ========================================
+
+.client-profile__verified i {
+
+    animation:
+        profilePulse
+        2s
+        ease-in-out
+        infinite;
+}
+
+
+// ========================================
+// ACCESSIBILITÉ
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+
+    .client-profile__avatar,
+    .client-profile__stat-icon,
+    .client-profile__security-icon,
+    .client-profile__status i,
+    .client-profile__verified i {
+
+        animation: none;
+    }
+}
+

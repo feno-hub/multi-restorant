@@ -1,0 +1,394 @@
+.how {
+    font-family: $font;
+    background: $color-primary;
+
+    /* ================= HERO ================= */
+
+    &-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1rem;
+        
+        &-hero {
+            background: $bg;
+            color: $color-free;
+            padding: 80px 40px;
+            border-radius: 18px;
+            text-align: center;
+            margin-bottom: 70px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .15);
+    
+            h1 {
+                font-size: 46px;
+                margin-bottom: 20px;
+            }
+    
+            p {
+                max-width: 800px;
+                margin: auto;
+                line-height: 1.9;
+                font-size: 18px;
+            }
+        }
+        
+    }
+
+
+    /* ================= SECTION ================= */
+
+    &-section {
+        margin-bottom: 80px;
+        padding: 1rem;
+    }
+}
+
+/* ================= TITRE ================= */
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+
+    h2 {
+        color: $color;
+        font-size: 34px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: $color-free;
+        font-size: 17px;
+    }
+}
+
+/* ================= ETAPES ================= */
+
+.steps {
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+
+}
+
+.step {
+
+    background: $color-free;
+    padding: 35px 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    transition: .35s;
+
+    &:hover{
+
+        transform: translateY(-8px);
+
+    }
+
+    i{
+
+        width:80px;
+        height:80px;
+        background:$color-primary;
+        color:$color-btn-add;
+        border-radius:50%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin:auto;
+        font-size:32px;
+        margin-bottom:25px;
+
+    }
+
+    h3{
+
+        color:$color;
+        margin-bottom:15px;
+        font-size:22px;
+
+    }
+
+    p{
+
+        color:$color-secondary;
+        line-height:1.8;
+
+    }
+
+}
+
+/* ================= AVANTAGES ================= */
+
+.advantages{
+
+    margin:90px 0;
+    padding: 1rem;
+
+    h2{
+
+        text-align:center;
+        color:$color;
+        font-size:34px;
+        margin-bottom:45px;
+
+    }
+
+}
+
+.advantages-grid{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    
+}
+
+.advantage{
+    
+    background:$color-free;
+    padding:35px 20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    &:hover{
+
+        transform:translateY(-6px);
+
+    }
+
+    i{
+
+        font-size:38px;
+        color:$color-btn-add;
+        margin-bottom:20px;
+
+    }
+
+    h3{
+
+        color:$color;
+        font-size:20px;
+
+    }
+
+}
+
+/* ================= FAQ ================= */
+
+.faq{
+
+    margin:90px 0;
+    padding: 1rem;
+
+    h2{
+
+        text-align:center;
+        color:$color;
+        margin-bottom:40px;
+        font-size:34px;
+
+    }
+
+}
+
+.faq-item{
+
+    background:$color-free;
+    border-left:6px solid $color;
+    margin-bottom:20px;
+    border-radius:10px;
+    padding:25px;
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
+
+    h3{
+
+        color:$color;
+        margin-bottom:12px;
+
+    }
+
+    p{
+
+        color:$color-secondary;
+        line-height:1.8;
+
+    }
+
+}
+
+/* ================= CTA ================= */
+
+.cta{
+
+    background:$color-secondary;
+    color:$color-free;
+    border-radius:18px;
+    padding:60px 30px;
+    margin: 1rem;
+    text-align:center;
+
+    h2{
+
+        font-size:36px;
+        margin-bottom:20px;
+
+    }
+
+    p{
+
+        font-size:18px;
+        margin-bottom:35px;
+
+    }
+
+}
+
+.cta-buttons{
+
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+
+}
+
+
+/* =======================
+        RESPONSIVE
+======================= */
+
+@include respond($bp-992){
+
+    .steps,
+    .advantages-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@include respond($bp-768){
+
+    .how{
+
+        padding:40px 0;
+
+        &-hero{
+
+            padding:60px 25px;
+
+            h1{
+
+                font-size:34px;
+
+            }
+
+            p{
+
+                font-size:16px;
+
+            }
+
+        }
+
+    }
+
+    .section-title{
+
+        h2{
+
+            font-size:28px;
+
+        }
+
+    }
+
+    .steps,
+    .advantages-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .cta{
+
+        h2{
+
+            font-size:30px;
+
+        }
+
+        p{
+
+            font-size:16px;
+
+        }
+
+    }
+
+}
+
+@include respond($bp-480){
+
+    .how{
+
+        &-hero{
+
+            padding:45px 20px;
+
+            h1{
+
+                font-size:28px;
+
+            }
+
+        }
+
+    }
+
+    .step{
+
+        padding:25px 20px;
+
+        i{
+
+            width:65px;
+            height:65px;
+            font-size:28px;
+
+        }
+
+    }
+
+    .faq-item{
+
+        padding:20px;
+
+    }
+
+    .cta{
+
+        padding:45px 20px;
+
+    }
+
+    .cta-buttons{
+
+        flex-direction:column;
+
+        a{
+
+            width:100%;
+
+        }
+
+    }
+
+}

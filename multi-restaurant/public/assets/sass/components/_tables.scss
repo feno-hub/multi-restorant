@@ -1,0 +1,133 @@
+// ===== TABLEAUX =====
+.table-container {
+    background: $color-free;
+    border-radius: $border-radius-xl;
+    border: 1px solid #EEF3F8;
+    overflow: hidden;
+    @include shadow(1);
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+
+        thead {
+            background: $color-primary;
+            border-bottom: 2px solid #EEF3F8;
+
+            th {
+                padding: $spacing-md $spacing-lg;
+                text-align: left;
+                font-weight: $font-weight-semibold;
+                color: $color-secondary;
+                font-size: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: 1px solid #F0F4FA;
+                @include transition;
+
+                &:hover {
+                    background: #FAFBFC;
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                td {
+                    padding: $spacing-md $spacing-lg;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        // Checkbox
+        input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: $color-btn-add;
+        }
+
+        // Colonnes d'action
+        .action-column {
+            text-align: center;
+            white-space: nowrap;
+        }
+    }
+
+    // Pied de tableau
+    .table-footer {
+        @include flex-between;
+        padding: $spacing-md $spacing-xl;
+        border-top: 1px solid #F0F4FA;
+        flex-wrap: wrap;
+        gap: $spacing-md;
+
+        .table-info {
+            font-size: 14px;
+            color: $color-text-muted;
+        }
+
+        .pagination {
+            @include flex;
+            gap: $spacing-xs;
+
+            .page-btn {
+                padding: $spacing-sm $spacing-md;
+                border-radius: $border-radius-sm;
+                border: 1px solid #E2E8F0;
+                background: $color-free;
+                color: $color-secondary;
+                font-size: 14px;
+                @include transition;
+                @include button-reset;
+
+                &:hover {
+                    background: $color-primary;
+                }
+
+                &.active {
+                    background: $color-btn-add;
+                    color: $color-free;
+                    border-color: $color-btn-add;
+
+                    &:hover {
+                        background: darken($color-btn-add, 5%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ===== TABLEAU RESPONSIVE =====
+@include respond(md) {
+    .table-container {
+        .table-footer {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+}
+
+@include respond(sm) {
+    .table-container .table {
+        font-size: 13px;
+
+        thead th,
+        tbody td {
+            padding: $spacing-sm $spacing-md;
+        }
+    }
+}

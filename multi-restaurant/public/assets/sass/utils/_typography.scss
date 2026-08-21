@@ -1,0 +1,158 @@
+// ===== TYPOGRAPHIE =====
+
+// Titres
+h1, .h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: $color-secondary;
+}
+
+h2, .h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: $color-secondary;
+}
+
+h3, .h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: $color-secondary;
+}
+
+h4, .h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: $color-secondary;
+}
+
+h5, .h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: $color-secondary;
+}
+
+h6, .h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: $color-secondary;
+}
+
+// Paragraphes
+p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: $color-text-muted;
+}
+
+// Texte
+.text-muted {
+    color: $color-text-muted;
+}
+
+.text-primary {
+    color: $color-btn-add;
+}
+
+.text-success {
+    color: $color-btn-success;
+}
+
+.text-warning {
+    color: $color-btn-warning;
+}
+
+.text-danger {
+    color: $colore-btn-delete;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+// Tailles
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+
+// Poids
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+// Section title avec souligné
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $color-secondary;
+    position: relative;
+    padding-bottom: $spacing-sm;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 4px;
+        background: $color-btn-add;
+        border-radius: 4px;
+    }
+
+    &.text-center {
+        &::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}
+
+// Section header avec lien
+.section-header {
+    @include flex-between;
+    margin-bottom: $spacing-lg;
+
+    .section-title {
+        padding-bottom: 0;
+
+        &::after {
+            bottom: -6px;
+        }
+    }
+
+    .section-link {
+        font-weight: $font-weight-semibold;
+        color: $color-btn-add;
+        @include transition;
+        padding: $spacing-sm $spacing-md;
+        border-radius: $border-radius-full;
+        border: 2px solid transparent;
+
+        &:hover {
+            background: rgba(192, 56, 43, 0.08);
+            border-color: $color-btn-add;
+            transform: translateX(4px);
+        }
+    }
+}

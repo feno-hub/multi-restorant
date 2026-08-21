@@ -1,0 +1,19 @@
+.success-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: $colore-btn-delete;
+    border-left: 4px solid $color;
+    border-radius: 10px;
+    color: $color-free;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+
+    i {
+        font-size: 18px;
+        color: $color;
+        flex-shrink: 0;
+    }
+}

@@ -1,0 +1,205 @@
+.terms {
+
+    font-family: $font;
+    background: $color-primary;
+    padding: 7rem 3rem;
+
+    &-hero {
+
+        background: $bg;
+        color: $color-free;
+        text-align: center;
+        padding: 80px 40px;
+        border-radius: 18px;
+        margin-bottom: 60px;
+        box-shadow: 0 15px 35px rgba(0,0,0,.12);
+
+        h1 {
+            font-size: 44px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            max-width: 850px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+    }
+
+    &-content {
+
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 30px;
+
+    }
+
+    &-card {
+
+        background: $color-free;
+        border-radius: 15px;
+        padding: 35px;
+        box-shadow: 0 8px 20px rgba(0,0,0,.08);
+        transition: .3s;
+
+        &:hover {
+            transform: translateY(-6px);
+        }
+
+        i {
+
+            width: 70px;
+            height: 70px;
+            background: $color-primary;
+            color: $color-btn-add;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            animation: icon 1s linear;
+
+            @keyframes icon {
+                0% {
+                    transform: translateY(0);
+                }
+                100% {
+                    transform: translateY(-5px);
+                }
+            }
+
+        }
+
+        h2 {
+
+            color: $color-secondary;
+            margin-bottom: 15px;
+
+        }
+
+        p {
+
+            color: #666;
+            line-height: 1.8;
+
+        }
+
+        ul {
+
+            padding-left: 20px;
+
+            li {
+
+                color: #666;
+                line-height: 1.8;
+                margin-bottom: 8px;
+
+            }
+
+        }
+
+    }
+
+    &-btn {
+
+        display: inline-block;
+        margin-top: 20px;
+        background: $color-btn-add;
+        color: $color-free;
+        padding: 14px 30px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: .3s;
+
+        &:hover {
+
+            opacity: .9;
+
+        }
+
+    }
+
+}
+
+@include respond($bp-992) {
+
+    .terms {
+
+        &-content {
+
+            grid-template-columns: 1fr;
+
+        }
+
+    }
+
+}
+
+@include respond($bp-768) {
+
+    .terms {
+
+        padding: 40px 0;
+
+        &-hero {
+
+            padding: 60px 25px;
+
+            h1 {
+
+                font-size: 34px;
+
+            }
+
+            p {
+
+                font-size: 16px;
+
+            }
+
+        }
+
+        &-card {
+
+            padding: 25px;
+
+        }
+
+    }
+
+}
+
+@include respond($bp-480) {
+
+    .terms {
+
+        &-hero {
+
+            padding: 40px 20px;
+
+            h1 {
+
+                font-size: 28px;
+
+            }
+
+        }
+
+        &-card {
+
+            text-align: center;
+
+            i {
+
+                margin: 0 auto 20px;
+
+            }
+
+        }
+
+    }
+
+}

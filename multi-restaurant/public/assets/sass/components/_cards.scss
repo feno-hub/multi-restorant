@@ -1,0 +1,400 @@
+// ===== CARTES =====
+.card {
+    background: $color-free;
+    border-radius: $border-radius-xl;
+    border: 1px solid #EEF3F8;
+    padding: $spacing-lg $spacing-xl;
+    @include shadow(1);
+    @include transition;
+
+    &:hover {
+        @include shadow(2);
+    }
+
+    &-header {
+        @include flex-between;
+        margin-bottom: $spacing-md;
+        background: $colp;
+
+        .card-title {
+            font-size: 17px;
+            font-weight: $font-weight-bold;
+            color: $color-secondary;
+            display: flex;
+            align-items: center;
+            gap: $spacing-sm;
+
+            i {
+                color: $color-btn-add;
+            }
+        }
+
+        .card-link {
+            font-size: 13px;
+            font-weight: $font-weight-semibold;
+            color: $color-btn-add;
+            @include transition;
+
+            i {
+                margin-left: $spacing-xs;
+                font-size: 12px;
+            }
+
+            &:hover {
+                transform: translateX(4px);
+            }
+        }
+    }
+
+    &-body {
+        flex: 1;
+    }
+
+    &-footer {
+        padding-top: $spacing-md;
+        border-top: 1px solid #F0F4FA;
+        margin-top: $spacing-md;
+        @include flex-between;
+        flex-wrap: wrap;
+        gap: $spacing-sm;
+    }
+}
+
+// ===== KPI CARD =====
+.kpi-card {
+    background: $color-free;
+    border-radius: $border-radius-xl;
+    padding: $spacing-lg $spacing-xl;
+    border: 1px solid #EDF2F7;
+    @include shadow(1);
+    @include transition;
+
+    &:hover {
+        border-color: $color-btn-add;
+    }
+
+    .kpi-label {
+        font-size: 13px;
+        font-weight: $font-weight-medium;
+        color: $color-text-muted;
+        @include flex;
+        gap: $spacing-sm;
+        margin-bottom: $spacing-xs;
+
+        i {
+            color: $color-btn-add;
+            font-size: 17px;
+            opacity: 0.7;
+        }
+    }
+
+    .kpi-value {
+        font-size: 28px;
+        font-weight: $font-weight-bold;
+        color: $color-secondary;
+        letter-spacing: -0.5px;
+    }
+
+    .kpi-trend {
+        font-size: 12px;
+        font-weight: $font-weight-semibold;
+        margin-top: $spacing-xs;
+        display: inline-flex;
+        align-items: center;
+        gap: $spacing-xs;
+        padding: 2px $spacing-md;
+        border-radius: $border-radius-full;
+        background: #E6F7EC;
+        color: #15803D;
+
+        &.down {
+            background: #FEE9E7;
+            color: #B91C1C;
+        }
+    }
+}
+
+// ===== RESTAURANT CARD =====
+.restaurant-card {
+    background: $color-free;
+    border-radius: $border-radius-xl;
+    border: 1px solid #EEF3F8;
+    overflow: hidden;
+    @include shadow(1);
+    @include transition;
+
+    &:hover {
+        transform: translateY(-6px);
+        @include shadow(3);
+        border-color: $colore-btn-update;
+
+        .restaurant-card-image img {
+            transform: scale(1.08);
+        }
+    }
+
+    &-image {
+        height: 200px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        @include flex-center;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            @include transition(transform, 0.5s);
+        }
+
+        .restaurant-emoji {
+            font-size: 64px;
+        }
+
+        .restaurant-status {
+            position: absolute;
+            top: $spacing-md;
+            right: $spacing-md;
+            @include status-badge($status-active);
+
+            &.inactive {
+                @include status-badge($status-inactive);
+            }
+
+            &.pending {
+                @include status-badge($status-pending);
+            }
+        }
+
+        .restaurant-rating {
+            position: absolute;
+            bottom: $spacing-md;
+            left: $spacing-md;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            padding: $spacing-xs $spacing-md;
+            border-radius: $border-radius-full;
+            color: $color-free;
+            font-weight: $font-weight-semibold;
+            font-size: 14px;
+            @include flex;
+            gap: $spacing-xs;
+
+            i {
+                color: #F59E0B;
+            }
+        }
+    }
+
+    &-body {
+        padding: $spacing-lg $spacing-xl $spacing-xl;
+    }
+
+    &-header {
+        @include flex-between;
+        margin-bottom: $spacing-sm;
+
+        .restaurant-name {
+            font-size: 18px;
+            font-weight: $font-weight-bold;
+            color: $color-secondary;
+
+            a {
+                @include transition;
+
+                &:hover {
+                    color: $color-btn-add;
+                }
+            }
+        }
+
+        .restaurant-cuisine {
+            font-size: 12px;
+            color: $color-text-muted;
+            background: $color-primary;
+            padding: 2px $spacing-md;
+            border-radius: $border-radius-full;
+            font-weight: $font-weight-medium;
+            white-space: nowrap;
+        }
+    }
+
+    &-info {
+        @include flex;
+        flex-wrap: wrap;
+        gap: $spacing-md;
+        margin: $spacing-sm 0 $spacing-md;
+
+        .info-item {
+            @include flex;
+            gap: $spacing-xs;
+            font-size: 13px;
+            color: $color-text-muted;
+
+            i {
+                color: $color-btn-add;
+                font-size: 13px;
+                width: 16px;
+            }
+        }
+    }
+
+    &-footer {
+        @include flex-between;
+        padding-top: $spacing-md;
+        border-top: 1px solid #F0F4FA;
+        flex-wrap: wrap;
+        gap: $spacing-sm;
+
+        .order-count {
+            font-size: 13px;
+            color: $color-text-muted;
+
+            strong {
+                color: $color-secondary;
+                font-weight: $font-weight-bold;
+            }
+        }
+
+        .card-actions {
+            @include flex;
+            gap: $spacing-xs;
+        }
+    }
+}
+
+// ===== REVIEW CARD =====
+.review-card {
+    background: $color-free;
+    border-radius: $border-radius-xl;
+    border: 1px solid #EEF3F8;
+    padding: $spacing-lg $spacing-xl;
+    @include shadow(1);
+    @include transition;
+
+    &:hover {
+        @include shadow(2);
+        border-color: #DCE3EC;
+    }
+
+    &.pending {
+        border-left: 4px solid $status-pending;
+        background: #FFFBEB;
+    }
+
+    &.rejected {
+        border-left: 4px solid $colore-btn-delete;
+        background: #FEF2F2;
+        opacity: 0.75;
+    }
+
+    .review-header {
+        @include flex-between;
+        flex-wrap: wrap;
+        gap: $spacing-md;
+        margin-bottom: $spacing-md;
+
+        .review-user {
+            @include flex;
+            gap: $spacing-md;
+
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .user-info {
+                .user-name {
+                    font-weight: $font-weight-semibold;
+                    color: $color-secondary;
+                }
+
+                .user-meta {
+                    @include flex;
+                    gap: $spacing-md;
+                    font-size: 13px;
+                    color: $color-text-muted;
+
+                    span {
+                        @include flex;
+                        gap: $spacing-xs;
+
+                        i {
+                            font-size: 12px;
+                            color: $color-btn-add;
+                        }
+                    }
+                }
+            }
+        }
+
+        .review-status {
+            .status-badge {
+                @include status-badge($status-active);
+
+                &.pending {
+                    @include status-badge($status-pending);
+                }
+
+                &.inactive {
+                    @include status-badge($status-inactive);
+                }
+            }
+        }
+    }
+
+    .review-rating {
+        @include flex;
+        gap: $spacing-md;
+        margin-bottom: $spacing-sm;
+
+        .stars {
+            color: #F59E0B;
+            font-size: 16px;
+
+            .far {
+                color: #D1D5DB;
+            }
+        }
+
+        .rating-score {
+            font-weight: $font-weight-bold;
+            color: $color-secondary;
+            font-size: 15px;
+        }
+    }
+
+    .review-content {
+        margin-bottom: $spacing-md;
+
+        p {
+            color: #374151;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+    }
+
+    .review-footer {
+        @include flex-between;
+        flex-wrap: wrap;
+        gap: $spacing-md;
+        padding-top: $spacing-md;
+        border-top: 1px solid #F0F4FA;
+
+        .review-helpful {
+            font-size: 13px;
+            color: $color-text-muted;
+
+            i {
+                margin-right: $spacing-xs;
+            }
+        }
+
+        .review-actions {
+            @include flex;
+            gap: $spacing-xs;
+        }
+    }
+}

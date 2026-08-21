@@ -1,0 +1,181 @@
+// ===== FORMULAIRES =====
+.form-group {
+    margin-bottom: $spacing-md;
+
+    .form-label {
+        display: block;
+        font-weight: $font-weight-medium;
+        color: $color-secondary;
+        margin-bottom: $spacing-xs;
+        font-size: 14px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: $spacing-sm $spacing-md;
+        border: 2px solid #EEF2F6;
+        border-radius: $border-radius-md;
+        font-size: 14px;
+        color: $color-secondary;
+        @include transition;
+        background: $color-free;
+
+        &:focus {
+            border-color: $colore-btn-update;
+            @include shadow(1);
+            outline: none;
+        }
+
+        &:hover {
+            border-color: #CBD5E1;
+        }
+
+        &.is-invalid {
+            border-color: $colore-btn-delete;
+
+            &:focus {
+                box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+            }
+        }
+
+        &.is-valid {
+            border-color: $color-btn-success;
+
+            &:focus {
+                box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+            }
+        }
+
+        &::placeholder {
+            color: #94A3B8;
+        }
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .form-error {
+        color: $colore-btn-delete;
+        font-size: 13px;
+        margin-top: $spacing-xs;
+        @include flex;
+        gap: $spacing-xs;
+    }
+
+    .form-helper {
+        color: $color-text-muted;
+        font-size: 13px;
+        margin-top: $spacing-xs;
+    }
+}
+
+// ===== SEARCH BOX =====
+.search-box {
+    @include flex;
+    background: $color-primary;
+    border-radius: $border-radius-md;
+    padding: 0 $spacing-md;
+    border: 2px solid #E2E8F0;
+    @include transition;
+
+    &:focus-within {
+        border-color: $color-btn-add;
+        box-shadow: 0 0 0 3px rgba(192, 56, 43, 0.1);
+    }
+
+    i {
+        color: #94A3B8;
+        font-size: 14px;
+    }
+
+    input {
+        border: none;
+        background: transparent;
+        padding: $spacing-sm $spacing-md;
+        font-size: 14px;
+        outline: none;
+        flex: 1;
+        color: $color-secondary;
+
+        &::placeholder {
+            color: #94A3B8;
+        }
+    }
+}
+
+// ===== FILTER BAR =====
+.filter-bar {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin: $spacing-lg 0;
+    padding: $spacing-md $spacing-xl;
+    background: $color-free;
+    border-radius: $border-radius-lg;
+    border: 1px solid #EEF3F8;
+
+    .filter-left {
+        @include flex;
+        gap: $spacing-md;
+        flex-wrap: wrap;
+    }
+
+    .filter-right {
+        @include flex;
+        gap: $spacing-sm;
+    }
+
+    .filter-group {
+        @include flex;
+        gap: $spacing-sm;
+    }
+
+    .filter-select {
+        padding: $spacing-sm $spacing-md;
+        border-radius: $border-radius-md;
+        border: 1px solid #E2E8F0;
+        background: $color-primary;
+        font-size: 14px;
+        color: $color-secondary;
+        cursor: pointer;
+        outline: none;
+        @include transition;
+
+        &:focus {
+            border-color: $color-btn-add;
+        }
+    }
+}
+
+// ===== FILTER BAR RESPONSIVE =====
+@include respond(md) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+
+        .filter-left {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .filter-right {
+            width: 100%;
+            flex-wrap: wrap;
+
+            .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        .filter-group {
+            width: 100%;
+
+            select {
+                flex: 1;
+            }
+        }
+    }
+}

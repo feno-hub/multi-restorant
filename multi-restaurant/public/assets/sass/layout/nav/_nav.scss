@@ -1,0 +1,176 @@
+.container {
+    position: relative;
+
+    &-navresp {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.251);
+        z-index: 3;
+        width: 100%;
+        padding: 1rem;
+        display: none;
+        animation: pulse 1s linear;
+        
+        @media (max-width: 576px) {
+            display: block;
+        }
+
+        &-parent {
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        &-label {
+            border: double 2px $color;
+            padding: 3px 10px;
+            color: $color-free;
+        }
+        
+    }
+    
+    &-input {
+        display: none;
+    }
+
+    &-nav {
+        
+        position: fixed;
+        z-index: 4;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        background: rgba(79, 70, 70, 0.658);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid white;
+        animation: pulse 1s linear;
+
+        @media (max-width: 992px) {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (max-width: 576px) {
+            flex-direction: column;
+            gap: 1rem;
+            display: none;
+            background: rgb(32, 1, 1);
+
+            &-logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+        }
+
+        &-label {
+            display: none;
+            color: $color-free;
+            border: double 2px $color;
+            padding: 2px 5px;
+            width: min-content;
+
+            @media (max-width: 576px) {
+                display: block;
+            }
+
+        }
+
+        &-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            @media (max-width: 576px) {
+                flex-direction: column;
+                align-items: normal;
+            }
+
+            &-link {
+                background: rgba(34, 28, 16, 0.421);
+                padding: 0rem .5rem;
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                color: $color-free;
+                text-transform: capitalize;
+                font-weight: inherit;
+                transition: .3s;
+                box-shadow: 0 0 2px black;
+
+                
+
+                &-icon {
+                    color: $color;
+                }
+
+            }
+
+        }
+
+        &-button {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+
+            @media (max-width: 576px) {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+
+            &-card {
+                position: relative;
+                font-size: 1.5rem;
+                color: $color;
+                transition: .3s;
+
+                &:hover {
+                    scale: 1.05;
+                }
+
+                &-notif {
+                    background: red;
+                    color: $color-free;
+                    font-weight: 500;
+                    font-size: 12px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: -10px;
+                    right: -10px;
+                } 
+
+            }
+
+        }
+
+    }
+
+}
+
+.container-nav-card-link:hover {
+    background: $color;
+    font-weight: 500;
+}
+
+.container-nav-card-link:hover .container-nav-card-link-icon {
+    color: $color-free;
+}
+
+#burger:checked ~ .container-nav {
+    display: block;
+}
+
+#burger:checked ~ .container-navresp {
+    display: none;
+}

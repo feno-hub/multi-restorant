@@ -1,0 +1,149 @@
+// ===== OMBRES =====
+@mixin shadow($level: 1) {
+    @if $level == 1 {
+        box-shadow: $shadow-sm;
+    } @else if $level == 2 {
+        box-shadow: $shadow-md;
+    } @else if $level == 3 {
+        box-shadow: $shadow-lg;
+    } @else if $level == 4 {
+        box-shadow: $shadow-xl;
+    }
+}
+
+// ===== TRANSITIONS =====
+@mixin transition($properties: all, $duration: 0.3s, $easing: ease) {
+    transition: $properties $duration $easing;
+}
+
+// ===== FLEXBOX =====
+@mixin flex($direction: row, $wrap: nowrap, $justify: flex-start, $align: stretch) {
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+// ===== GRID =====
+@mixin grid($columns: 1, $gap: $spacing-md) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+@mixin grid-auto($min: 200px, $gap: $spacing-md) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+    gap: $gap;
+}
+
+// ===== RESPONSIVE =====
+@mixin respond($breakpoint) {
+    @if $breakpoint == xs {
+        @media (max-width: $breakpoint-xs) { @content; }
+    }
+    @if $breakpoint == sm {
+        @media (max-width: $breakpoint-sm) { @content; }
+    }
+    @if $breakpoint == md {
+        @media (max-width: $breakpoint-md) { @content; }
+    }
+    @if $breakpoint == lg {
+        @media (max-width: $breakpoint-lg) { @content; }
+    }
+    @if $breakpoint == xl {
+        @media (max-width: $breakpoint-xl) { @content; }
+    }
+}
+
+// ===== GLASS EFFECT =====
+@mixin glass($opacity: 0.8) {
+    background: rgba(255, 255, 255, $opacity);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+// ===== TEXT ELLIPSIS =====
+@mixin text-ellipsis($lines: 1) {
+    @if $lines == 1 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    } @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+// ===== SCROLLBAR =====
+@mixin scrollbar($width: 6px, $color: $color-btn-add) {
+    &::-webkit-scrollbar {
+        width: $width;
+    }
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $color;
+        border-radius: 10px;
+    }
+}
+
+// ===== BUTTON RESET =====
+@mixin button-reset {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+}
+
+// ===== CARD =====
+@mixin card {
+    background: $color-free;
+    border-radius: $border-radius-xl;
+    border: 1px solid #EEF3F8;
+    padding: $spacing-lg $spacing-xl;
+    @include shadow(1);
+    @include transition;
+}
+
+// ===== STATUS BADGE =====
+@mixin status-badge($color: $status-active) {
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border-radius-full;
+    font-size: 12px;
+    font-weight: $font-weight-semibold;
+    background: rgba($color, 0.15);
+    color: $color;
+}

@@ -1,0 +1,48 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+
+    public function up(): void
+    {
+
+        Schema::create('restos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
+
+            $table->string('name');
+            $table->string('category');
+            $table->string('phone');
+            $table->string('email')->unique();
+            $table->string('address');
+            $table->string('city');
+            $table->string('description');
+            $table->string('open_time');
+            $table->string('close_time');
+            $table->string('logo')->nullable();
+            $table->string('cover');
+            $table->string('instat');
+            $table->string('website')->nullable();
+            $table->string('status')->default('en_attent');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('restos');
+    }
+};

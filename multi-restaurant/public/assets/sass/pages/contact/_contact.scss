@@ -1,0 +1,505 @@
+// ===== VARIABLES =====
+$color-secondary: #2C3E50;
+$color-free: #FFFFFF;
+$color-btn-add: #C0382B;
+$colore-btn-update: #3498DB;
+$colore-btn-delete: #E74C3C;
+$color-btn-back: #7F8C8D;
+$bg: linear-gradient(135deg, #667eea, #764ba2);
+
+// ===== FONTS =====
+$font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+// ===== MIXINS =====
+@mixin shadow($level: 1) {
+    @if $level == 1 {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    } @else if $level == 2 {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    } @else if $level == 3 {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@mixin transition($property: all, $duration: 0.3s, $easing: ease) {
+    transition: $property $duration $easing;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin glass-effect {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+// ===== ANIMATIONS =====
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-15deg);
+    }
+    75% {
+        transform: rotate(15deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+// ===== CONTAINER CONTACT =====
+.container-contact {
+    display: grid;
+    background: $color-primary;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 7rem 3rem;
+    margin: 0 auto;
+    min-height: 80vh;
+    animation: fadeInUp 0.8s ease;
+
+    
+    // ===== PARTIE GAUCHE : INFORMATIONS =====
+    &-text {
+        animation: fadeInLeft 0.8s ease 0.2s both;
+        padding: 2rem 0;
+        
+        @media (max-width: 992px) {
+            margin-top: 4rem;
+        }
+
+        &-title {
+            font-family: $font;
+            color: $color;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -8px;
+                left: 0;
+                width: 60px;
+                height: 4px;
+                background: $color-btn-add;
+                border-radius: 4px;
+            }
+        }
+
+        &-bio {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.5rem;
+            border-radius: 16px;
+            @include transition;
+            cursor: default;
+
+            &:hover {
+                background: rgba(192, 56, 43, 0.05);
+                transform: translateX(8px);
+            }
+
+            &-icon {
+                background: $color-btn-add;
+                width: 3.5rem;
+                height: 3.5rem;
+                @include flex-center;
+                color: $color-free;
+                border-radius: 50%;
+                font-size: 1.4rem;
+                flex-shrink: 0;
+                @include transition;
+
+                &:hover {
+                    transform: scale(1.1);
+                    background: darken($color-btn-add, 8%);
+                }
+
+                &-tel {
+                    animation: shake 3s ease-in-out infinite;
+                }
+            }
+
+            &-title {
+                color: $color-free;
+                font-family: $font;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-weight: 600;
+                min-width: 80px;
+            }
+
+            &-nom {
+                color: $color;
+                font-weight: 600;
+                font-size: 1.1rem;
+                font-family: $font;
+                @include transition;
+
+                &:hover {
+                    color: $color-btn-add;
+                }
+            }
+        }
+
+        // Carte de décoration
+        &-deco {
+            margin-top: 3rem;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, $color-secondary, darken($color-secondary, 5%));
+            border-radius: 20px;
+            color: $color-free;
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+                content: '💬';
+                position: absolute;
+                top: -20px;
+                right: -20px;
+                font-size: 6rem;
+                opacity: 0.05;
+                pointer-events: none;
+            }
+
+            &-title {
+                font-family: $font;
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            &-para {
+                font-family: $font;
+                font-size: 0.95rem;
+                opacity: 0.8;
+                line-height: 1.6;
+            }
+        }
+    }
+
+    // ===== PARTIE DROITE : FORMULAIRE =====
+    &-form {
+        background: $color-free;
+        padding: 2.5rem;
+        border-radius: 24px;
+        @include shadow(2);
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        animation: fadeInRight 0.8s ease 0.4s both;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+        @include transition;
+
+        &:hover {
+            @include shadow(3);
+        }
+
+        &-icon {
+            font-size: 2.2rem;
+            color: $color-free;
+            background: $color;
+            width: 4.5rem;
+            height: 4.5rem;
+            border-radius: 50%;
+            @include flex-center;
+            margin: 0 auto;
+            @include transition;
+
+            &:hover {
+                transform: scale(1.05) rotate(-5deg);
+                box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+            }
+        }
+
+        &-para {
+            text-align: center;
+            font-family: $font;
+            color: $color-secondary;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.8rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #eef2f6;
+        }
+
+        &-input {
+            color: $color-secondary;
+            padding: 1rem 1.2rem;
+            border: 2px solid $color;
+            outline: none;
+            border-radius: 12px;
+            font-family: $font;
+            font-size: 0.95rem;
+            @include transition;
+            resize: vertical;
+            min-height: 120px;
+            background: $color-free;
+
+            &:focus {
+                border-color: $colore-btn-update;
+                @include shadow(1);
+            }
+
+            &::placeholder {
+                color: #94a3b8;
+                font-family: $font;
+            }
+
+            &:hover {
+                border-color: #cbd5e1;
+            }
+        }
+
+        &-text {
+            @include flex-center;
+            color: $color-secondary;
+            font-family: $font;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+
+            i {
+                color: $color-btn-add;
+            }
+        }
+
+        // Message de succès
+        .success-layout {
+            padding: 1rem;
+            background: #d1fae5;
+            color: #065f46;
+            border-radius: 12px;
+            font-family: $font;
+            font-weight: 500;
+            text-align: center;
+            border-left: 4px solid #059669;
+            animation: slideIn 0.4s ease;
+        }
+
+        // Message d'erreur
+        .error-layout {
+            padding: 0.6rem 1rem;
+            background: #fee2e2;
+            color: #991b1b;
+            border-radius: 12px;
+            font-family: $font;
+            font-size: 0.9rem;
+            border-left: 4px solid $colore-btn-delete;
+            animation: shake 0.4s ease;
+        }
+    }
+}
+
+// ===== RESPONSIVE =====
+@media (max-width: 1024px) {
+    .container-contact {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 7rem 1.5rem;
+
+        &-text {
+            padding: 0;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .container-contact {
+        padding: 7rem 1rem;
+        gap: 2rem;
+        
+        &-text {
+            &-title {
+                font-size: 2.2rem;
+            }
+
+            &-bio {
+                padding: 0.6rem 0.8rem;
+                flex-wrap: wrap;
+
+                &-icon {
+                    width: 3rem;
+                    height: 3rem;
+                    font-size: 1.2rem;
+                }
+
+                &-title {
+                    font-size: 0.75rem;
+                    min-width: auto;
+                }
+
+                &-nom {
+                    font-size: 1rem;
+                }
+            }
+
+            &-deco {
+                padding: 1.2rem 1.5rem;
+            }
+        }
+
+        &-form {
+            padding: 1.8rem 1.5rem;
+
+            &-icon {
+                width: 4rem;
+                height: 4rem;
+                font-size: 1.8rem;
+            }
+
+            &-para {
+                font-size: 1rem;
+            }
+
+            &-input {
+                min-height: 100px;
+                padding: 0.8rem 1rem;
+            }
+
+            .btn-add-layout {
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .container-contact {
+        padding: 1rem 0.8rem;
+
+        &-text {
+            &-title {
+                font-size: 1.8rem;
+            }
+
+            &-bio {
+                padding: 0.8rem 1rem;
+                background: $color-primary;
+                border-radius: 12px;
+
+                &-icon {
+                    width: 2.8rem;
+                    height: 2.8rem;
+                    font-size: 1rem;
+                }
+
+                &-title {
+                    font-size: 0.7rem;
+                }
+
+                &-nom {
+                    font-size: 0.95rem;
+                }
+            }
+        }
+
+        &-form {
+            padding: 1.5rem 1.2rem;
+            border-radius: 16px;
+
+            &-icon {
+                width: 3.5rem;
+                height: 3.5rem;
+                font-size: 1.5rem;
+            }
+
+            &-para {
+                font-size: 0.95rem;
+                padding: 0.6rem;
+            }
+
+            &-input {
+                min-height: 80px;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
