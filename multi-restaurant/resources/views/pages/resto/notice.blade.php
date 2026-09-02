@@ -20,7 +20,7 @@
                     </div>
                     <input type="hidden" name="resto_id" value="{{ $resto_id }}">
                     <div class="">
-                        <x-btndelet-layout type="submit" icon="fa-solid fa-paper-plane" btn="envoyer" />
+                        <x-btnsecondary-layout type="submit" icon="fa-solid fa-paper-plane" btn="envoyer" />
                     </div>
                 </form>
                 {{-- <div class="container-coment-section1-card-notif">6 avis reçues.</div> --}}

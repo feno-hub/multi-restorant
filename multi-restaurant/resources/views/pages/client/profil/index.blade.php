@@ -9,23 +9,26 @@
             <div class="client-profile__header-content">
 
                 <div class="client-profile__avatar">
-                    <img src="{{ asset('assets/images/client.jpg') }}"
-                         alt="Photo de profil">
+                    @if (isset(Auth::user()->image))
+                        <img src="{{ asset('assets/images/client.jpg') }}"
+                            alt="Photo de profil">
+                    @else
+                        <div style="display: flex;align-items:center;justify-content:center;padding-top:1rem;">
+                            <h1>
+                                {{ Auth::user()->name[0] }}{{ Auth::user()->last_name[0] }}
+                            </h1>                        
+                        </div>
+                    @endif
                 </div>
 
                 <div class="client-profile__identity">
 
-                    <h1>Jean Dupont</h1>
+                    <h1>{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h1>
 
                     <p>
                         <i class="fa-solid fa-envelope"></i>
-                        jean.dupont@gmail.com
+                        {{ Auth::user()->email }}
                     </p>
-
-                    <span class="client-profile__status">
-                        <i class="fa-solid fa-circle"></i>
-                        Client actif
-                    </span>
 
                 </div>
 
@@ -47,69 +50,6 @@
             </div>
 
         </div>
-
-
-        {{-- Statistiques --}}
-        <div class="client-profile__stats">
-
-            <div class="client-profile__stat">
-
-                <div class="client-profile__stat-icon">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-
-                <div>
-                    <span class="client-profile__stat-number">
-                        24
-                    </span>
-
-                    <span class="client-profile__stat-label">
-                        Commandes
-                    </span>
-                </div>
-
-            </div>
-
-
-            <div class="client-profile__stat">
-
-                <div class="client-profile__stat-icon">
-                    <i class="fa-solid fa-calendar-check"></i>
-                </div>
-
-                <div>
-                    <span class="client-profile__stat-number">
-                        8
-                    </span>
-
-                    <span class="client-profile__stat-label">
-                        Réservations
-                    </span>
-                </div>
-
-            </div>
-
-
-            <div class="client-profile__stat">
-
-                <div class="client-profile__stat-icon">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-
-                <div>
-                    <span class="client-profile__stat-number">
-                        12
-                    </span>
-
-                    <span class="client-profile__stat-label">
-                        Restaurants favoris
-                    </span>
-                </div>
-
-            </div>
-
-        </div>
-
 
         {{-- Contenu --}}
         <div class="client-profile__content">
@@ -143,7 +83,7 @@
                         </span>
 
                         <strong>
-                            Jean Dupont
+                            {{ Auth::user()->name }} {{ Auth::user()->last_name }}
                         </strong>
 
                     </div>
@@ -157,7 +97,7 @@
                         </span>
 
                         <strong>
-                            jean.dupont@gmail.com
+                            {{ Auth::user()->email }}
                         </strong>
 
                     </div>
@@ -170,9 +110,15 @@
                             Téléphone
                         </span>
 
-                        <strong>
-                            +261 34 12 345 67
-                        </strong>
+                        @if (Auth::user()->phone)
+                            <strong>
+                                +261 {{ Auth::user()->phone }}
+                            </strong>
+                        @else
+                            <strong>
+                                Pas de numéro téléphone
+                            </strong>
+                        @endif
 
                     </div>
 
@@ -184,9 +130,15 @@
                             Adresse
                         </span>
 
-                        <strong>
-                            Antananarivo, Madagascar
-                        </strong>
+                        @if (Auth::user()->phone)
+                            <strong>
+                                {{ Auth::user()->address }}, {{ Auth::user()->city }}
+                            </strong>
+                        @else
+                            <strong>
+                                Pas d' adresse
+                            </strong>
+                        @endif
 
                     </div>
 
@@ -199,21 +151,7 @@
                         </span>
 
                         <strong>
-                            15 janvier 2026
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-profile__field">
-
-                        <span class="client-profile__field-label">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            Statut du compte
-                        </span>
-
-                        <strong class="client-profile__account-status">
-                            Actif
+                            {{ Auth::user()->created_at }}
                         </strong>
 
                     </div>
@@ -284,13 +222,6 @@
 
                     </div>
 
-                    <span class="client-profile__verified">
-
-                        <i class="fa-solid fa-check"></i>
-                        Vérifié
-
-                    </span>
-
                 </div>
 
 
@@ -311,13 +242,6 @@
                         </span>
 
                     </div>
-
-                    <span class="client-profile__verified">
-
-                        <i class="fa-solid fa-check"></i>
-                        Vérifié
-
-                    </span>
 
                 </div>
 

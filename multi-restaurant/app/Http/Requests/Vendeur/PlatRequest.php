@@ -13,7 +13,7 @@ class PlatRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,31 +24,13 @@ class PlatRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => [
-                'required',
-                'max:50',
-                'min:2'
-            ],
-            "category" => [
-                'required'
-            ],
-            "price" => [
-                'required',
-                'min:0',
-            ],
-            "stat" => [
-                'required'
-            ],
-            "image" => [
-                'required',
-                'image',
-                'mimes:jpg,jpeg,webp,png'
-            ], 
-            "description" => [
-                'required',
-                'max:255',
-                'min:10'
-            ]
+            'menu_id' => ['required', 'exists:menus,id'],
+            'name' => ['required', 'string', 'max:255'],
+            'qty' => 'required|integer|min:0',
+            'description' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'status' => ['required', 'in:Disponible,Indisponible'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ];
     }
 
@@ -60,10 +42,16 @@ class PlatRequest extends FormRequest
             "name.max" => "Le nombre de caractère doit être inferieur de 50.",
             "name.min" => "Le nombre de caractère doit être superieur de 2.",
 
+            'qty.required' => 'La quantité est obligatoire.',
+            'qty.integer' => 'La quantité doit être un nombre entier.',
+            'qty.min' => 'La quantité ne peut pas être négative.',
+
             "price.required" => "Cette champs est obligatoire.",
             "price.min" => "Le prix doit être positif.",
 
-            "stat.required" => "Cette champs est obligatoire.",
+            "qty.required" => "Cette champs est obligatoire.",
+            "qty.min" => "La quantité doit être superieur à 0",
+            "qty.max" => "La quantité doit être inferieur à 20",
 
             "image.required" => "Cette champs est obligatoire.",
             "image.mimes" => "Seulle les extensios autorisées: jpeg, jpg, webp, png .",
@@ -73,5 +61,4 @@ class PlatRequest extends FormRequest
             "description.min" => "Le nombre de caractère doit être superieur de 10.",
         ];
     }
-
 }

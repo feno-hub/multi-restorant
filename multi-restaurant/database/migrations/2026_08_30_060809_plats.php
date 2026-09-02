@@ -16,13 +16,14 @@ return new class extends Migration
             $table->foreignId('menu_id')
                 ->constrained('menus')
                 ->cascadeOnDelete();
-
+                
             $table->string('name');
             $table->string('image');
             $table->string('description');
             $table->string('qty');
+            $table->enum('status', ['Disponible', 'Indisponible'])
+                ->default('Disponible');
             $table->float('price');
-            $table->string('category');
             
             $table->timestamps();
         });

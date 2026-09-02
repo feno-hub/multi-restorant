@@ -1,19 +1,15 @@
-// utils
 @import "./utils/variables";
 @import "./utils/base";
 
-// Components
 @import "./components/success";
 @import "./components/error";
 @import "./components/logo";
-@import "./components/button";
 @import "./components/btnprimary";
+@import "./components/btnsecondary";
 
- // Auth
 @import "./pages/auth/login";
 @import "./pages/auth/register";
 
-// Admin
 @import "./pages/admin/dashboard";
 @import "./pages/admin/resto/resto";
 @import "./pages/admin/resto/show";
@@ -22,7 +18,6 @@
 @import "./pages/admin/subscription/subscription";
 @import "./pages/admin/subscription/form";
 
- // Pages
 @import "./layout/nav/nav";
 @import "./pages/home/home";
 @import "./pages/contact/contact";
@@ -30,30 +25,33 @@
 @import "./pages/fonctionality/index";
 @import "./pages/legal/index";
 @import "./pages/conditiones/index";
+@import "./pages/cart/index";
+@import "./pages/payement/create";
+@import "./pages/payement/payment-success";
+@import "./pages/reservations/create";
+@import "./pages/reservations/show";
 @import "./layout/footer/footer";
 
-// Resto
 @import "./pages/resto/resto";
 @import "./pages/resto/show";
 @import "./pages/resto/coment";
-@import "./pages/resto/reservation";
 
-// Menu
 @import "./pages/menu/list";
 @import "./pages/menu/show";
 
-// Vendor
 @import "./pages/vendor/dashboard";
 @import "./pages/vendor/orders";
+@import "./pages/vendor/order-show";
 @import "./pages/vendor/menu/create";
 @import "./pages/vendor/menu/update";
 @import "./pages/vendor/subscription";
 @import "./pages/vendor/stock/index";
+@import "./pages/vendor/create-plat";
+@import "./pages/vendor/menu/list";
+@import "./pages/vendor/menu/show";
 
-// Client
 @import "./pages/client/dashboard";
 @import "./pages/client/createresto";
-@import "./pages/client/cart";
 @import "./pages/client/profil/profil";
 @import "./pages/client/profil/edit";
 @import "./pages/client/orders";

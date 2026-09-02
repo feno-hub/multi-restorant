@@ -1,82 +1,8 @@
-// ===== VARIABLES =====
-$color-secondary: #2C3E50;
-$color-free: #FFFFFF;
-$color-btn-add: #C0382B;
-$colore-btn-update: #3498DB;
-$colore-btn-delete: #E74C3C;
-$color-btn-back: #7F8C8D;
-$bg: linear-gradient(135deg, #667eea, #764ba2);
-
-$font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-// Breakpoints
-$bp-320: 320px;
-$bp-375: 375px;
-$bp-480: 480px;
-$bp-576: 576px;
-$bp-768: 768px;
-$bp-992: 992px;
-$bp-1024: 1024px;
-$bp-1200: 1200px;
-$bp-1440: 1440px;
-
-// Mixin responsive
-@mixin respond($breakpoint) {
-    @media (max-width: $breakpoint) {
-        @content;
-    }
-}
-
-@mixin respond-min($breakpoint) {
-    @media (min-width: $breakpoint) {
-        @content;
-    }
-}
-
-// ============================================================
-// ANIMATIONS
-// ============================================================
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-@keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-// ============================================================
-// PAGE CATÉGORIES
-// ============================================================
 .page-categories {
-    padding: 7rem 3rem;
+    padding: 3rem;
     background: $color-primary;
     animation: fadeInUp 0.8s ease;
 
-    // ===== HEADER =====
     &-header {
         margin-bottom: 24px;
 
@@ -101,7 +27,6 @@ $bp-1440: 1440px;
         }
     }
 
-    // ===== FILTER BAR =====
     &-filter {
         display: flex;
         justify-content: space-between;
@@ -134,7 +59,6 @@ $bp-1440: 1440px;
         }
     }
 
-    // ===== SEARCH BOX =====
     .search-box {
         display: flex;
         align-items: center;
@@ -169,7 +93,6 @@ $bp-1440: 1440px;
         }
     }
 
-    // ===== CATEGORIES GRID =====
     &-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -177,7 +100,6 @@ $bp-1440: 1440px;
         margin-bottom: 32px;
     }
 
-    // ===== CATEGORY CARD =====
     .category-card {
         background: $color-free;
         border-radius: 20px;
@@ -216,54 +138,6 @@ $bp-1440: 1440px;
                 object-fit: cover;
             }
 
-            // .category-emoji {
-            //     font-size: 56px;
-            //     z-index: 1;
-            //     animation: pulse 3s ease-in-out infinite;
-            // }
-
-            // .category-status {
-            //     position: absolute;
-            //     top: 12px;
-            //     right: 12px;
-            //     padding: 4px 14px;
-            //     border-radius: 40px;
-            //     font-size: 12px;
-            //     font-weight: 600;
-            //     z-index: 1;
-            //     background: #DFF0E3;
-            //     color: #166534;
-
-            //     &.inactive {
-            //         background: #F1E6E5;
-            //         color: #991B1B;
-            //     }
-
-            //     &.pending {
-            //         background: #FFF3D6;
-            //         color: #9A6A0C;
-            //     }
-            // }
-
-            // .category-count {
-            //     position: absolute;
-            //     bottom: 12px;
-            //     right: 12px;
-            //     background: rgba(0, 0, 0, 0.7);
-            //     backdrop-filter: blur(8px);
-            //     padding: 4px 14px;
-            //     border-radius: 40px;
-            //     color: $color-free;
-            //     font-size: 13px;
-            //     font-weight: 600;
-            //     z-index: 1;
-
-            //     i {
-            //         margin-right: 6px;
-            //     }
-            // }
-
-            // Couleurs différentes
             &.color-1 { background: linear-gradient(135deg, #FF6B6B, #EE5A24); }
             &.color-2 { background: linear-gradient(135deg, #48DBFB, #0ABDE3); }
             &.color-3 { background: linear-gradient(135deg, #F9CA24, #F0932B); }
@@ -332,7 +206,6 @@ $bp-1440: 1440px;
             line-height: 1.6;
             margin: 6px 0 10px;
             display: -webkit-box;
-            // -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -387,7 +260,6 @@ $bp-1440: 1440px;
         }
     }
 
-    // ===== ACTION BUTTONS =====
     .btn-action {
         width: 32px;
         height: 32px;
@@ -431,7 +303,6 @@ $bp-1440: 1440px;
         }
     }
 
-    // ===== PAGINATION =====
     &-footer {
         display: flex;
         justify-content: space-between;
@@ -479,7 +350,6 @@ $bp-1440: 1440px;
         }
     }
 
-    // ===== EMPTY STATE =====
     .empty-state {
         grid-column: 1 / -1;
         text-align: center;
@@ -507,9 +377,7 @@ $bp-1440: 1440px;
     }
 }
 
-// ============================================================
 // RESPONSIVE
-// ============================================================
 @include respond($bp-1200) {
     .page-categories {
         &-grid {

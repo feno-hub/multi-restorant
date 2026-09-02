@@ -1,6 +1,8 @@
 .add-menu {
-    padding: 2rem 0;
+    padding: 2rem;
     font-family: $font;
+    width: 70%;
+    margin: auto;
 
     &-header {
         display: flex;
@@ -10,15 +12,30 @@
         gap: 1rem;
 
         h1 {
-            color: $color-secondary;
+            color: $color;
             font-size: 2rem;
             margin-bottom: .3rem;
         }
 
         p {
-            color: $color-btn-back;
+            color: $color-free;
             font-size: .95rem;
         }
+
+        a {
+            background: $color-btn-back;
+            color: $color-free;
+            font-weight: 500;
+            padding: .5rem 1rem;
+            border-radius: 6px;
+            transition: .3s;
+
+            &:hover {
+                scale: 1.05;
+            }
+
+        }
+
     }
 
     &-form {
@@ -51,11 +68,11 @@
     display: flex;
     flex-direction: column;
 
-    // label {
-    //     color: $color-secondary;
-    //     font-weight: 600;
-    //     margin-bottom: .6rem;
-    // }
+    label {
+        color: $color-secondary;
+        font-weight: 600;
+        margin-bottom: .6rem;
+    }
 
     input,
     select,
@@ -64,9 +81,8 @@
         padding: .9rem 1rem;
         border: 1px solid rgba($color-secondary,.15);
         border-radius: 10px;
-        // background: $color-primary;
         font-family: inherit;
-        font-size: .95rem;
+        font-weight: 500;
         transition: .3s;
         outline: none;
 
@@ -113,6 +129,37 @@
     justify-content: flex-end;
     gap: 1rem;
     margin-top: 2rem;
+
+    .btn-cancel {
+        background: red;
+        padding: .5rem 1rem;
+        color: $color-free;
+        font-weight: 500;
+        border-radius: 6px;
+        transition: .3s;
+
+        &:hover {
+            scale: 1.05;
+        }
+
+    }
+
+    button {
+        background: green;
+        padding: .5rem 1rem;
+        color: $color-free;
+        font-weight: 500;
+        border: none;
+        border-radius: 6px;
+        transition: .3s;
+        cursor: pointer;
+        
+        &:hover {
+            scale: 1.05;
+        }
+        
+    }
+
 }
 
 /*=========================

@@ -4,9 +4,6 @@
 
         <div class="client-orders-container">
 
-            {{-- =========================
-                HEADER
-            ========================== --}}
             <div class="client-orders-header">
 
                 <div class="client-orders-header-content">
@@ -33,9 +30,6 @@
             </div>
 
 
-            {{-- =========================
-                STATISTIQUES
-            ========================== --}}
             <div class="client-orders-stats">
 
                 <div class="client-orders-stat">
@@ -96,9 +90,6 @@
             </div>
 
 
-            {{-- =========================
-                LISTE COMMANDES
-            ========================== --}}
             <div class="client-orders-list">
 
                 <div class="client-orders-list-header">
@@ -123,7 +114,6 @@
                 </div>
 
 
-                {{-- COMMANDE 1 --}}
                 <article class="client-order">
 
                     <div class="client-order-number">
@@ -219,7 +209,6 @@
                 </article>
 
 
-                {{-- COMMANDE 2 --}}
                 <article class="client-order">
 
                     <div class="client-order-number">
@@ -315,7 +304,6 @@
                 </article>
 
 
-                {{-- COMMANDE 3 --}}
                 <article class="client-order">
 
                     <div class="client-order-number">
@@ -411,7 +399,6 @@
                 </article>
 
 
-                {{-- COMMANDE 4 --}}
                 <article class="client-order">
 
                     <div class="client-order-number">
@@ -509,9 +496,6 @@
             </div>
 
 
-            {{-- =========================
-                RETOUR DASHBOARD
-            ========================== --}}
             <div class="client-orders-footer">
 
                 <a

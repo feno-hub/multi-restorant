@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use App\Models\Menu;
+use App\Models\Plat;
 use App\Models\Resto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +12,10 @@ use Illuminate\Support\Facades\Auth;
 class MenuController extends Controller
 {
     public function index() {
+        $menus = Menu::orderBy('id', 'desc')
+            ->simplepaginate(12);
         return view('pages.menu.index', [
-            'menus' => Menu::all()
+            'menus' => $menus
         ]);
     }
 
@@ -22,16 +25,15 @@ class MenuController extends Controller
         ]);
     }
 
-    public function  show() {
-        return view('pages.menu.show-menu');
-    }
+    public function  show(string $id) {
 
-    public function category(string $name) {
-        $menus = Menu::where('name', $name)
-            ->orderBy('id', 'desc')
-            ->get();
-        return view('pages.menu.category', [
-            'menus' => $menus
+        $menu = Menu::where('id', $id)->first();
+
+        $resto = Resto::where('id', $menu->resto_id)->first();
+
+        return view('pages.menu.show', [
+            'menu' => $menu,
+            'resto' => $resto
         ]);
     }
 

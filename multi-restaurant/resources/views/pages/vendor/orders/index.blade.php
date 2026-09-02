@@ -1,247 +1,159 @@
-
 <x-vendeur-layout>
 
-    <section class="orders-page">
+    @section('content')
+        <div class="vendor-orders">
 
-        <!-- ===== TITRE ===== -->
-        <div class="orders-page-header">
-            <div>
-                <h2>Gestion des commandes</h2>
-                <p>Consultez et gérez les commandes de vos clients en temps réel.</p>
-            </div>
+            <div class="orders-header">
+                <div>
+                    
+                    <a href="{{ route('vendor.dashboard') }}">
+                        <span class="page-subtitle">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Retour
+                        </span>
+                    </a>
 
-            <a href="#" class="btn-refresh">
-                <i class="fa-solid fa-rotate-right"></i>
-                Actualiser
-            </a>
-        </div>
-
-        <!-- ===== STATISTIQUES ===== -->
-        <div class="orders-stats">
-
-            <div class="stat-card">
-                <div class="stat-icon pending">
-                    <i class="fa-solid fa-hourglass-half"></i>
+                    <h1>Commandes</h1>
+                    <p>Consultez les commandes de votre restaurant.</p>
                 </div>
-                <div class="stat-content">
-                    <span class="stat-label">En attente</span>
-                    <strong class="stat-value">12</strong>
+
+                <div class="orders-count">
+                    <i class="fa-solid fa-receipt"></i>
+                    <span>{{ $orders->count() }} commandes</span>
                 </div>
             </div>
 
-            <div class="stat-card">
-                <div class="stat-icon progress">
-                    <i class="fa-solid fa-fire-burner"></i>
+            <div class="orders-card">
+
+                <div class="table-wrapper">
+
+                    <table class="orders-table">
+
+                        <thead>
+                            <tr>
+                                <th>Commande</th>
+                                <th>Client</th>
+                                <th>Articles</th>
+                                <th>Total</th>
+                                <th>Statut</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @forelse($orders as $order)
+                                @php
+                                    $total = $order->total ?? $order->items->sum('subtotal');
+                                @endphp
+
+                                <tr>
+
+                                    <td>
+                                        <span class="order-number">
+                                            #{{ $order->id }}
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <div class="customer">
+                                            <div class="customer-avatar">
+                                                {{ strtoupper(substr($order->user->name ?? 'C', 0, 1)) }}
+                                            </div>
+
+                                            <div>
+                                                <strong>
+                                                    {{ $order->user->name ?? 'Client inconnu' }}
+                                                </strong>
+
+                                                @if ($order->user)
+                                                    <small>
+                                                        {{ $order->user->email }}
+                                                    </small>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        {{ $order->items->count() }}
+                                        article{{ $order->items->count() > 1 ? 's' : '' }}
+                                    </td>
+
+                                    <td>
+                                        <strong class="order-total">
+                                            {{ number_format($total, 0, ',', ' ') }} Ar
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        @php
+                                            $statusLabels = [
+                                                'pending' => 'En attente',
+                                                'processing' => 'En préparation',
+                                                'completed' => 'Terminée',
+                                                'cancelled' => 'Annulée',
+                                            ];
+                                        @endphp
+
+                                        <span class="status status-{{ $order->status }}">
+                                            <span class="status-dot"></span>
+                                            {{ $statusLabels[$order->status] ?? ucfirst($order->status) }}
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <div class="order-date">
+                                            <strong>
+                                                {{ $order->created_at->format('d/m/Y') }}
+                                            </strong>
+                                            <small>
+                                                {{ $order->created_at->format('H:i') }}
+                                            </small>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ route('vendeur.orders.show', $order->id) }}" class="order-view">
+                                            <i class="fa-solid fa-eye"></i>
+                                            Voir
+                                        </a>
+                                    </td>
+
+                                </tr>
+
+                            @empty
+
+                                <tr>
+                                    <td colspan="7">
+                                        <div class="empty-orders">
+                                            <div class="empty-icon">
+                                                <i class="fa-solid fa-receipt"></i>
+                                            </div>
+
+                                            <h3>Aucune commande</h3>
+
+                                            <p>
+                                                Votre restaurant n'a pas encore reçu de commande.
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+
+                        </tbody>
+
+                    </table>
+
                 </div>
-                <div class="stat-content">
-                    <span class="stat-label">En préparation</span>
-                    <strong class="stat-value">8</strong>
+
+                <div class="orders-pagination">
                 </div>
+
             </div>
 
-            <div class="stat-card">
-                <div class="stat-icon ready">
-                    <i class="fa-solid fa-bell-concierge"></i>
-                </div>
-                <div class="stat-content">
-                    <span class="stat-label">Prêtes</span>
-                    <strong class="stat-value">5</strong>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon completed">
-                    <i class="fa-solid fa-circle-check"></i>
-                </div>
-                <div class="stat-content">
-                    <span class="stat-label">Terminées</span>
-                    <strong class="stat-value">34</strong>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ===== FILTRES ===== -->
-        <div class="orders-filters">
-
-            <div class="filter-search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Rechercher une commande...">
-            </div>
-
-            <select>
-                <option>Tous les statuts</option>
-                <option>En attente</option>
-                <option>En préparation</option>
-                <option>Prête</option>
-                <option>Terminée</option>
-                <option>Annulée</option>
-            </select>
-
-        </div>
-
-        <!-- ===== TABLEAU ===== -->
-        <div class="orders-table-wrapper">
-
-            <table class="orders-table">
-
-                <thead>
-                    <tr>
-                        <th>Commande</th>
-                        <th>Client</th>
-                        <th>Plats</th>
-                        <th>Montant</th>
-                        <th>Date</th>
-                        <th>Statut</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>
-                            <div class="order-id">
-                                <strong>#CMD-001</strong>
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="client-info">
-                                <span class="client-name">Jean Rakoto</span>
-                                <small>+261 34 00 000 00</small>
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="order-items">
-                                Pizza + Boisson
-                            </div>
-                        </td>
-
-                        <td>
-                            <strong>35 000 Ar</strong>
-                        </td>
-
-                        <td>
-                            03/08/2026
-                        </td>
-
-                        <td>
-                            <span class="status pending">
-                                En attente
-                            </span>
-                        </td>
-
-                        <td>
-                            <div class="actions">
-                                <button class="btn-action accept">
-                                    <i class="fa-solid fa-check"></i>
-                                </button>
-
-                                <button class="btn-action reject">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </button>
-
-                                <button class="btn-action view">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <strong>#CMD-002</strong>
-                        </td>
-
-                        <td>
-                            <div class="client-info">
-                                <span class="client-name">Marie Andry</span>
-                                <small>+261 32 00 000 00</small>
-                            </div>
-                        </td>
-
-                        <td>Burger + Frites</td>
-
-                        <td><strong>28 000 Ar</strong></td>
-
-                        <td>03/08/2026</td>
-
-                        <td>
-                            <span class="status progress">
-                                En préparation
-                            </span>
-                        </td>
-
-                        <td>
-                            <div class="actions">
-                                <button class="btn-action ready">
-                                    <i class="fa-solid fa-bell-concierge"></i>
-                                </button>
-
-                                <button class="btn-action view">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <strong>#CMD-003</strong>
-                        </td>
-
-                        <td>
-                            <div class="client-info">
-                                <span class="client-name">Paulina Rabe</span>
-                                <small>+261 33 00 000 00</small>
-                            </div>
-                        </td>
-
-                        <td>Poulet grillé + Riz</td>
-
-                        <td><strong>42 000 Ar</strong></td>
-
-                        <td>02/08/2026</td>
-
-                        <td>
-                            <span class="status completed">
-                                Terminée
-                            </span>
-                        </td>
-
-                        <td>
-                            <div class="actions">
-                                <button class="btn-action view">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
-
-            </table>
 
         </div>
 
-    </section>
-
-</x-vendeur-layout>
-```
-{{-- @foreach($orders as $order)
-<tr>
-    <td>#{{ $order->reference }}</td>
-    <td>{{ $order->client->name }}</td>
-    <td>{{ $order->client->phone }}</td>
-    <td>{{ number_format($order->total,0,',',' ') }} Ar</td>
-    <td>
-        <span class="status {{ $order->status }}">
-            {{ $order->status }}
-        </span>
-    </td>
-    <td>{{ $order->created_at->format('d/m/Y H:i') }}</td>
-    <td>...</td>
-</tr>
-@endforeach --}}
+    </x-vendeur-layout>

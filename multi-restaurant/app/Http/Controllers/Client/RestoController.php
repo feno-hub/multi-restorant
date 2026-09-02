@@ -22,6 +22,8 @@ class RestoController extends Controller
 
         $logo = $request->file('logo') == "" ? null : $request->file('logo')->store('images/resto/logo', "public");
         $cover = $request->file('cover')->store('images/resto/cover', "public");
+        $nifstat = $request->file('nifstat')->store('images/resto/nifstat', "public");
+        $website = $request->website == "" ? null : $request->website;
         $user_id = Auth::user()->id;
 
         Resto::create([
@@ -37,8 +39,8 @@ class RestoController extends Controller
             'close_time' => $request->close_time,
             'logo' => $logo,
             'cover' => $cover,
-            'instat' => $request->instat,
-            'website' => $request->website
+            'nifstat' => $nifstat,
+            'website' => $website
         ]);
 
         return to_route('client.dashboard')

@@ -6,11 +6,11 @@
     <div class="edit-menu-header">
 
         <div>
-            <h1>Modifier le plat</h1>
-            <p>Modifiez les informations de votre plat.</p>
+            <h1>Modifier le menu</h1>
+            <p>Modifiez les informations de votre menu.</p>
         </div>
 
-        <a href="{{ route('vendor.dashboard') }}" class="btn-back">
+        <a href="{{ route('vendeur.menu.list') }}" class="btn-back">
             <i class="fa-solid fa-arrow-left"></i>
             Retour
         </a>
@@ -27,81 +27,16 @@
 
         <div class="form-grid">
 
-            <!-- Nom -->
-
             <div class="form-group">
 
-                <label>Nom du plat</label>
+                <label>Nom du menu</label>
 
                 <input
                     type="text"
                     name="name"
-                    value="">
+                    value="{{ $menu->name }}">
 
             </div>
-
-            <!-- Catégorie -->
-
-            <div class="form-group">
-
-                <label>Catégorie</label>
-
-                <select name="category">
-
-                    <option value="Pizza" >Pizza</option>
-
-                    <option value="Burger" >Burger</option>
-
-                    <option value="Dessert">Dessert</option>
-
-                    <option value="Boisson">Boisson</option>
-
-                    <option value="Plat principal">Plat principal</option>
-
-                </select>
-
-            </div>
-
-            <!-- Prix -->
-
-            <div class="form-group">
-
-                <label>Prix (Ar)</label>
-
-                <input
-                    type="number"
-                    name="price"
-                    value="">
-
-            </div>
-
-            <!-- Stock -->
-
-            <div class="form-group">
-
-                <label>Stock</label>
-
-                <input
-                    type="number"
-                    name="stock"
-                    value="">
-
-            </div>
-
-            <!-- Temps -->
-
-            <div class="form-group">
-
-                <label>Temps de préparation (min)</label>
-
-                <input
-                    type="number"
-                    name="preparation_time"
-                    value="">
-
-            </div>
-
-            <!-- Disponibilité -->
 
             <div class="form-group">
 
@@ -109,6 +44,7 @@
 
                 <select name="status">
 
+                    <option value="{{ $menu->stat }}" selected disabled>{{ $menu->stat }}</option>
                     <option value="Disponible"
                         >
                         Disponible
@@ -123,21 +59,18 @@
 
             </div>
 
-            <!-- IMAGE -->
-
             <div class="form-group full">
 
                 <label>Image actuelle</label>
 
                 <div class="current-image">
 
-                    <img src="">
+                    <img src="{{ asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}">
 
                 </div>
 
             </div>
 
-            <!-- Nouvelle image -->
 
             <div class="form-group full">
 
@@ -149,15 +82,13 @@
 
             </div>
 
-            <!-- Description -->
-
             <div class="form-group full">
 
                 <label>Description</label>
 
                 <textarea
                     rows="6"
-                    name="description"></textarea>
+                    name="description"> {{ $menu->description }} </textarea>
 
             </div>
 
@@ -165,7 +96,7 @@
 
         <div class="form-footer">
 
-            <a href="{{ route('vendeur.menu.create') }}"
+            <a href="{{ route('vendeur.menu.list') }}"
                class="btn-cancel">
 
                 Annuler
@@ -173,6 +104,7 @@
             </a>
 
             <button
+                class="button"
                 type="submit"
                 class="btn-update">
 

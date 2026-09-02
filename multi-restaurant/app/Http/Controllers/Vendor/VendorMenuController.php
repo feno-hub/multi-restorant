@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class VendorMenuController extends Controller
 {
+
+    public function list() {
+        return view('pages.vendor.menu.list', [
+            'menus' => Menu::all()
+        ]);
+    }
+
     public function create() {
         return view('pages.vendor.menu.create');
     }
@@ -23,9 +30,6 @@ class VendorMenuController extends Controller
         Menu::create([
             "resto_id" => $resto_id, 
             "name" => $request->name,
-            "category" => $request->category,
-            "price" => $request->price,
-            "preparation_time" => $request->preparation_time,
             "stat" => $request->stat,
             "image" => $image,
             "description" => $request->description
@@ -37,8 +41,18 @@ class VendorMenuController extends Controller
 
     }
 
-    public function edit() {
-        return view('pages.vendor.menu.update');
+    public function show(string $id) {
+        return view('pages.vendor.menu.show', [
+            'menu' => Menu::where('id', $id)->first()
+        ]);
     }
+
+    public function edit(string $id) {
+        $menu = Menu::where('id', $id)->first();
+        return view('pages.vendor.menu.update', [
+            'menu' => $menu
+        ]);
+    }
+
 
 }

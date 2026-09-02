@@ -3,7 +3,6 @@
 
     <section class="client-edit-profile">
 
-        {{-- En-tête --}}
         <div class="client-edit-profile__header">
 
             <div class="client-edit-profile__header-icon">
@@ -21,15 +20,14 @@
         </div>
 
 
-        {{-- Formulaire --}}
         <div class="client-edit-profile__card">
 
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('client.profil.update') }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
+                @method('PUT')
 
 
-                {{-- Photo de profil --}}
                 <div class="client-edit-profile__image-section">
 
                     <div class="client-edit-profile__image">
@@ -66,10 +64,11 @@
 
                     </div>
 
+                    <x-error-layout name="image" />
+
                 </div>
 
 
-                {{-- Nom et prénom --}}
                 <div class="client-edit-profile__row">
 
                     <div class="client-edit-profile__group">
@@ -86,11 +85,13 @@
                                 type="text"
                                 name="name"
                                 id="name"
-                                value="Jean"
+                                value="{{ Auth::user()->name }}"
                                 placeholder="Votre nom"
                             >
 
                         </div>
+
+                        <x-error-layout name="name" />
 
                     </div>
 
@@ -109,7 +110,7 @@
                                 type="text"
                                 name="last_name"
                                 id="last_name"
-                                value="Dupont"
+                                value="{{ Auth::user()->last_name }}"
                                 placeholder="Votre prénom"
                             >
 
@@ -117,10 +118,63 @@
 
                     </div>
 
+                    <x-error-layout name="last_name" />
+
                 </div>
 
+                <div class="client-edit-profile__row">
 
-                {{-- Email --}}
+                    <div class="client-edit-profile__group">
+
+                        <label for="phone">
+                            Téléphone
+                        </label>
+
+                        <div class="client-edit-profile__input">
+
+                            <span>+261 </span>
+
+                            <input
+                                type="text"
+                                name="number"
+                                id="phone"
+                                value="{{ Auth::user()->phone }}"
+                                placeholder="XX 87 977 29"
+                            >
+
+                        </div>
+
+                        <x-error-layout name="phone" />
+
+                    </div>
+
+
+                    <div class="client-edit-profile__group">
+
+                        <label for="address">
+                            Adresse
+                        </label>
+
+                        <div class="client-edit-profile__input">
+
+                            <i class="fa-solid fa-map"></i>
+
+                            <input
+                                type="text"
+                                name="address"
+                                id="address"
+                                value="{{ Auth::user()->address }}"
+                                placeholder="Antananarivo, Atsimondrano"
+                            >
+
+                        </div>
+
+                        <x-error-layout name="address" />
+
+                    </div>
+
+                </div>
+
                 <div class="client-edit-profile__group">
 
                     <label for="email">
@@ -135,16 +189,17 @@
                             type="email"
                             name="email"
                             id="email"
-                            value="jean.dupont@gmail.com"
+                            value="{{ Auth::user()->email }}"
                             placeholder="Votre adresse email"
                         >
 
                     </div>
 
+                    <x-error-layout name="email" />
+
                 </div>
 
 
-                {{-- Informations --}}
                 <div class="client-edit-profile__notice">
 
                     <i class="fa-solid fa-circle-info"></i>
@@ -157,7 +212,6 @@
                 </div>
 
 
-                {{-- Boutons --}}
                 <div class="client-edit-profile__actions">
 
                     <a href="{{ route('client.profil.index') }}"

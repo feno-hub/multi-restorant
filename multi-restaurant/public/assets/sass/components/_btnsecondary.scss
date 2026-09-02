@@ -1,0 +1,54 @@
+.multi-button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 11px 22px;
+
+    border: 1px solid $color-secondary;
+    border-radius: 8px;
+
+    background: $color-free;
+    color: $color-secondary;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+
+    i {
+        font-size: 14px;
+    }
+
+    &:hover {
+        background: $color-secondary;
+        color: $color-free;
+        transform: translateY(-2px);
+        box-shadow: 0 7px 16px rgba(44, 62, 80, 0.18);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 8px rgba(44, 62, 80, 0.12);
+    }
+
+    &:focus-visible {
+        outline: 3px solid rgba(44, 62, 80, 0.18);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+}

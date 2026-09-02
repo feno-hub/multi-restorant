@@ -2,14 +2,8 @@
     font-family: $font;
     background: $color-primary;
 
-    /* ================= HERO ================= */
-
     &-header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        padding: 1rem;
+        padding: 3rem 1rem 1rem 1rem;
         
         &-hero {
             background: $bg;
@@ -36,15 +30,11 @@
     }
 
 
-    /* ================= SECTION ================= */
-
     &-section {
         margin-bottom: 80px;
         padding: 1rem;
     }
 }
-
-/* ================= TITRE ================= */
 
 .section-title {
     text-align: center;
@@ -61,8 +51,6 @@
         font-size: 17px;
     }
 }
-
-/* ================= ETAPES ================= */
 
 .steps {
 
@@ -119,8 +107,6 @@
     }
 
 }
-
-/* ================= AVANTAGES ================= */
 
 .advantages{
 
@@ -179,8 +165,6 @@
 
 }
 
-/* ================= FAQ ================= */
-
 .faq{
 
     margin:90px 0;
@@ -222,7 +206,6 @@
 
 }
 
-/* ================= CTA ================= */
 
 .cta{
 
@@ -258,10 +241,6 @@
 
 }
 
-
-/* =======================
-        RESPONSIVE
-======================= */
 
 @include respond($bp-992){
 
@@ -334,6 +313,8 @@
     }
 
 }
+
+// RESPONSIVE
 
 @include respond($bp-480){
 

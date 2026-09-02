@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Client\ReservationRequest;
+use App\Models\Menu;
 use App\Models\Notice;
 use App\Models\Resto;
 use Illuminate\Http\Request;
@@ -12,58 +13,70 @@ class RestoController extends Controller
 {
     public function list()
     {
-
-        $resto = Resto::where('status', 'accepter')
+        $restos = Resto::where('status', 'accepter')
             ->orderBy('id', 'desc')
-            ->simplepaginate(6);
+            ->simplePaginate(6);
 
         return view('pages.resto.list', [
-            "restos" => $resto,
-            "countResto" => Resto::count(),
+            'restos' => $restos,
+            'countResto' => Resto::where('status', 'accepter')->count(),
         ]);
     }
 
-    // RECHERCHE
 
-    public function search()
+    public function search(Request $request)
     {
-        
+        $query = Resto::where('status', 'accepter');
 
-        $resto = Resto::where('status', 'accepter')
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+
+                $q->where('name', 'like', '%' . $request->search . '%')
+                  ->orWhere('city', 'like', '%' . $request->search . '%')
+                  ->orWhere('category', 'like', '%' . $request->search . '%');
+
+            });
+        }
+
+        $restos = $query
             ->orderBy('id', 'desc')
-            ->simplepaginate(6);
-
+            ->simplePaginate(6);
 
         return view('pages.resto.list', [
-            "restos" => $resto,
-            "countResto" => Resto::count(),
+            'restos' => $restos,
+            'countResto' => Resto::where('status', 'accepter')->count(),
         ]);
     }
 
-    // DETAIL
 
     public function show(string $id)
     {
+        $resto = Resto::findOrFail($id);
 
-        $resto = Resto::where('id', $id)->first();
+        $menu_resto = Menu::where('resto_id', $id)
+            ->where('stat', 'disponible')
+            ->orderBy('id', 'desc')
+            ->get();
+
         return view('pages.resto.show', [
-            'resto' => $resto
+            'resto' => $resto,
+            'menu_resto' => $menu_resto,
         ]);
     }
 
-    // AVIES CLIENTS
 
     public function notice(string $id)
     {
-
         $notices = Notice::where('resto_id', $id)
-            ->orderBy('id', 'desc')->get();
+            ->orderBy('id', 'desc')
+            ->get();
 
         return view('pages.resto.notice', [
             'resto_id' => $id,
             'notices' => $notices
         ]);
     }
+
 
     public function store(Request $request)
     {
@@ -80,25 +93,30 @@ class RestoController extends Controller
             'content' => $request->content
         ]);
 
-        return redirect()->back()->with('success', 'Votre avie est bien envoyer');
+        return redirect()
+            ->back()
+            ->with('success', 'Votre avis est bien envoyé');
     }
 
-    // RESERVATION TABLE
 
-    public function reservation(Resto $resto) {
-
+    public function reservation(Resto $resto)
+    {
         $id_resto = $resto->id;
 
         $restos = Resto::where('id', $id_resto)
             ->get();
-        
-        return view('pages.resto.table.index', compact('resto'), [
-            'reesto' => $restos
+
+        return view('pages.resto.table.index', [
+            'resto' => $resto,
+            'reesto' => $restos,
         ]);
     }
 
-    public function storeReservation(ReservationRequest $request, Resto $resto) {
+
+    public function storeReservation(
+        ReservationRequest $request,
+        Resto $resto
+    ) {
         dd('storeReservation');
     }
-
 }

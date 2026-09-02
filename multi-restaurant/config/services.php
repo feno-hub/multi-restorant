@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    // 'mvola' => [
+    //     'base_url' => env('MVOLA_BASE_URL'),
+    //     'client_id' => env('MVOLA_CLIENT_ID'),
+    //     'client_secret' => env('MVOLA_CLIENT_SECRET'),
+    //     'partner_msisdn' => env('MVOLA_PARTNER_MSISDN'),
+    // ],
+
 ];

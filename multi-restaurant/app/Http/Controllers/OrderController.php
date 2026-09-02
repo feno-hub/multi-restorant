@@ -1,65 +1,88 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
-    /**
-     * Page de validation de commande.
-     */
     public function checkout()
     {
-        $cart = Cart::where(
-            'user_id',
-            Auth::id()
-        )
-            ->with('items.plat.resto')
-            ->first();
+        $cart = Cart::with([
+            'items.plat.menu.resto'
+        ])
+        ->where('user_id', Auth::id())
+        ->first();
+
 
         if (!$cart || $cart->items->isEmpty()) {
 
             return redirect()
-                ->route('client.cart.index')
+                ->route('pages.cart.index')
                 ->with(
                     'error',
                     'Votre panier est vide.'
                 );
         }
 
+
+        $subtotal = $cart->items->sum(
+            function ($item) {
+                return $item->price * $item->quantity;
+            }
+        );
+
+
+        $deliveryFee = 0;
+
+
+        $total = $subtotal + $deliveryFee;
+
+
+        $restaurant = $cart
+            ->items
+            ->first()
+            ->plat
+            ->menu
+            ->resto;
+
+
         return view(
-            'pages.client.orders.checkout',
-            compact('cart')
+            'pages.orders.checkout',
+            compact(
+                'cart',
+                'subtotal',
+                'deliveryFee',
+                'total',
+                'restaurant'
+            )
         );
     }
 
 
-    /**
-     * Créer la commande.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'note' => [
                 'nullable',
                 'string',
-                'max:1000',
+                'max:500',
             ],
         ]);
 
-        $cart = Cart::where(
-            'user_id',
-            Auth::id()
-        )
-            ->with('items.plat.resto')
-            ->first();
+
+
+        $cart = Cart::with([
+            'items.plat.menu.resto'
+        ])
+        ->where('user_id', Auth::id())
+        ->first();
+
 
         if (!$cart || $cart->items->isEmpty()) {
 
@@ -72,33 +95,14 @@ class OrderController extends Controller
         }
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | Vérification du restaurant
-        |--------------------------------------------------------------------------
-        */
 
-        $restaurantIds = $cart->items
-            ->map(fn ($item) => $item->plat->resto_id)
-            ->unique();
+        $restaurant = $cart
+            ->items
+            ->first()
+            ->plat
+            ->menu
+            ->resto;
 
-        if ($restaurantIds->count() > 1) {
-
-            return back()->with(
-                'error',
-                'Vous ne pouvez commander que dans un seul restaurant à la fois.'
-            );
-        }
-
-
-        $restoId = $restaurantIds->first();
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Calcul
-        |--------------------------------------------------------------------------
-        */
 
         $subtotal = $cart->items->sum(
             function ($item) {
@@ -112,31 +116,19 @@ class OrderController extends Controller
         $total = $subtotal + $deliveryFee;
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | Création de la commande
-        |--------------------------------------------------------------------------
-        */
+        DB::beginTransaction();
 
-        $order = DB::transaction(function () use (
-            $cart,
-            $restoId,
-            $subtotal,
-            $deliveryFee,
-            $total,
-            $request
-        ) {
+
+        try {
 
             $order = Order::create([
+
                 'user_id' => Auth::id(),
 
-                'resto_id' => $restoId,
+                'resto_id' => $restaurant->id,
 
                 'order_number' =>
-                    'CMD-' .
-                    strtoupper(
-                        Str::random(8)
-                    ),
+                    'CMD-' . date('YmdHis') . '-' . Auth::id(),
 
                 'subtotal' => $subtotal,
 
@@ -147,12 +139,15 @@ class OrderController extends Controller
                 'status' => 'pending',
 
                 'note' => $request->note,
+
             ]);
 
 
             foreach ($cart->items as $item) {
 
-                $order->items()->create([
+                OrderItem::create([
+
+                    'order_id' => $order->id,
 
                     'plat_id' => $item->plat_id,
 
@@ -163,53 +158,57 @@ class OrderController extends Controller
                     'quantity' => $item->quantity,
 
                     'subtotal' =>
-                        $item->price *
-                        $item->quantity,
+                        $item->price * $item->quantity,
+
                 ]);
             }
 
 
-            /*
-            |--------------------------------------------------------------------------
-            | Vider le panier
-            |--------------------------------------------------------------------------
-            */
-
             $cart->items()->delete();
 
 
-            return $order;
-        });
+            DB::commit();
 
 
-        return redirect()
-            ->route(
-                'client.orders.show',
-                $order
-            )
-            ->with(
-                'success',
-                'Votre commande a été créée avec succès.'
-            );
+            return redirect()
+                ->route(
+                    'client.orders.show',
+                    $order
+                )
+                ->with(
+                    'success',
+                    'Votre commande a été enregistrée avec succès.'
+                );
+
+        } catch (\Throwable $e) {
+
+            DB::rollBack();
+            return back()
+                ->withInput()
+                ->with(
+                    'error',
+                    'Une erreur est survenue lors de la commande.'
+                );
+        }
     }
 
 
-    /**
-     * Afficher une commande.
-     */
     public function show(Order $order)
     {
+
         if ($order->user_id !== Auth::id()) {
             abort(403);
         }
 
+
         $order->load([
-            'items',
+            'items.plat',
             'resto',
         ]);
 
+
         return view(
-            'pages.client.orders.show',
+            'pages.orders.show',
             compact('order')
         );
     }

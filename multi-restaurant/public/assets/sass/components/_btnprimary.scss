@@ -1,45 +1,54 @@
-/* From Uiverse.io by Navarog21 */ 
-.button-primary {
-  position: relative;
-  border: 3px ridge #149CEA;
-  outline: none;
-  background-color: transparent;
-  color: white;
-  transition: 1s;
-  border-radius: 0.3em;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 10px;
-}
+.multi-button-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
-.button-primary::after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 3%;
-  width: 95%;
-  height: 40%;
-  /* background-color: #212121; */
-  transition: 0.3s;
-  transform-origin: center;
-}
-.button-primary::before {
-  content: "";
-  transform-origin: center;
-  position: absolute;
-  top: 80%;
-  left: 3%;
-  width: 95%;
-  height: 40%;
-  background-color: #212121;
-  transition: 0.3s;
-}
+    padding: 11px 22px;
 
-.button-primary::before, button:hover::after {
-  transform: scale(0);
-}
+    border: none;
+    border-radius: 8px;
 
-.button-primary:hover {
-  box-shadow: inset 0px 0px 25px #1479EA;
+    background: $color-primary;
+    color: $color-free;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+
+    box-shadow: 0 4px 10px rgba(80, 11, 11, 0.15);
+
+    i {
+        font-size: 14px;
+    }
+
+    &:hover {
+        background: darken($color-primary, 8%);
+        transform: translateY(-2px);
+        box-shadow: 0 7px 16px rgba(80, 11, 11, 0.22);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 8px rgba(80, 11, 11, 0.15);
+    }
+
+    &:focus-visible {
+        outline: 3px solid rgba(80, 11, 11, 0.2);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
 }

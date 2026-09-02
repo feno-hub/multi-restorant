@@ -73,6 +73,7 @@
                             value="{{ old('email') }}">
                         <x-error-layout name="email" />
                     </div>
+
                     <div class="form-group">
                         <label>Adresse</label>
                         <input type="text" name="address" placeholder="Adresse du restaurant"
@@ -120,13 +121,16 @@
 
                     <div class="form-group">
                         <label>Nifstat</label>
-                        <input type="file" name="instat" placeholder="0123456789" value="{{ old('instat') }}">
-                        <x-error-layout name="instat" />
+                        <input type="file" name="nifstat" value="{{ old('nifstat') }}">
+                        <x-error-layout name="nifstat" />
                     </div>
 
                     <div class="form-group">
                         <label>Site url</label>
-                        <input type="text" name="website"
+                        <input 
+                            type="text" 
+                            name="website"
+                            value="{{ old('website') }}"
                             placeholder="http://127.0.0.1:8000/client/creation-restaurant">
                         <x-error-layout name="website" />
                     </div>

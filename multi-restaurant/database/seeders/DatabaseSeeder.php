@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Menu;
+use App\Models\Plat;
 use App\Models\Resto;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,8 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(100)->create();
+        // User::factory(100)->create();
         // Resto::factory(20)->create();
+        // Plat::factory(300)->create();
+        // Menu::factory(150)->create();
 
         User::factory()->create([
             'name' => 'Test',

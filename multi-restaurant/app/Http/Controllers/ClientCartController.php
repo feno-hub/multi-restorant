@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Plat;
@@ -11,40 +10,67 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientCartController extends Controller
 {
-    /**
-     * Afficher le panier.
-     */
     public function index()
     {
-        $cart = Cart::firstOrCreate([
-            'user_id' => Auth::id(),
-        ]);
-
-        $cart->load('items.plat');
+        $cart = Cart::with([
+            'items.plat.menu.resto'
+        ])
+            ->where('user_id', Auth::id())
+            ->first();
 
         return view(
-            'pages.client.cart.index',
+            'pages.cart.index',
             compact('cart')
         );
     }
 
 
-    /**
-     * Ajouter un plat au panier.
-     */
     public function add(Request $request, Plat $plat)
     {
-        $request->validate([
-            'quantity' => [
-                'required',
-                'integer',
-                'min:1',
-            ],
-        ]);
+        if ($plat->status !== 'Disponible') {
+            return back()->with(
+                'error',
+                'Ce plat n’est pas disponible.'
+            );
+        }
+
 
         $cart = Cart::firstOrCreate([
             'user_id' => Auth::id(),
         ]);
+
+
+        $firstItem = $cart->items()
+            ->with('plat.menu')
+            ->first();
+
+        if ($firstItem) {
+
+            if (!$firstItem->plat || !$firstItem->plat->menu) {
+                return back()->with(
+                    'error',
+                    'Un article de votre panier est invalide.'
+                );
+            }
+
+            if (!$plat->menu) {
+                return back()->with(
+                    'error',
+                    'Ce plat n’est associé à aucun menu.'
+                );
+            }
+
+            $currentRestaurant = $firstItem->plat->menu->resto_id;
+            $newRestaurant = $plat->menu->resto_id;
+
+            if ($currentRestaurant != $newRestaurant) {
+
+                return back()->with(
+                    'error',
+                    'Votre panier contient déjà des plats d’un autre restaurant.'
+                );
+            }
+        }
 
         $item = $cart->items()
             ->where('plat_id', $plat->id)
@@ -52,50 +78,50 @@ class ClientCartController extends Controller
 
         if ($item) {
 
-            $item->increment(
-                'quantity',
-                $request->quantity
-            );
+            $item->increment('quantity');
         } else {
 
             $cart->items()->create([
                 'plat_id' => $plat->id,
-                'quantity' => $request->quantity,
+                'quantity' => 1,
                 'price' => $plat->price,
             ]);
         }
+
 
         return redirect()
             ->route('client.cart.index')
             ->with(
                 'success',
-                'Le plat a été ajouté à votre panier.'
+                'Plat ajouté au panier.'
             );
     }
 
 
-    /**
-     * Modifier la quantité.
-     */
     public function update(
         Request $request,
         CartItem $item
     ) {
+
         $request->validate([
             'quantity' => [
                 'required',
                 'integer',
                 'min:1',
+                'max:20',
             ],
         ]);
+
 
         if ($item->cart->user_id !== Auth::id()) {
             abort(403);
         }
 
+
         $item->update([
             'quantity' => $request->quantity,
         ]);
+
 
         return back()->with(
             'success',
@@ -104,16 +130,15 @@ class ClientCartController extends Controller
     }
 
 
-    /**
-     * Supprimer un article.
-     */
     public function remove(CartItem $item)
     {
         if ($item->cart->user_id !== Auth::id()) {
             abort(403);
         }
 
+
         $item->delete();
+
 
         return back()->with(
             'success',
@@ -122,9 +147,6 @@ class ClientCartController extends Controller
     }
 
 
-    /**
-     * Vider le panier.
-     */
     public function clear()
     {
         $cart = Cart::where(
@@ -132,13 +154,15 @@ class ClientCartController extends Controller
             Auth::id()
         )->first();
 
+
         if ($cart) {
             $cart->items()->delete();
         }
 
+
         return back()->with(
             'success',
-            'Votre panier a été vidé.'
+            'Panier vidé.'
         );
     }
 }

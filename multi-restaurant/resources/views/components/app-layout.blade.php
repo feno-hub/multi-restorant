@@ -7,16 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Multi-Resto</title>
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/fontawesome-free-6.0.0-web/css/all.min.css') }}">
 
-    <!-- AOS Animation -->
     <link rel="stylesheet" href="{{ asset('assets/aos/dist/aos.css') }}">
 
-    <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('assets/js/password.js') }}">
 
     <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css">
 </head>
@@ -36,8 +31,6 @@
             </div>
         </div>
 
-
-        <!-- ===== NAVIGATION ===== -->
 
         <input type="checkbox" name="burger" id="burger" class="container-input">
 
@@ -64,7 +57,15 @@
                         <span class="container-nav-card-link-icon">
                             <i class="fa-solid fa-utensils"></i>
                         </span>
-                        comment ça marche?
+                        à propos
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('menu.index') }}" class="container-nav-card-link">
+                        <span class="container-nav-card-link-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+                        menus
                     </a>
                 </li>
                 <li>
@@ -146,9 +147,6 @@
                     </li>
                     <li>
                         <a href="{{ route('menu.index') }}" class="container-footer-card-list-link">menu</a>
-                    </li>
-                    <li>
-                        <a href="#" class="container-footer-card-list-link">avis clients</a>
                     </li>
                 </ul>
             </div>

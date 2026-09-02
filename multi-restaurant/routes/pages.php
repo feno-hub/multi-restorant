@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ComentController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ClientCartController;
 use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FonctionalityController;
@@ -8,8 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegalController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PrivacyController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RestoController;
-use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/acceuil', [HomeController::class, 'index'])
@@ -34,19 +35,16 @@ Route::controller(MenuController::class)
     ->group(function () {
         
         Route::get('listes', 'index')
-        ->name('index');
+          ->name('index');
 
         Route::get('menu/recherche', 'search')
             ->name('search');
 
-        Route::get('detaille', 'show')
-        ->name('show');
-
-        Route::get('categories/{name}', 'category')
-        ->name('category');
+        Route::get('detaille/{id}', 'show')
+            ->name('show');
 
         Route::post('like', 'likeStore')
-        ->name('like');
+            ->name('like');
     
     });
 
@@ -71,11 +69,7 @@ Route::controller(RestoController::class)
         Route::get('detaille/{id}', 'show')
             ->name('show');
 
-        Route::get('detaille/reserver/table/{resto}', 'reservation')
-            ->name('reservation');
 
-        Route::post('detaille/reserver/table/{resto}', 'storeReservation')
-            ->name('reservation.store');
 
     });
 
@@ -90,3 +84,68 @@ Route::get('conditions-generale', [ConditionsController::class, 'index'])
 
 Route::get('comment-ça-marche', [FonctionalityController::class, 'index'])
     ->name('fonctionality');
+
+Route::middleware('auth')
+    ->prefix('client')
+    ->name('client.')
+    ->group(function () {
+
+        Route::get(
+            '/panier',
+            [ClientCartController::class, 'index']
+        )->name('cart.index');
+
+        Route::post(
+            '/panier/ajouter/{plat}',
+            [ClientCartController::class, 'add']
+        )->name('cart.add');
+
+        Route::patch(
+            '/panier/article/{item}',
+            [ClientCartController::class, 'update']
+        )->name('cart.update');
+
+        Route::delete(
+            '/panier/article/{item}',
+            [ClientCartController::class, 'remove']
+        )->name('cart.remove');
+
+        Route::delete(
+            '/panier',
+            [ClientCartController::class, 'clear']
+        )->name('cart.clear');
+
+        Route::get(
+            '/commande/validation',
+            [OrderController::class, 'checkout']
+        )->name('orders.checkout');
+
+        Route::post(
+            '/commande',
+            [OrderController::class, 'store']
+        )->name('orders.store');
+
+        Route::get(
+            '/commande/{order}',
+            [OrderController::class, 'show']
+        )->name('orders.show');
+    });
+
+Route::middleware('auth')
+    ->prefix('client')
+    ->name('client.')
+    ->group(function () {
+
+        Route::get('/reservations', [ReservationController::class, 'index'])
+            ->name('reservations.index');
+
+        Route::get('/restaurant/{resto}/reservation', [ReservationController::class, 'create'])
+            ->name('reservation.create');
+
+        Route::post('/restaurant/{resto}/reservation', [ReservationController::class, 'store'])
+            ->name('reservation.store');
+
+        Route::get('/reservation/{reservation}', [ReservationController::class, 'show'])
+            ->name('reservation.show');
+
+    });

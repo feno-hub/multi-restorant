@@ -7,11 +7,12 @@
     <div class="container-home">
 
 
-        {{-- HEADER --}}
         <header class="container-home-header">
 
             <div class="header-parent">
-                <h1 class="header-parent-title">multi-restaurants</h1>
+                <h1 class="header-parent-title">
+                    Découvrez vos réstaurants préférer
+                </h1>
                 <p class="header-parent-para">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quas quidem exercitationem nemo
                     aperiam vero, officia odio asperiores a quaerat?
@@ -26,57 +27,55 @@
                 </div>
             </div>
 
-            <video class="header-parent-video" autoplay muted loop playsinline>
-                <source src="{{ asset('/assets/videos/cuisinier.mp4') }}" type="video/mp4">
-            </video>
+            <div class="header-parent-image">
+                <img src="{{ asset('assets/images/resto/table1.jpg') }}" alt="">
+            </div>
 
             <div class="header-parent-overlay"></div>
 
 
         </header>
 
-        {{-- RESTAURANTS EN VEDETTE --}}
-        <section class="container-home-section1">
-            @if (isset($restos))
+        @if (isset($restos))
+            <section class="container-home-section1">
                 <h2 class="container-home-section1-title">Restaurants en vedette</h2>
 
                 <div class="container-home-section1-card">
 
                     @foreach ($restos as $resto)
                         <div class="container-home-section1-card-link">
+
                             <div class="container-home-section1-card-link-image">
                                 <img src="{{ $path . $resto->cover }}" alt="Le Bistrot" loading="lazy"
                                     class="container-home-section1-card-link-image-img">
                             </div>
-                            <div class="container-home-section1-card-link-about">
-                                <h3 class="container-home-section1-card-link-about-name">
-                                    {{ $resto->name }}
-                                </h3>
-                                <div class="container-home-section1-card-link-about-cuisine">
-                                    <span class="container-home-section1-card-link-about-cuisine-icon">
-                                        <i class="fa-solid fa-bell-concierge"></i>
-                                    </span>
-                                    <span class="container-home-section1-card-link-about-cuisine-type">
+
+                            <div class="about">
+
+                                <div class="content">
+                                    <h1>
+                                        {{ $resto->name }}
+                                    </h1>
+
+                                    <p>
+                                        <i class="fa-solid fa-utensils"></i>
                                         {{ $resto->category }}
+                                    </p>
+
+                                    <span>
+                                        {{ $resto->open_time }} =>
+                                        {{ $resto->close_time }}
                                     </span>
+
+
                                 </div>
+
+                                <a href="{{ route('resto.show', $resto->id) }}">
+                                    <x-btnsecondary-layout btn="Voir profile" />
+                                </a>
+
                             </div>
 
-                            <hr>
-
-                            <div class="container-home-section1-card-link-stat">
-                                <span class="container-home-section1-card-link-stat-note">
-                                    <i class="fa-solid fa-thumbs-up"></i>
-                                    (230)
-                                </span>
-                                <span class="container-home-section1-card-link-stat-time">
-                                    {{ $resto->open_time }} -> {{ $resto->close_time }}
-                                </span>
-                            </div>
-                            <a href="{{ route('resto.show', $resto->id) }}"
-                                class="container-home-section1-card-link-lien">
-                                <x-btnprimary-layout icon="fa-solid fa-utensils" btn="Voir profil" />
-                            </a>
                         </div>
                     @endforeach
 
@@ -86,15 +85,13 @@
                         <x-btnsecondary-layout btn="Explorer" icon="fa-solid fa-arrow-right" />
                     </a>
                 </div>
-            @endif
-        </section>
+            </section>
+        @endif
 
-        {{-- AVANTAGES --}}
 
         <section class="container-home-section2">
 
-            <h1 class="container-home-section2-title" data-aos="fade-right" data-aos-offset="300"
-                data-aos-easing="ease-in-sine">
+            <h1 class="container-home-section2-title">
                 ✨ Quelques avantages
             </h1>
 
@@ -126,52 +123,51 @@
             </div>
         </section>
 
-        {{-- MEILLEURS PLATS --}}
-        <section class="container-home-section3">
-            <h2 class="container-home-section3-title">Les meilleurs plats</h2>
-            @if (!isset($menus))
+
+        @if (isset($plats))
+            <section class="container-home-section3">
+                <h2 class="container-home-section3-title">Les meilleurs plats</h2>
 
                 <div class="container-home-section3-card">
 
-                    {{-- Plat --}}
-                    @foreach ($menus as $menu)
+                    @foreach ($plats as $plat)
                         <div class="container-home-section3-card-link">
                             <div class="container-home-section3-card-link-image">
                                 <a href="#">
-                                    <img src="{{ $path . $menu->image }}" alt="Pizza Margherita"
+                                    <img src="{{ $path . $plat->image }}" alt="Pizza Margherita"
                                         class="container-home-section3-card-link-image-img">
                                 </a>
                             </div>
                             <div class="container-home-section3-card-link-content">
                                 <h3 class="container-home-section3-card-link-content-name">
-                                    {{ $menu->name }}
+                                    {{ $plat->name }}
                                 </h3>
-                                <span class="container-home-section3-card-link-content-price">
-                                    {{ $menu->price }} Ar
+                                <span class="container-home-section3-card-link-content-restaurant">
+                                    {{ $plat->description }}
                                 </span>
-                                <h5 class="container-home-section3-card-link-content-restaurant">
-                                    {{-- {{ $menu->resto->name }} --}}
-                                    Nom du resto
-                                </h5>
-                                <form action="#" class="container-home-section3-card-link-content-btn">
-                                    <x-btnprimary-layout icon="fa-solid fa-cart-shopping" btn="Ajouter au panier" />
-                                </form>
                             </div>
+
+                            <div class=""
+                                style="display: flex; justify-content:center;align-items:center; padding:1rem;">
+                                <a href="{{ route('menu.index') }}">
+                                    <x-btnprimary-layout btn='Voir détail' />
+                                </a>
+                            </div>
+
                         </div>
                     @endforeach
 
                 </div>
                 <div class="container-home-section3-btn">
-                    <a href="">
+                    <a href="{{ route('menu.index') }}">
                         <x-btnsecondary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
                     </a>
                 </div>
-            @endif
 
-        </section>
+            </section>
+        @endif
 
-        {{-- ABONNEMENT --}}
-        <section class="container-home-section4">
+        {{-- <section class="container-home-section4">
             <h1 class="container-home-section4-title"> Abonnez vous</h1>
             <div class="container-home-section4-content">
                 <strong class="container-home-section4-content-subtitle">
@@ -191,7 +187,7 @@
 
             </div>
 
-        </section>
+        </section> --}}
 
     </div>
 

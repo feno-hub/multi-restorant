@@ -55,4 +55,32 @@ class ReservationRequest extends FormRequest
             ]
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Le nom est obligatoire.',
+            'name.min' => 'Le nom doit contenir au moins 3 caractères.',
+            'name.max' => 'Le nom ne doit pas dépasser 30 caractères.',
+
+            'email.required' => 'L’adresse email est obligatoire.',
+            'email.unique' => 'Cette adresse email est déjà utilisée.',
+            'email.email' => 'Veuillez saisir une adresse email valide.',
+            'email.max' => 'L’adresse email ne doit pas dépasser 50 caractères.',
+
+            'phone.required' => 'Le numéro de téléphone est obligatoire.',
+            'phone.min' => 'Le numéro de téléphone doit contenir 9 chiffres.',
+            'phone.max' => 'Le numéro de téléphone doit contenir 9 chiffres.',
+
+            'message.min' => 'Le message doit contenir au moins 3 caractères.',
+            'message.max' => 'Le message ne doit pas dépasser 50 caractères.',
+
+            'date.required' => 'La date de réservation est obligatoire.',
+
+            'time.required' => 'L’heure de réservation est obligatoire.',
+
+            'guests.required' => 'Le nombre de personnes est obligatoire.',
+            'guests.min' => 'Le nombre de personnes doit être au minimum de 1.',
+        ];
+    }
 }

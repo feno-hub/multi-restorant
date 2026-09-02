@@ -20,7 +20,7 @@ class RestoController extends Controller
         $restoRefus = Resto::where('status', 'refuser')
             ->count();
 
-        $restoAttent = Resto::where('status', 'en attent')
+        $restoAttent = Resto::where('status', 'en_attent')
             ->count();
 
         return view('pages.admin.resto.index', [

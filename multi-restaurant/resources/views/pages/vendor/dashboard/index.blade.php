@@ -5,12 +5,11 @@
 
     <div class="dashboard-restaurant">
 
-        <!-- ===== HEADER ===== -->
         <header class="dashboard-restaurant-header">
             <div class="header-left">
                 @if (Auth::user()->resto)
                     <h1 class="restaurant-name">
-                        @if (Auth::user()->resto->logo == "")
+                        @if (Auth::user()->resto->logo == '')
                             <div class="restaurant-name-logo">
                                 <h1>
                                     {{ Auth::user()->resto->name[0] }}{{ Auth::user()->resto->name[1] }}
@@ -48,19 +47,25 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     @method('POST')
-                    <x-btnsecondary-layout type="submit" icon="fa-solid fa-arrow-right-from-bracket" btn="Déconnexion" />
+                    <x-btnsecondary-layout type="submit" icon="fa-solid fa-arrow-right-from-bracket"
+                        btn="Déconnexion" />
                 </form>
             </div>
         </header>
 
-        <!-- ===== STATS ===== -->
         <div class="dashboard-restaurant-stats">
             <div class="stat-card">
+
                 <div class="stat-header">
-                    <span class="stat-label">Commandes (jour)</span>
-                    <span class="stat-icon orange"><i class="fas fa-shopping-bag"></i></span>
+                    <span class="stat-label">Commandes</span>
+                    <span class="stat-icon orange">
+                        <i class="fas fa-shopping-bag"></i>
+                    </span>
                 </div>
-                <div class="stat-value">156</div>
+
+                <div class="stat-value">
+                    {{ Auth::user()->resto->order->count() }}
+                </div>
                 <span class="stat-change up"><i class="fas fa-arrow-up"></i> +12%</span>
             </div>
 
@@ -74,19 +79,29 @@
             </div>
 
             <div class="stat-card">
+
                 <div class="stat-header">
-                    <span class="stat-label">Note moyenne</span>
-                    <span class="stat-icon blue"><i class="fas fa-star"></i></span>
+                    <span class="stat-label">Suivie</span>
+                    <span class="stat-icon blue">
+                        <i class="fas fa-star"></i>
+                    </span>
                 </div>
-                <div class="stat-value">4.8</div>
+
+                <div class="stat-value">
+                    15
+                </div>
                 <span class="stat-change up"><i class="fas fa-arrow-up"></i> +0.2</span>
+
             </div>
 
             <div class="stat-card">
                 <div class="stat-header">
                     <span class="stat-label">Plats en stock</span>
-                    <span class="stat-icon purple"><i class="fas fa-box"></i></span>
+                    <span class="stat-icon purple">
+                        <i class="fas fa-box"></i>
+                    </span>
                 </div>
+
                 <div class="stat-value">342</div>
                 <span class="stat-change down"><i class="fas fa-arrow-down"></i> -5%</span>
             </div>
@@ -101,76 +116,71 @@
             </div>
         </div>
 
-        <!-- ===== GRID PRINCIPAL ===== -->
         <div class="dashboard-restaurant-grid">
 
-            <!-- ===== COMMANDES RÉCENTES ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-receipt"></i>
                         Commandes récentes
                     </h3>
-                    <a href="{{ route('vendeur.orders') }}" class="card-link">Voir tout <i class="fas fa-arrow-right"></i></a>
+                    <a href="{{ route('vendeur.orders') }}" class="card-link">Voir tout <i
+                            class="fas fa-arrow-right"></i></a>
                 </div>
 
-                <div class="order-item">
-                    <div class="order-info">
-                        <div class="order-number">#ORD-432</div>
-                        <div class="order-meta">
-                            <span><i class="fas fa-user"></i> Marie D.</span>
-                            <span><i class="fas fa-clock"></i> 12 min</span>
+                @foreach (Auth::user()->resto->order as $orders)
+                    <div class="order-item">
+                        <div class="order-info">
+                            <div class="order-number">
+                                {{ $orders->order_number }}
+                            </div>
+                            <div class="order-meta">
+                                <span>
+                                    <i class="fas fa-user"></i> 
+                                    {{ $orders->user->name }} {{ $orders->user->last_name[0] }}.
+                                </span>
+                                <span>
+                                    <i class="fas fa-clock"></i> 
+                                    {{ $orders->created_at->diffForHumans() }}
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <span class="order-status preparing">En préparation</span>
-                    <span class="order-amount">32,50 €</span>
-                </div>
 
-                <div class="order-item">
-                    <div class="order-info">
-                        <div class="order-number">#ORD-429</div>
-                        <div class="order-meta">
-                            <span><i class="fas fa-user"></i> Thomas M.</span>
-                            <span><i class="fas fa-clock"></i> 27 min</span>
-                        </div>
-                    </div>
-                    <span class="order-status pending">En attente</span>
-                    <span class="order-amount">58,20 €</span>
-                </div>
+                        @if ($orders->status == 'pending')
+                            <span class="order-status pending">En attente</span>
+                            
+                        @elseif ($orders->status == 'preparing')
+                            <span class="order-status preparing">En préparation</span>
+                        
+                        @elseif ($orders->status == 'delivered')
+                            <span class="order-status delivered">Livrée</span>
 
-                <div class="order-item">
-                    <div class="order-info">
-                        <div class="order-number">#ORD-425</div>
-                        <div class="order-meta">
-                            <span><i class="fas fa-user"></i> Sophie B.</span>
-                            <span><i class="fas fa-clock"></i> 1h</span>
-                        </div>
-                    </div>
-                    <span class="order-status delivered">Livrée</span>
-                    <span class="order-amount">24,90 €</span>
-                </div>
+                        @elseif ($orders->status == 'cancelled')
+                            <span class="order-status cancelled">Annulée</span>
 
-                <div class="order-item">
-                    <div class="order-info">
-                        <div class="order-number">#ORD-422</div>
-                        <div class="order-meta">
-                            <span><i class="fas fa-user"></i> Lucas P.</span>
-                            <span><i class="fas fa-clock"></i> 1h22</span>
-                        </div>
+                        @elseif ($orders->status == 'confirmed')
+                            <span class="order-status delivered">Payée</span>
+
+                        @endif
+
+                        <span class="order-amount">
+                            {{-- {{ number_format($orders->items->subtotal, 0, ',', ' ') }} Ar --}}
+                        </span>
                     </div>
-                    <span class="order-status cancelled">Annulée</span>
-                    <span class="order-amount">41,30 €</span>
-                </div>
+                @endforeach
+
             </div>
 
-            <!-- ===== ACTIVITÉ RÉCENTE ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-bolt"></i>
-                        Activité récente
+                        Gérer la résérvation
                     </h3>
-                    <a href="#" class="card-link">Voir tout <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="card-link">
+                        Gérer
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
 
                 <div class="activity-item">
@@ -216,10 +226,8 @@
 
         </div>
 
-        <!-- ===== BOTTOM GRID ===== -->
         <div class="dashboard-restaurant-bottom">
 
-            <!-- ===== GRAPHIQUE COMMANDES ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -265,17 +273,23 @@
                 </div>
             </div>
 
-            <!-- ===== AVIS RÉCENTS ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-star"></i>
                         Derniers avis
                     </h3>
-                    <a href="#" class="card-link">Voir tout <i class="fas fa-arrow-right"></i></a>
+                    <a href="#" class="card-link">
+                        Voir tout
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
 
-                @if ($notices)
+                @if (!isset($notices))
+                    <h2 style="color: red;text-align:center;">
+                        Pas de commantaire
+                    </h2>
+                @else
                     @foreach ($notices as $notice)
                         <div class="review-item">
                             <div class="review-avatar">
@@ -298,96 +312,101 @@
 
         </div>
 
-        <!-- ===== STOCK ===== -->
         <section class="dashboard-restaurant-stock">
             <div class="card">
+
                 <div class="card-header">
+
                     <h3 class="card-title">
                         <i class="fas fa-boxes"></i>
-                        État du stock
+                        Liste des menues
                     </h3>
-                    <a href="#" class="card-link">Gérer <i class="fas fa-arrow-right"></i></a>
+
+                    <a href="{{ route('vendeur.menu.list') }}" class="card-link">
+                        Gérer
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+
                 </div>
 
                 <div class="stock-grid">
-                    <div class="stock-item">
-                        <div class="stock-info">
-                            <div class="stock-name">Pâtes fraîches</div>
-                            <div class="stock-quantity">8 kg</div>
-                        </div>
-                        <span class="stock-status low"></span>
-                    </div>
+                    @foreach ($menus as $menu)
+                        <div class="stock-item">
 
-                    <div class="stock-item">
-                        <div class="stock-info">
-                            <div class="stock-name">Sauce tomate</div>
-                            <div class="stock-quantity">12 L</div>
-                        </div>
-                        <span class="stock-status medium"></span>
-                    </div>
+                            <div class="stock-info">
+                                <div class="stock-name">
+                                    {{ $menu->name }}
+                                </div>
+                                <div class="stock-quantity">
+                                    {{ $menu->plat->count() }} plats
+                                </div>
+                            </div>
 
-                    <div class="stock-item">
-                        <div class="stock-info">
-                            <div class="stock-name">Mozzarella</div>
-                            <div class="stock-quantity">5 kg</div>
-                        </div>
-                        <span class="stock-status low"></span>
-                    </div>
+                            @if ($menu->plat->count() <= 3)
+                                <span class="stock-status low"></span>
+                            @else
+                                <span class="stock-status medium"></span>
+                            @endif
 
-                    <div class="stock-item">
-                        <div class="stock-info">
-                            <div class="stock-name">Huile d'olive</div>
-                            <div class="stock-quantity">18 L</div>
                         </div>
-                        <span class="stock-status high"></span>
-                    </div>
-
-                    <div class="stock-item">
-                        <div class="stock-info">
-                            <div class="stock-name">Farine</div>
-                            <div class="stock-quantity">25 kg</div>
-                        </div>
-                        <span class="stock-status high"></span>
-                    </div>
-
-                    <div class="stock-item">
-                        <div class="stock-info">
-                            <div class="stock-name">Basilic frais</div>
-                            <div class="stock-quantity">2 kg</div>
-                        </div>
-                        <span class="stock-status low"></span>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
 
-        <!-- ===== ACTIONS RAPIDES ===== -->
         <section style="margin-top: 28px;">
             <div class="card">
+
                 <div class="card-header">
+
                     <h3 class="card-title">
                         <i class="fas fa-bolt"></i>
                         Actions rapides
                     </h3>
+
                 </div>
+
                 <div class="quick-actions">
+
                     <a href="{{ route('vendeur.plat.insert') }}" class="quick-btn">
                         <i class="fas fa-plus-circle"></i>
-                        <span>Nouveau plat</span>
+                        <span>
+                            Nouveau plat
+                        </span>
                     </a>
-                    <a href="{{ route('vendeur.menu.edit') }}" class="quick-btn">
-                        <i class="fas fa-edit"></i>
-                        <span>Modifier le menu</span>
-                    </a>
-                    <a href="#" class="quick-btn">
+
+                    @if (Auth::user()->menu)
+                        <a href="{{ route('vendeur.menu.edit') }}" class="quick-btn">
+                            <i class="fas fa-edit"></i>
+                            <span>
+                                Modifier le menu
+                            </span>
+                        </a>
+                    @else
+                        <a href="{{ route('vendeur.menu.create') }}" class="quick-btn">
+                            <i class="fas fa-edit"></i>
+                            <span>
+                                Ajouter un menu
+                            </span>
+                        </a>
+                    @endif
+
+                    <a href="" class="quick-btn">
                         <i class="fas fa-sync-alt"></i>
-                        <span>Mettre à jour le stock</span>
+                        <span>
+                            Mettre à jour le stock
+                        </span>
                     </a>
-                    <a href="#" class="quick-btn">
+
+                    <a href="" class="quick-btn">
                         <i class="fas fa-chart-line"></i>
-                        <span>Voir les rapports</span>
+                        <span>
+                            Compléter l' information
+                        </span>
                     </a>
+
                 </div>
+
             </div>
         </section>
 

@@ -180,16 +180,20 @@
 
                             <div>
 
-                                <span>
-                                    TABLE 1
-                                </span>
-
                                 <h2>
-                                    17-08-20 à
-                                    10:00
+                                    TABLE 1
                                 </h2>
 
+                                <span>
+                                    17-08-20 à
+                                    10:00
+                                </span>
+
                             </div>
+
+                            {{-- <div class="">
+                                <h2>Reservation indisponible</h2>
+                            </div> --}}
 
                             <div class="reservation-form-header-icon">
 

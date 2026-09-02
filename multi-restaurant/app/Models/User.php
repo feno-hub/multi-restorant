@@ -13,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Subscription;
 
-#[Fillable(['name', 'last_name', 'email', 'password'])]
+#[Fillable(['name', 'last_name', 'email', 'image', 'phone', 'address', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -61,18 +61,12 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    /**
-     * Tous les abonnements de l'utilisateur
-     */
     public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class);
     }
 
 
-    /**
-     * Abonnement actuel
-     */
     public function currentSubscription(): HasOne
     {
         return $this->hasOne(Subscription::class)
@@ -81,9 +75,6 @@ class User extends Authenticatable
     }
 
 
-    /**
-     * Vérifier si l'utilisateur possède un abonnement actif
-     */
     public function hasActiveSubscription(): bool
     {
         $subscription = $this->currentSubscription()->first();
@@ -92,12 +83,6 @@ class User extends Authenticatable
             return false;
         }
 
-
-        /*
-    |--------------------------------------------------------------------------
-    | Vérifier la date d'expiration
-    |--------------------------------------------------------------------------
-    */
 
         if (
             !$subscription->ends_at ||
@@ -115,19 +100,12 @@ class User extends Authenticatable
         return true;
     }
 
-
-    /**
-     * Vérifier si l'utilisateur est gratuit
-     */
     public function isFreeUser(): bool
     {
         return !$this->hasActiveSubscription();
     }
 
 
-    /**
-     * Vérifier si l'utilisateur est abonné
-     */
     public function isSubscribed(): bool
     {
         return $this->hasActiveSubscription();

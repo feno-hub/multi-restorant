@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -25,19 +26,10 @@ class Resto extends Model
         'close_time',
         'logo',
         'cover',
-        'instat',
+        'nifstat',
         'website',
         'status'
     ];
-
-    public function restoStat(): HasOne
-    {
-        return $this->hasOne(
-            RestoStatus::class,
-            'resto_id',
-            'id'
-        );
-    }
 
     public function subscriptions(): HasMany
     {
@@ -62,17 +54,6 @@ class Resto extends Model
             ->latestOfMany();
     }
 
-    // public function hasActiveSubscription(): bool
-    // {
-    //     $subscription = $this->activeSubscription()->first();
-
-    //     if (!$subscription) {
-    //         return false;
-    //     }
-
-    //     return $subscription->isActive();
-    // }
-
     public function hasActiveSubscription(): bool
     {
         $subscription = $this->currentSubscription()->first();
@@ -83,4 +64,21 @@ class Resto extends Model
 
         return $subscription->isActive();
     }
+
+    public function menu(): HasMany {
+        return $this->hasMany(
+            Menu::class,
+            'resto_id',
+            'id'
+        );
+    }
+
+    public function order(): HasMany {
+        return $this->hasMany(
+            Order::class,
+            'resto_id',
+            'id'
+        );
+    }
+
 }

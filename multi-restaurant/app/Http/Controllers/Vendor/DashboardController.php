@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
 use App\Models\Notice;
 use App\Models\Resto;
 use Illuminate\Http\Request;
@@ -22,8 +23,14 @@ class DashboardController extends Controller
             ->limit(3)
             ->get();
 
+        $menus = Menu::where('resto_id', $resto_id)
+            ->orderBy('id', 'desc')
+            ->limit(4)
+            ->get();
+
         return view('pages.vendor.dashboard.index', [
-            'notices' => $notices
+            'notices' => $notices,
+            'menus' => $menus
         ]);
     }
 }

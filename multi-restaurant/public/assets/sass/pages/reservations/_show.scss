@@ -1,0 +1,264 @@
+.reservation-show {
+max-width: 1200px;
+margin: 0 auto;
+padding: 3rem 1.5rem;
+}
+
+.reservation-show__header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 2rem;
+margin-bottom: 2.5rem;
+}
+
+.reservation-show__label {
+color: $color-primary;
+font-size: 0.85rem;
+font-weight: 700;
+letter-spacing: 0.15rem;
+}
+
+.reservation-show__header h1 {
+margin: 0.5rem 0;
+color: $color-secondary;
+font-size: 2.2rem;
+font-weight: 700;
+}
+
+.reservation-show__header p {
+margin: 0;
+color: #777;
+}
+
+.reservation-show__actions {
+display: flex;
+align-items: center;
+gap: 1rem;
+flex-wrap: wrap;
+}
+
+.btn-back {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 0.8rem 1.3rem;
+border-radius: 8px;
+text-decoration: none;
+color: $color-secondary;
+background: #f1f2f4;
+font-weight: 600;
+transition: 0.3s;
+}
+
+.btn-back:hover {
+background: #e3e5e8;
+}
+
+.reservation-show__layout {
+display: grid;
+grid-template-columns: minmax(0, 1fr) 340px;
+gap: 2rem;
+align-items: start;
+}
+
+.reservation-show__content {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.reservation-card {
+background: $color-free;
+border-radius: 14px;
+padding: 2rem;
+box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+}
+
+.reservation-card__title {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 1rem;
+margin-bottom: 2rem;
+}
+
+.reservation-card__title h2,
+.reservation-card h2 {
+margin: 0;
+color: $color-secondary;
+font-size: 1.4rem;
+}
+
+.reservation-status {
+padding: 0.5rem 0.9rem;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: 700;
+}
+
+.status-pending {
+background: #fff3cd;
+color: #856404;
+}
+
+.status-accepted {
+background: #d4edda;
+color: #155724;
+}
+
+.status-refused {
+background: #f8d7da;
+color: #721c24;
+}
+
+.reservation-info-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.5rem;
+}
+
+.reservation-info {
+padding: 1rem;
+background: #f7f8fa;
+border-radius: 10px;
+}
+
+.reservation-info span {
+display: block;
+margin-bottom: 0.4rem;
+color: #777;
+font-size: 0.85rem;
+}
+
+.reservation-info strong {
+display: block;
+color: $color-secondary;
+font-size: 1rem;
+word-break: break-word;
+}
+
+.reservation-message {
+margin: 1.2rem 0 0;
+padding: 1rem;
+background: #f7f8fa;
+border-radius: 10px;
+color: #555;
+line-height: 1.7;
+}
+
+.reservation-show__sidebar {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.restaurant-card {
+background: $color-primary;
+color: $color-free;
+border-radius: 14px;
+padding: 2rem;
+box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.restaurant-card small {
+display: block;
+margin-bottom: 0.7rem;
+opacity: 0.75;
+font-size: 0.75rem;
+letter-spacing: 0.12rem;
+}
+
+.restaurant-card h2 {
+margin: 0 0 1rem;
+font-size: 1.5rem;
+}
+
+.restaurant-card p {
+margin: 0.5rem 0;
+opacity: 0.9;
+}
+
+.reservation-payment-card h3,
+.reservation-card h3 {
+margin: 0 0 1rem;
+color: $color-secondary;
+font-size: 1.15rem;
+}
+
+.reservation-payment-card p {
+margin-bottom: 1.5rem;
+color: #666;
+line-height: 1.6;
+}
+
+.reservation-payment-card .multi-button-primary {
+display: flex;
+justify-content: center;
+width: 100%;
+text-decoration: none;
+box-sizing: border-box;
+}
+
+.alert {
+margin-bottom: 1.5rem;
+padding: 1rem 1.2rem;
+border-radius: 10px;
+}
+
+.alert-error {
+background: #f8d7da;
+color: #721c24;
+}
+
+@media (max-width: 900px) {
+.reservation-show__layout {
+grid-template-columns: 1fr;
+}
+
+
+.reservation-show__sidebar {
+    order: -1;
+}
+
+
+}
+
+@media (max-width: 650px) {
+.reservation-show {
+padding: 2rem 1rem;
+}
+
+
+.reservation-show__header {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.reservation-show__header h1 {
+    font-size: 1.8rem;
+}
+
+.reservation-info-grid {
+    grid-template-columns: 1fr;
+}
+
+.reservation-card {
+    padding: 1.3rem;
+}
+
+.reservation-card__title {
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.reservation-show__actions {
+    width: 100%;
+}
+
+.reservation-show__actions a {
+    flex: 1;
+}
+
+
+}

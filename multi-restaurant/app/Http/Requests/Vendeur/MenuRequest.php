@@ -29,17 +29,6 @@ class MenuRequest extends FormRequest
                 'max:50',
                 'min:2'
             ],
-            "category" => [
-                'required'
-            ],
-            "price" => [
-                'required',
-                'min:0',
-            ],
-            "preparation_time" => [
-                'required',
-                'min:0',
-            ],
             "stat" => [
                 'required'
             ],
@@ -63,13 +52,6 @@ class MenuRequest extends FormRequest
             "name.required" => "Cette champs est obligatoire.",
             "name.max" => "Le nombre de caractère doit être inferieur de 50.",
             "name.min" => "Le nombre de caractère doit être superieur de 2.",
-
-            "price.required" => "Cette champs est obligatoire.",
-            "price.min" => "Le prix doit être positif.",
-            
-
-            "preparation_time.required" => "Cette champs est obligatoire.",
-            "preparation_time.min" => "Le temps de préparation doit être positif.",
 
             "stat.required" => "Cette champs est obligatoire.",
 

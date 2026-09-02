@@ -1,10 +1,8 @@
 <?php
 
 use App\Http\Controllers\Client\ActivitiesController;
-use App\Http\Controllers\Client\ClientCartController;
 use App\Http\Controllers\Client\dashboardController;
 use App\Http\Controllers\Client\FavoritesController;
-use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\OrdersController;
 use App\Http\Controllers\Client\ProfilController;
 use App\Http\Controllers\client\RestoController;
@@ -38,20 +36,9 @@ Route::controller(RestoController::class)
 
     });
 
-// Route::controller(ClientCartController::class) 
-//     ->prefix('client/pannier/')
-//     ->middleware(['user'])
-//     ->name('client.panier.')
-//     ->group(function () {
-
-//         Route::get('pages', 'index')
-//             ->name('index');
-
-// });
-
 
 Route::controller(ProfilController::class)
-    ->prefix('client/profil')
+    ->prefix('client/profil/')
     ->middleware(['user'])
     ->name('client.profil.')
     ->group(function () {
@@ -61,6 +48,9 @@ Route::controller(ProfilController::class)
 
         Route::get('modifier', 'edit')
             ->name('edit');
+
+        Route::put('update', 'update')
+            ->name('update');
     });
 
 Route::controller(OrdersController::class)
@@ -73,70 +63,7 @@ Route::controller(OrdersController::class)
             ->name('index');
     });
 
-Route::middleware('auth')
-    ->prefix('client')
-    ->name('client.')
-    ->group(function () {
 
-        /*
-        |--------------------------------------------------------------------------
-        | PANIER
-        |--------------------------------------------------------------------------
-        */
-
-        Route::get(
-            '/panier',
-            [ClientCartController::class, 'index']
-        )->name('cart.index');
-
-
-        Route::post(
-            '/panier/ajouter/{plat}',
-            [ClientCartController::class, 'add']
-        )->name('cart.add');
-
-
-        Route::patch(
-            '/panier/article/{item}',
-            [ClientCartController::class, 'update']
-        )->name('cart.update');
-
-
-        Route::delete(
-            '/panier/article/{item}',
-            [ClientCartController::class, 'remove']
-        )->name('cart.remove');
-
-
-        Route::delete(
-            '/panier',
-            [ClientCartController::class, 'clear']
-        )->name('cart.clear');
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | COMMANDE
-        |--------------------------------------------------------------------------
-        */
-
-        Route::get(
-            '/commande/validation',
-            [OrderController::class, 'checkout']
-        )->name('orders.checkout');
-
-
-        Route::post(
-            '/commande',
-            [OrderController::class, 'store']
-        )->name('orders.store');
-
-
-        Route::get(
-            '/commande/{order}',
-            [OrderController::class, 'show']
-        )->name('orders.show');
-});
 
 Route::controller(ActivitiesController::class)
     ->prefix('client/')

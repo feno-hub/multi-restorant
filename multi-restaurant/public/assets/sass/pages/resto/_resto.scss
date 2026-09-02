@@ -1,15 +1,4 @@
-// ===== VARIABLES =====
-$color-secondary: #2C3E50;
-$color-free: #FFFFFF;
-$color-btn-add: #C0382B;
-$colore-btn-update: #3498DB;
-$colore-btn-delete: #E74C3C;
-$color-btn-back: #7F8C8D;
-$bg: linear-gradient(135deg, #667eea, #764ba2);
 
-$font: Arial, Helvetica, sans-serif;
-
-// Breakpoints
 $bp-320: 320px;
 $bp-375: 375px;
 $bp-480: 480px;
@@ -22,7 +11,6 @@ $bp-1440: 1440px;
 $bp-1920: 1920px;
 $bp-2400: 2400px;
 
-// Mixins
 @mixin respond($breakpoint) {
     @media (max-width: $breakpoint) {
         @content;
@@ -35,32 +23,28 @@ $bp-2400: 2400px;
     }
 }
 
-// ============================================================
-// PAGE DES RESTAURANTS
-// ============================================================
-
 .restaurants-page {
-    padding: 7rem 3rem;
+    padding: 0rem 3rem;
     background: $color-primary;
 
-    @media (max-width: 992px) {
-        padding: 12rem 3rem;     
-    }
-    
     @media (max-width: 576px) {
         padding: 5rem 3rem;     
     }
 
 }
 
-// En-tête
 .restaurants-header {
+    margin-top: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
     flex-wrap: wrap;
     gap: 20px;
+
+    @media (max-width: 576px) {
+        margin-top: 4rem;
+    }
 
     @include respond($bp-768) {
         flex-direction: column;
@@ -170,7 +154,6 @@ $bp-2400: 2400px;
     }
 }
 
-// Grille des restaurants
 .restaurants-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -188,219 +171,142 @@ $bp-2400: 2400px;
     }
 }
 
-// Carte du restaurant
-.restaurant-card {
+.resto-card {
     background: $color-free;
-    border-radius: 16px;
+    display: flex;
+    gap: 10px;
+    min-height: 40vh;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    line-height: 1.5rem;
 
-    &:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-
-        .restaurant-card-image img {
-            transform: scale(1.05);
-        }
+    @media (max-width: 432px) {
+        flex-direction: column;
     }
 
-    .restaurant-card-image {
-        position: relative;
-        height: 220px;
-        overflow: hidden;
+}
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+.resto-card-image {
+    width: 50%;
+    position: relative;
 
-        .restaurant-card-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-            color: $color-free;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-
-            i {
-                color: #FFD700;
-                font-size: 12px;
-            }
-        }
-
-        .restaurant-card-status {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-
-            .status-open {
-                background: #27ae60;
-                color: $color-free;
-                padding: 4px 14px;
-                border-radius: 20px;
-                font-size: 12px;
-                font-weight: 600;
-                text-transform: uppercase;
-            }
-
-            .status-closed {
-                background: $colore-btn-delete;
-                color: $color-free;
-                padding: 4px 14px;
-                border-radius: 20px;
-                font-size: 12px;
-                font-weight: 600;
-                text-transform: uppercase;
-            }
-        }
+    @media (max-width: 432px) {
+        width: 100%;
+        height: 20vh;
     }
 
-    .restaurant-card-body {
-        padding: 20px;
-
-        .restaurant-card-name {
-            font-size: 20px;
-            font-weight: 700;
-            color: $color-secondary;
-            margin-bottom: 6px;
-        }
-
-        .restaurant-card-cuisine {
-            font-size: 14px;
-            color: lighten($color-secondary, 30%);
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-
-            i {
-                color: #667eea;
-                font-size: 13px;
-            }
-        }
-
-        .restaurant-card-info {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 16px;
-            padding: 12px 0;
-            border-top: 1px solid #f0f0f0;
-            border-bottom: 1px solid #f0f0f0;
-
-            .info-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 4px;
-                font-size: 12px;
-                color: lighten($color-secondary, 25%);
-
-                i {
-                    font-size: 16px;
-                    color: #667eea;
-                }
-
-                span {
-                    text-align: center;
-                }
-            }
-        }
-
-        .restaurant-card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .restaurant-card-price {
-                font-size: 14px;
-                font-weight: 500;
-                color: #667eea;
-                border: 1px $colore-btn-update solid;
-                padding: 3px 10px;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: .3s;
-
-                &:hover {
-                    background: #667eea;
-                    color: $color-free;
-                    scale: 1.05;
-                }
-
-            }
-
-            .btn-detail {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 8px 18px;
-                background: #667eea;
-                color: $color-free;
-                border-radius: 8px;
-                font-size: 14px;
-                font-weight: 600;
-                transition: background 0.3s ease, transform 0.2s ease;
-
-                &:hover {
-                    background: darken(#667eea, 10%);
-                    transform: translateX(4px);
-                }
-
-                i {
-                    font-size: 13px;
-                    transition: transform 0.3s ease;
-                }
-
-                &:hover i {
-                    transform: translateX(4px);
-                }
-            }
-        }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
-    @include respond($bp-768) {
-        .restaurant-card-image {
-            height: 200px;
-        }
+}
 
-        .restaurant-card-body {
-            .restaurant-card-info {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-    }
-
-    @include respond($bp-480) {
-        .restaurant-card-image {
-            height: 180px;
-        }
-
-        .restaurant-card-body {
-            .restaurant-card-footer {
-                flex-direction: column;
-                gap: 12px;
-                align-items: stretch;
-
-                .btn-detail {
-                    justify-content: center;
-                }
-            }
-        }
+.resto-card-content {
+    @media (max-width: 432px) {
+        padding: 1rem;
     }
 }
 
-// Statistiques
+.resto-card-name {
+    color: $color-primary;
+    margin-top: .5rem;
+}
+
+.resto-card-category {
+    color: $color-secondary;
+    margin-top: .5rem;
+
+    i {
+        color: $color;
+    }
+}
+
+.resto-card-hours {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    color: $color-secondary;
+
+    i {
+        color: $color-primary;
+    }
+
+    strong {
+        color: $color-primary;
+    }
+}
+
+.resto-card-rating {
+    background: $color-secondary;
+    color: $color-free;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px;
+    border-radius: 8px;
+    font-size: .7rem;
+    font-weight: 500;
+
+    i {
+        color: $color;
+    }
+}
+
+.resto-card-status span {
+    background: green;
+    color: $color-free;
+    padding: 5px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 8px;
+    font-size: .7rem;
+    font-weight: 500;
+}
+
+.btn-detail {
+    background: $color-primary;
+    color: $color-free;
+    border: 1px solid $color-primary;
+
+    &:hover {
+        background: $color-secondary;
+        border-color: $color-secondary;
+    }
+}
+
+.btn-follow {
+    background: $color-free;
+    color: $color-primary;
+    border: 1px solid $color-primary;
+
+    &:hover {
+        background: $color-primary;
+        color: $color-free;
+    }
+}
+
+.location-icon {
+    color: $color-primary;
+    margin-top: .5rem;
+}
+
+.location-text {
+
+    display: flex;
+    gap: .5rem;
+
+    span {
+        font-weight: 500;
+        color: $color-secondary;
+    }
+
+    p {
+        color: $color-secondary;
+    }
+}
+
 .restaurants-stats {
     display: flex;
     justify-content: space-around;
@@ -444,7 +350,6 @@ $bp-2400: 2400px;
     }
 }
 
-// Pagination
 .restaurants-pagination {
     display: flex;
     justify-content: center;

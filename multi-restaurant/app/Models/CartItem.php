@@ -14,6 +14,10 @@ class CartItem extends Model
         'price',
     ];
 
+    protected $casts = [
+        'price' => 'decimal:2',
+    ];
+
     public function cart(): BelongsTo
     {
         return $this->belongsTo(Cart::class);

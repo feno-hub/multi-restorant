@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resto_statuses', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('resto_id')
-                ->constrained('restos')
-                ->cascadeOnDelete();
-
-            $table->string('status')->nullable();
-            $table->timestamps();
+        Schema::table('plats', function (Blueprint $table) {
+            //
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resto_statuses');
+        Schema::table('plats', function (Blueprint $table) {
+            //
+        });
     }
 };

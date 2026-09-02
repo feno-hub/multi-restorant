@@ -97,7 +97,7 @@
                         Mes commandes
                     </h3>
                     <a href="{{ route('client.orders.index') }}" class="card-link">
-                        <x-btnprimary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
+                        <x-btnsecondary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
                     </a>
                 </div>
 
@@ -194,7 +194,7 @@
                         Mes favoris
                     </h3>
                     <a href="{{ route('client.favorites') }}" class="card-link">
-                        <x-btnprimary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
+                        <x-btnsecondary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
                     </a>
                 </div>
 
@@ -264,8 +264,8 @@
                         <i class="fas fa-tag"></i>
                         Mes offres
                     </h3>
-                    <a href="#" class="card-link">
-                        <x-btnprimary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
+                    <a href="" class="card-link">
+                        <x-btnsecondary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
                     </a>
                 </div>
 
@@ -308,7 +308,7 @@
                         Activité récente
                     </h3>
                     <a href="{{ route('client.activities') }}" class="card-link">
-                        <x-btnprimary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
+                        <x-btnsecondary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
                     </a>
                 </div>
 
@@ -377,7 +377,7 @@
                         <i class="fas fa-heart"></i>
                         <span>Crer un restaurant</span>
                     </a>
-                    <a href="#" class="quick-btn">
+                    <a href="{{ route('client.profil.edit') }}" class="quick-btn">
                         <i class="fas fa-user-edit"></i>
                         <span>Modifier mon profil</span>
                     </a>
