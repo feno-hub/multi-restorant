@@ -5,7 +5,8 @@
 
     <div class="page-categories">
 
-        <div class="" style="display: flex;align-items:center;gap:4rem;">
+        <div class="flex justify-between items-center">
+
             <div class="page-categories-header">
                 <h1 class="page-title">
                     <i class="fas fa-tags"></i>
@@ -15,14 +16,13 @@
             </div>
 
             <div class="page-categories-filter">
-                <form action="{{ route('menu.search') }}" method="GET" class="filter-left">
+                <form action="{{ route('menu.search') }}" method="GET" class="flex gap-6">
 
                     @method('GET')
 
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" name="query" placeholder="Une catégorie , un restaurant,..."
-                            @if (isset($_GET['query'])) {{ $_GET['query'] }} @endif>
+                        <input type="text" name="query" placeholder="Une catégorie , un restaurant,...">
                     </div>
                     <div class="filter-group">
                         <x-btnsecondary-layout type="submit" icon='fa-brands fa-searchengin' btn='chercher' />
@@ -34,7 +34,10 @@
 
         <div class="page-categories-grid">
             @foreach ($menus as $menu)
-                @if (!isset($_GET['query']) || $_GET['query'] == '')
+                @if (
+                    !request()->filled('query') ||
+                        str_contains(strtolower($menu->name), strtolower(request('query'))) ||
+                        str_contains(strtolower($menu->stat), strtolower(request('query'))))
                     <div class="category-card">
 
                         <div class="category-card-image">
@@ -58,13 +61,13 @@
                             </div>
 
                             <div class="category-card-info">
-                                
+
                                 <span class="info-item">
                                     <strong class="" style="color: red">❤</strong>
                                     {{ $menu->like->count() }}
                                     p aimes
                                 </span>
-                                
+
                                 <span class="info-item">
                                     <i class=""></i>
                                     {{ $menu->stat }}
@@ -74,11 +77,11 @@
                                     <i class=""></i>
                                     {{ $menu->plat->count() }} plats
                                 </span>
-                                
+
                             </div>
 
                             <div class="category-card-footer">
-                                
+
                                 <span class="resto-count">
                                     <a href="{{ route('menu.show', $menu->id) }}" class="btn-action btn-action-view">
                                         <i class="fa-regular fa-eye"></i>
@@ -99,63 +102,24 @@
 
                         </div>
 
-                    </div>
-                @elseif ($_GET['query'] == $menu->name)
-                    <div class="category-card">
-                        <div class="category-card-image">
-                            <img src="{{ $path . $menu->image }}" alt="" class="category-card-image-img">
-                        </div>
-
-                        <div class="category-card-body">
-
-                            <div class="category-card-header">
-                                <h3 class="category-name">
-                                    <a href="{{ route('menu.category', $menu->name) }}">
-                                        {{ $menu->name }}
-                                    </a>
-                                </h3>
-                                <span class="category-icon">
-                                    <i class="fas fa-pizza-slice"></i>
-                                </span>
-                            </div>
-
-                            <div class="category-card-info">
-                                <span class="info-item">
-                                    <i class="fas fa-star"></i>
-                                    nom resto
-                                    {{-- {{ $menu->resto->name }} --}}
-                                </span>
-                            </div>
-
-                            <div class="category-card-footer">
-                                <span class="resto-count">
-                                    <a href="" class="btn-action btn-action-view">
-                                        <i class="fa-regular fa-eye"></i>
-                                    </a>
-                                </span>
-                                <span class="resto-count">
-                                    <a href="" class="btn-action btn-action-view">
-                                        <i class="fa-regular fa-thumbs-up"></i>
-                                    </a>
-                                </span>
-                                <form method="POST" class="card-actions">
-                                    <button class="btn-action btn-action-view">
-                                        <i class="fa-solid fa-cart-arrow-down"></i>
-                                    </button>
-                                </form>
-                            </div>
-
+                        <div>
+                            {{ $menus->links() }}
                         </div>
 
                     </div>
+
+                @else
+                    <h2 class="text-center min-h-[55vh] text-4xl text-white">
+                        aucun menu trouvé 😔😔
+                    </h2>
                 @endif
             @endforeach
 
+
+
+
         </div>
 
-        <div>
-            {{ $menus->links() }}
-        </div>
 
     </div>
 </x-app-layout>

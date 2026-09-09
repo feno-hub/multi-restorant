@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activites;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -19,11 +20,10 @@ class OrderController extends Controller
         ->where('user_id', Auth::id())
         ->first();
 
-
         if (!$cart || $cart->items->isEmpty()) {
 
             return redirect()
-                ->route('pages.cart.index')
+                ->route('client.cart.index')
                 ->with(
                     'error',
                     'Votre panier est vide.'
@@ -143,6 +143,14 @@ class OrderController extends Controller
             ]);
 
 
+            $title = $order->resto->name;
+
+            Activites::create([
+                'user_id' => Auth::user()->id,
+                'title' => $title,
+                'content' => 'Commande passée',
+            ]);
+
             foreach ($cart->items as $item) {
 
                 OrderItem::create([
@@ -161,6 +169,7 @@ class OrderController extends Controller
                         $item->price * $item->quantity,
 
                 ]);
+
             }
 
 

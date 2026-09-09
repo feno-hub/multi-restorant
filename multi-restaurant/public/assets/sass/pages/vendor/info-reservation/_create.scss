@@ -1,0 +1,159 @@
+.page-reservation {
+    min-height: 100vh;
+    padding: 3rem;
+
+    
+    .form {
+        margin: auto;
+        padding: 4rem;
+        margin-top: 2rem;
+        background: $color-free;
+        width: 60%;
+        border-radius: 1rem;
+        box-shadow: 0 2px 15px rgb(220, 106, 0);
+        
+        &-tete {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &-round {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+    
+                &-point1 {
+                    box-shadow: 0 0 10px white;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background: $color-secondary;
+                }
+    
+                &-point2 {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background: $color-primary;
+                }
+    
+                &-point3 {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background: $color;
+                }
+
+            }
+
+            &-back {
+                border: solid 1px $color-secondary;
+                padding: .4rem 1rem;
+                border-radius: 4px;
+                color: $color-secondary;
+                font-weight: 500;
+                transition: .3s;
+
+                &:hover {
+                    background: $color-secondary;
+                    color: $color-free;
+                }
+
+            }
+
+        }
+
+        &-title {
+            color: transparent;
+            background-image: linear-gradient(0deg, rgb(88, 25, 4), rgb(212, 125, 3));
+            background-clip: text;
+            -webkit-background-clip: text;
+            font-size: 2rem;
+            margin-top: 1rem;
+            text-transform: capitalize;
+            font-weight: 700;
+        }
+
+        .group {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
+
+            label {
+                font-weight: 500;
+            }
+
+            input {
+                outline: none;
+                border: 1px solid rgba(164, 164, 197, 0.645);
+                box-shadow: 0 0 2px $color-secondary;
+                border-radius: 4px;
+                padding: 5px 10px;
+                font-size: 16px;
+                font-weight: 400;
+                margin-top: 2px;
+            }
+
+        }
+
+        .button {
+            margin-top: 2rem;
+            gap: 1rem;
+
+            &-create {
+                background: green;
+                padding: .4rem 1.5rem;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: .3s;
+                font-weight: 700;
+                color: $color-free;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    background: rgb(2, 54, 2);
+                }
+
+            }
+
+        }
+
+        .title {
+            font-weight: 500;
+            display: block;
+            margin-top: 2rem;
+        }
+
+        .disponibility {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+
+            @media (max-width: 576px) {
+                flex-direction: column;
+            }
+
+            input {
+                display: none;
+            }
+
+            &-status {
+                width: 100%;
+                box-shadow: 0 0 2px;
+                border-radius: 1rem;
+                padding: 1rem;
+                cursor: pointer;
+                transition: .3s;
+
+                &:hover {
+                    scale: 1.005;
+                    background: greenyellow;
+                }
+
+            }
+
+        }
+        
+    }
+
+}

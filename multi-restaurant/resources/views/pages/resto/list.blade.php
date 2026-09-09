@@ -8,7 +8,7 @@
 
         <div class="restaurants-header">
 
-            @if (isset($restos))
+            @if (!isset($restos))
                 <h1 class="restaurants-title">
                     <i class="fas fa-tags"></i>
                     Pas Restaurants
@@ -63,7 +63,7 @@
 
                         <div class="resto-card-content">
 
-                            <h2 class="resto-card-name">
+                            <h2 class="resto-card-name font-bold text-2xl">
                                 {{ $resto->name }}
                             </h2>
 
@@ -90,17 +90,27 @@
 
                             </div>
 
-                            <div class="resto-card-actions">
+                            <div class="resto-card-actions flex">
 
-                                <a href="{{ route('resto.show', $resto->id) }}" class="btn-detail">
-                                    <i class="fas fa-eye"></i>
-                                    Voir détail
-                                </a>
+                                <div class="">
+                                    <a href="{{ route('resto.show', $resto->id) }}" class="btn-detail">
+                                        <i class="fas fa-eye"></i>
+                                        Voir détail
+                                    </a>
+                                </div>
 
-                                <a href="#" class="btn-follow">
-                                    <i class="far fa-heart"></i>
-                                    À suivre
-                                </a>
+                                <form action="{{ route('favorite') }}" method="post">
+
+                                    @csrf
+                                    @method('POST')
+
+                                    <input type="hidden" name="resto_id" value="{{ $resto->id }}">
+
+                                    <button type="submit" class="btn-follow">
+                                        <i class="far fa-heart"></i>
+                                        À suivre
+                                    </button>
+                                </form>
 
                             </div>
 

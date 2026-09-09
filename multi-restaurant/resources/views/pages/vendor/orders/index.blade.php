@@ -23,6 +23,8 @@
                 </div>
             </div>
 
+            <x-success-layout key="success" />
+
             <div class="orders-card">
 
                 <div class="table-wrapper">
@@ -33,7 +35,6 @@
                             <tr>
                                 <th>Commande</th>
                                 <th>Client</th>
-                                <th>Articles</th>
                                 <th>Total</th>
                                 <th>Statut</th>
                                 <th>Date</th>
@@ -43,7 +44,7 @@
 
                         <tbody>
 
-                            @forelse($orders as $order)
+                            @foreach($orders as $order)
                                 @php
                                     $total = $order->total ?? $order->items->sum('subtotal');
                                 @endphp
@@ -51,9 +52,15 @@
                                 <tr>
 
                                     <td>
-                                        <span class="order-number">
-                                            #{{ $order->id }}
-                                        </span>
+                                        @if ($order->payment)
+                                            <span class="text-green-600 bg-blue-100  text-[15px] rounded-full" style="padding: 5px 10px">
+                                                Payée
+                                            </span>
+                                        @else 
+                                            <span class="text-red-600 bg-red-100  text-[15px] rounded-full" style="padding: 5px 10px">
+                                                Non payée
+                                            </span>
+                                        @endif
                                     </td>
 
                                     <td>
@@ -74,11 +81,6 @@
                                                 @endif
                                             </div>
                                         </div>
-                                    </td>
-
-                                    <td>
-                                        {{ $order->items->count() }}
-                                        article{{ $order->items->count() > 1 ? 's' : '' }}
                                     </td>
 
                                     <td>
@@ -114,7 +116,45 @@
                                         </div>
                                     </td>
 
-                                    <td>
+                                    <td class="flex gap-2 items-center">
+                                        
+                                        @if ($order->status == "pending")
+                                            <form action="{{ route('vendeur.orders.accepter', $order->id) }}" method="post">
+                                                
+                                                @csrf
+                                                @method("PATCH")
+
+                                                <button type="submit" class="order-accept">
+                                                    <i class="fa-solid fa-check"></i>
+                                                    Confirmer
+                                                </button>
+                                            </form>
+
+                                            
+                                            <form action="{{ route('vendeur.orders.refuser', $order->id) }}" method="post">
+    
+                                                @csrf
+                                                @method('PATCH')
+    
+                                                <button type="submit" class="order-cancelled">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                    Réfuser
+                                                </button>
+                                            </form>
+
+                                        @endif
+
+                                        <form action="{{ route('vendeur.orders.delete', $order->id) }}" method="post">
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="order-delet">
+                                                <i class="fa-solid fa-eye"></i>
+                                                Supprimer
+                                            </button>
+                                        </form>
+
                                         <a href="{{ route('vendeur.orders.show', $order->id) }}" class="order-view">
                                             <i class="fa-solid fa-eye"></i>
                                             Voir
@@ -123,8 +163,9 @@
 
                                 </tr>
 
-                            @empty
+                            @endforeach
 
+                            @if (!$orders)
                                 <tr>
                                     <td colspan="7">
                                         <div class="empty-orders">
@@ -140,7 +181,8 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforelse
+                                
+                            @endif
 
                         </tbody>
 

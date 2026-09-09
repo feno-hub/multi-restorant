@@ -22,6 +22,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table->string('content');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

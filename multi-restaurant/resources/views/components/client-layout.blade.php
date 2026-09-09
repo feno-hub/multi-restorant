@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/fontawesome-free-6.0.0-web/css/all.min.css') }}">
     <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js']);
 
 </head>
 <body>

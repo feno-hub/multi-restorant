@@ -2,7 +2,6 @@
 
     <div class="subscription-form">
 
-        {{-- En-tête --}}
         <div class="subscription-form__header">
             <div>
                 <h1>
@@ -23,7 +22,6 @@
         </div>
 
 
-        {{-- Messages de validation --}}
         @if ($errors->any())
             <div class="subscription-form__errors">
                 <div class="subscription-form__errors-title">
@@ -40,7 +38,6 @@
         @endif
 
 
-        {{-- Formulaire --}}
         <form
             action="{{ isset($subscriptionPlan)
                 ? route('admin.subscription.update', $subscriptionPlan->id)
@@ -54,7 +51,6 @@
             @endif
 
 
-            {{-- Informations générales --}}
             <div class="subscription-form__card">
 
                 <div class="subscription-form__card-header">
@@ -71,7 +67,6 @@
 
                 <div class="subscription-form__grid">
 
-                    {{-- Nom --}}
                     <div class="form-group">
                         <label for="name">
                             Nom de l'abonnement
@@ -87,8 +82,6 @@
                         @enderror
                     </div>
 
-
-                    {{-- Slug --}}
                     <div class="form-group">
                         <label for="slug">
                             Slug
@@ -105,7 +98,6 @@
                     </div>
 
 
-                    {{-- Prix --}}
                     <div class="form-group">
                         <label for="price">
                             Prix
@@ -126,7 +118,6 @@
                     </div>
 
 
-                    {{-- Durée --}}
                     <div class="form-group">
                         <label for="duration">
                             Durée
@@ -149,7 +140,6 @@
                 </div>
 
 
-                {{-- Description --}}
                 <div class="form-group form-group--full">
                     <label for="description">
                         Description
@@ -165,7 +155,6 @@
             </div>
 
 
-            {{-- Fonctionnalités --}}
             <div class="subscription-form__card">
 
                 <div class="subscription-form__card-header">
@@ -187,13 +176,13 @@
 
                     <textarea id="features" name="features" rows="6"
                         placeholder="Ex :
-Gestion complète du restaurant
-Ajout de 50 plats
-Statistiques avancées
-Support prioritaire">{{ old(
-    'features',
-    isset($subscriptionPlan) && is_array($subscriptionPlan->features) ? implode("\n", $subscriptionPlan->features) : '',
-) }}</textarea>
+                            Gestion complète du restaurant
+                            Ajout de 50 plats
+                            Statistiques avancées
+                            Support prioritaire">{{ old(
+                            'features',
+                            isset($subscriptionPlan) && is_array($subscriptionPlan->features) ? implode("\n", $subscriptionPlan->features) : '',
+                        ) }}</textarea>
 
                     <div class="form-help">
                         <i class="fas fa-info-circle"></i>
@@ -208,7 +197,6 @@ Support prioritaire">{{ old(
             </div>
 
 
-            {{-- Statut --}}
             <div class="subscription-form__card">
 
                 <div class="subscription-form__card-header">

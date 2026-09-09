@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Resto;
+use App\Models\Subscription;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +39,10 @@ class VendeurMiddleware
             return to_route('client.dashboard');
         }
 
+        if (!Auth::user()->subscriptions) {
+            return to_route('subscription.index');
+        }
+        
         return $next($request);
     }
 }

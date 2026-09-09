@@ -22,10 +22,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
+            $table->string('guests');
             $table->text('message')->nullable();
             $table->date('date');
             $table->time('time');
-            $table->unsignedInteger('guests');
+            $table->decimal('total', 10, 2);
 
             $table->enum('status', [
                 'pending',

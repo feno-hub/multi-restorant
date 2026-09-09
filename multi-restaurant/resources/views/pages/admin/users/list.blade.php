@@ -2,7 +2,6 @@
 
     <div class="page-admin-users">
 
-        <!-- ===== HEADER ===== -->
         <header class="header">
             <div class="header-left">
                 <h1><i class="fas fa-user-cog"></i>Gestion des utilisateurs</h1>
@@ -35,7 +34,6 @@
             </div>
         </header>
 
-        <!-- ===== STATS ===== -->
         <div class="page-admin-users-stats">
             <div class="stat-item">
                 <div class="stat-number">
@@ -65,7 +63,6 @@
             </div>
         </div>
 
-        <!-- ===== FILTERS ===== -->
         <div class="page-admin-users-filter">
             <div class="filter-left">
                 <div class="search-box">
@@ -90,7 +87,6 @@
             </div>
         </div>
 
-        <!-- ===== TABLE ===== -->
         <div class="table-container">
             <div class="table-responsive">
                 <table class="users-table">
@@ -126,7 +122,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    @if (isset($user->resto))
+                                    @if (isset($user->resto) && $user->resto->status == "accepter")
                                         <span class="role-badge admin">
                                             Restaurant
                                         </span>

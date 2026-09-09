@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Order;
 use App\Models\Plat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,9 @@ class ClientCartController extends Controller
 {
     public function index()
     {
+
+        $orders = Order::where('status', 'delivered')->get();
+
         $cart = Cart::with([
             'items.plat.menu.resto'
         ])

@@ -6,24 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super Admin · Multi-Restaurant</title>
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/fontawesome-free-6.0.0-web/css/all.min.css') }}">
 
-    <!-- AOS Animation -->
     <link rel="stylesheet" href="{{ asset('assets/aos/dist/aos.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <style>
-        /* ============================================================
-           STYLES COMPLÉMENTAIRES
-           ============================================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
+        .dash {
             display: flex;
             background: #F4F6F9;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -31,6 +26,14 @@
             color: #2C3E50;
             line-height: 1.6;
             min-height: 100vh;
+            
+            
+        }
+
+        @media (max-width: 1024px) {
+            .dash {
+                justify-content: center;
+            }
         }
 
         a {
@@ -47,75 +50,66 @@
             height: auto;
         }
 
-        /* ============================================================
-           LOGO LAYOUT
-           ============================================================ */
-        .logo-layout {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .logo-layout i {
-            font-size: 28px;
-            color: #C0382B;
-        }
-
-        .logo-layout span {
-            font-size: 22px;
-            font-weight: 700;
-            color: #FFFFFF;
-            letter-spacing: -0.3px;
-        }
-
-        .logo-layout span em {
-            color: #C0382B;
-            font-style: normal;
-        }
-
-        /* ============================================================
-           RESPONSIVE
-           ============================================================ */
-        @media (max-width: 1024px) {
-            .sidebar {
-                width: 72px;
-            }
-
-            .main-content {
-                max-width: calc(100% - 72px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 60px;
-            }
-
-            .main-content {
-                max-width: calc(100% - 60px);
-            }
-        }
-
+       
         @media (max-width: 576px) {
             .main-content {
                 padding: 12px;
             }
         }
+
+        .label-aside {
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 1rem;
+            display: none;
+        }
+
+        
+        .labelx-aside {
+            margin-left: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+        }
+        
+        @media (max-width: 1024px) {
+            .label-aside {
+                display: block;
+            }
+            .labelx-aside {
+                display: block;
+            }
+        }
+
+        .input-aside {
+            display: none;
+        }
+
+        .input-aside:checked ~ .sidebar {
+            left: 0;
+            transition: .3s;
+            z-index: 5;
+        }
+
     </style>
 </head>
 
-<body>
+<body class="dash">
 
-    <!-- ==========================================================
-    SIDEBAR
-    ========================================================== -->
+    <label for="aside" class="label-aside">
+        <i class="fa-solid fa-bars"></i>
+    </label>
+
+    <input type="checkbox" name="" id="aside" class="input-aside">
+
     <aside class="sidebar">
+        <label for="aside" class="labelx-aside">
+            <i class="fa-solid fa-xmark"></i>
+        </label>
         <div class="sidebar-brand">
             <h2>
                 <a href="{{ route('home') }}" class="logo-layout">
-                    <i class="fas fa-store-alt"></i>
-                    <span>Multi<em>Resto</em></span>
+                    <x-logo-layout />
                 </a>
             </h2>
             <div class="brand-sub">Super Admin · v2.4</div>

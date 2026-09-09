@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Reservation extends Model
@@ -13,15 +14,24 @@ class Reservation extends Model
         'name',
         'email',
         'phone',
+        'guests',
         'message',
         'date',
         'time',
-        'guests',
+        'total',
         'status',
     ];
 
     public function payment(): HasOne
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function resto() : BelongsTo {
+        return $this->belongsTo(
+            Resto::class,
+            'resto_id',
+            'id'
+        );
     }
 }

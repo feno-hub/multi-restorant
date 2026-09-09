@@ -14,12 +14,6 @@ class CheckSubscription
         Closure $next
     ): Response {
 
-        /*
-        |--------------------------------------------------------------------------
-        | Vérifier la connexion
-        |--------------------------------------------------------------------------
-        */
-
         if (!Auth::check()) {
 
             return redirect()
@@ -29,22 +23,6 @@ class CheckSubscription
 
         $user = Auth::user();
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | Vérifier l'abonnement
-        |--------------------------------------------------------------------------
-        */
-
-        if (!$user->hasActiveSubscription()) {
-
-            return redirect()
-                ->route('subscription.index')
-                ->with(
-                    'error',
-                    'Cette fonctionnalité est réservée aux utilisateurs abonnés.'
-                );
-        }
 
 
         return $next($request);

@@ -6,7 +6,6 @@
 
     <div class="page-admin-restaurants">
 
-        <!-- ===== HEADER ===== -->
         <header class="header">
             <div class="header-left">
                 <h1><i class="fas fa-store"></i>Gestion des restaurants</h1>
@@ -39,7 +38,6 @@
             </div>
         </header>
 
-        <!-- ===== STATS ===== -->
         <div class="page-admin-restaurants-stats">
             <div class="stat-item">
                 <div class="stat-number">
@@ -67,7 +65,6 @@
             </div>
         </div>
 
-        <!-- ===== FILTERS ===== -->
         <div class="page-admin-restaurants-filter">
             <div class="filter-left">
                 <div class="search-box">
@@ -93,7 +90,6 @@
             </div>
         </div>
 
-        <!-- ===== TABLE ===== -->
         <div class="table-container">
             <div class="table-responsive">
                 <table class="resto-table">
@@ -149,9 +145,19 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span style="border: solid 1px yellow;padding: 10px;border-radius: 16px;">
-                                        {{ $resto->status }}
-                                    </span>
+                                    @if ($resto->status == 'en_attent')
+                                        <span style="en_attent">
+                                            en attent
+                                        </span>
+                                    @elseif ($resto->status == 'accepter')
+                                        <span class="accepter">
+                                            accepter
+                                        </span>
+                                    @else
+                                        <span class="anuler">
+                                            réfuser
+                                        </span>
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="action-buttons">

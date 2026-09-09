@@ -19,10 +19,7 @@
 
                 </div>
 
-                <a
-                    href="{{ route('client.dashboard') }}"
-                    class="client-orders-header-back"
-                >
+                <a href="{{ route('client.dashboard') }}" class="client-orders-header-back">
                     <i class="fa-solid fa-arrow-left"></i>
                     Retour au dashboard
                 </a>
@@ -89,7 +86,6 @@
 
             </div>
 
-
             <div class="client-orders-list">
 
                 <div class="client-orders-list-header">
@@ -113,395 +109,143 @@
 
                 </div>
 
+                @foreach (Auth::user()->orders as $orders)
+                    <article class="client-order">
 
-                <article class="client-order">
-
-                    <div class="client-order-number">
-
-                        <span>
-                            Commande
-                        </span>
-
-                        <strong>
-                            #CMD-0012
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-restaurant">
-
-                        <div class="client-order-restaurant-icon">
-                            <i class="fa-solid fa-utensils"></i>
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Le Gourmet
-                            </strong>
+                        <div class="client-order-number">
 
                             <span>
-                                Analakely, Antananarivo
+                                Commande
                             </span>
 
+                            @if ($orders->payment)
+                                <strong>
+                                    payée
+                                </strong>
+                            @else
+                                <strong>
+                                   non payée
+                                </strong>
+                            @endif
+
                         </div>
 
-                    </div>
 
+                        <div class="client-order-restaurant">
 
-                    <div class="client-order-info">
+                            <div class="client-order-restaurant-icon">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
 
-                        <span>
-                            Date
-                        </span>
+                            <div>
 
-                        <strong>
-                            14 Août 2026
-                        </strong>
+                                <strong>
+                                    Le Gourmet
+                                </strong>
 
-                    </div>
+                                <span>
+                                    Analakely, Antananarivo
+                                </span>
 
+                            </div>
 
-                    <div class="client-order-info">
-
-                        <span>
-                            Articles
-                        </span>
-
-                        <strong>
-                            3 articles
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-total">
-
-                        <span>
-                            Total
-                        </span>
-
-                        <strong>
-                            48 000 Ar
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-status client-order-status--completed">
-
-                        <i class="fa-solid fa-circle-check"></i>
-
-                        Terminée
-
-                    </div>
-
-
-                    <a
-                        href="#"
-                        class="client-order-action"
-                    >
-                        <i class="fa-solid fa-eye"></i>
-                        Détails
-                    </a>
-
-                </article>
-
-
-                <article class="client-order">
-
-                    <div class="client-order-number">
-
-                        <span>
-                            Commande
-                        </span>
-
-                        <strong>
-                            #CMD-0011
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-restaurant">
-
-                        <div class="client-order-restaurant-icon">
-                            <i class="fa-solid fa-utensils"></i>
                         </div>
 
-                        <div>
 
-                            <strong>
-                                Chez Marco
-                            </strong>
+                        <div class="client-order-info">
 
                             <span>
-                                Behoririka, Antananarivo
+                                Date
                             </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="client-order-info">
-
-                        <span>
-                            Date
-                        </span>
-
-                        <strong>
-                            13 Août 2026
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-info">
-
-                        <span>
-                            Articles
-                        </span>
-
-                        <strong>
-                            2 articles
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-total">
-
-                        <span>
-                            Total
-                        </span>
-
-                        <strong>
-                            32 000 Ar
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-status client-order-status--pending">
-
-                        <i class="fa-solid fa-clock"></i>
-
-                        En cours
-
-                    </div>
-
-
-                    <a
-                        href="#"
-                        class="client-order-action"
-                    >
-                        <i class="fa-solid fa-eye"></i>
-                        Détails
-                    </a>
-
-                </article>
-
-
-                <article class="client-order">
-
-                    <div class="client-order-number">
-
-                        <span>
-                            Commande
-                        </span>
-
-                        <strong>
-                            #CMD-0010
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-restaurant">
-
-                        <div class="client-order-restaurant-icon">
-                            <i class="fa-solid fa-utensils"></i>
-                        </div>
-
-                        <div>
 
                             <strong>
-                                La Terrasse
+                                14 Août 2026
                             </strong>
 
+                        </div>
+
+
+                        <div class="client-order-info">
+
                             <span>
-                                Ivandry, Antananarivo
+                                Articles
                             </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="client-order-info">
-
-                        <span>
-                            Date
-                        </span>
-
-                        <strong>
-                            10 Août 2026
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-info">
-
-                        <span>
-                            Articles
-                        </span>
-
-                        <strong>
-                            4 articles
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-total">
-
-                        <span>
-                            Total
-                        </span>
-
-                        <strong>
-                            67 500 Ar
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-status client-order-status--completed">
-
-                        <i class="fa-solid fa-circle-check"></i>
-
-                        Terminée
-
-                    </div>
-
-
-                    <a
-                        href="#"
-                        class="client-order-action"
-                    >
-                        <i class="fa-solid fa-eye"></i>
-                        Détails
-                    </a>
-
-                </article>
-
-
-                <article class="client-order">
-
-                    <div class="client-order-number">
-
-                        <span>
-                            Commande
-                        </span>
-
-                        <strong>
-                            #CMD-0009
-                        </strong>
-
-                    </div>
-
-
-                    <div class="client-order-restaurant">
-
-                        <div class="client-order-restaurant-icon">
-                            <i class="fa-solid fa-utensils"></i>
-                        </div>
-
-                        <div>
 
                             <strong>
-                                Saveurs d'Antananarivo
+                                3 articles
                             </strong>
-
-                            <span>
-                                Ambohimanarina
-                            </span>
 
                         </div>
 
-                    </div>
 
+                        <div class="client-order-total">
 
-                    <div class="client-order-info">
+                            <span>
+                                Total
+                            </span>
 
-                        <span>
-                            Date
-                        </span>
+                            <strong>
+                                48 000 Ar
+                            </strong>
 
-                        <strong>
-                            08 Août 2026
-                        </strong>
+                        </div>
 
-                    </div>
+                        @if ($orders->status == 'confirmed')
+                            <div class="client-order-status client-order-status bg-green-300">
 
+                                <i class="fa-solid fa-circle-check"></i>
 
-                    <div class="client-order-info">
+                                Confirmée
 
-                        <span>
-                            Articles
-                        </span>
+                            </div>
 
-                        <strong>
-                            1 article
-                        </strong>
+                        @elseif ($orders->status == 'delivered')
+                            <div class="client-order-status client-order-status bg-green-900 text-white">
 
-                    </div>
+                                <i class="fa-solid fa-circle-check"></i>
 
+                                Terminée
 
-                    <div class="client-order-total">
+                            </div>
+                        @elseif ($orders->status == 'cancelled')
+                            <div class="client-order-status client-order-status--cancelled">
 
-                        <span>
-                            Total
-                        </span>
+                                <i class="fa-solid fa-circle-xmark"></i>
 
-                        <strong>
-                            18 000 Ar
-                        </strong>
+                                Annulée
 
-                    </div>
+                            </div>
+                        @elseif ($orders->status == 'preparing')
+                            <div class="client-order-status client-order-status bg-yellow-800 text-white">
 
+                                <i class="fa-solid fa-clock"></i>
 
-                    <div class="client-order-status client-order-status--cancelled">
+                                En cours
 
-                        <i class="fa-solid fa-circle-xmark"></i>
+                            </div>
+                        @elseif ($orders->status == 'pending')
+                            <div class="client-order-status client-order-status bg-yellow-300">
 
-                        Annulée
+                                <i class="fa-solid fa-clock"></i>
 
-                    </div>
+                                En attent
 
+                            </div>
+                        @endif
 
-                    <a
-                        href="#"
-                        class="client-order-action"
-                    >
-                        <i class="fa-solid fa-eye"></i>
-                        Détails
-                    </a>
-
-                </article>
-
+                        <a href="#" class="client-order-action">
+                            <i class="fa-solid fa-eye"></i>
+                            Détails
+                        </a>
+                    </article>
+                @endforeach
             </div>
+
 
 
             <div class="client-orders-footer">
 
-                <a
-                    href="{{ route('client.dashboard') }}"
-                    class="client-orders-footer-button"
-                >
+                <a href="{{ route('client.dashboard') }}" class="client-orders-footer-button">
 
                     <i class="fa-solid fa-arrow-left"></i>
 

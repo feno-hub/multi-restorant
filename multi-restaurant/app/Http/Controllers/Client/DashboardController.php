@@ -13,8 +13,6 @@ class DashboardController extends Controller
 
     public function profil() {
 
-        
-
         return view('pages.client.dashboard.index');
     }
 }

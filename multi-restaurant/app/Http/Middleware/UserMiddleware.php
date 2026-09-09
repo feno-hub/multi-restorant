@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Resto;
+use App\Models\Subscription;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
@@ -30,6 +31,15 @@ class UserMiddleware
         }
 
         $user = Auth::user();
+
+        
+        $user_id = $user->id;
+
+        $subscriptions = Subscription::where('user_id', '!=', $user_id)->get();
+
+        if (!$subscriptions) {
+            return to_route('subscription.index');
+        }
 
         if(isset($user->resto)) {
             if($user->resto->status == "accepter") {

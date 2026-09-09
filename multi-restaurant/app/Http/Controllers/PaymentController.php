@@ -58,14 +58,35 @@ class PaymentController extends Controller
             'paid_at' => now(),
         ]);
 
-        $order->update([
-            'status' => 'confirmed'
-        ]);
-
         return redirect()
             ->route('client.payment.success', $payment)
             ->with('success', 'Paiement simulé effectué avec succès.');
     }
+
+    // public function showReservationPayment(Reservation $reservation)
+    // {
+    //     abort_unless($reservation->user_id === Auth::id(), 403);
+
+    //     $payment = Payment::where('order_id', $reservation->id)
+    //         ->where('user_id', Auth::id())
+    //         ->where('status', 'pending')
+    //         ->first();
+
+    //     if (!$payment) {
+    //         $payment = Payment::create([
+    //             'user_id' => Auth::id(),
+    //             'order_id' => null,
+    //             'reservation_id' => null,
+    //             'amount' => $reservation->total,
+    //             'method' => null,
+    //             'status' => 'pending',
+    //             'transaction_id' => null,
+    //             'paid_at' => null,
+    //         ]);
+    //     }
+
+    //     return view('pages.payments.reservation-payment', compact('payment', 'reservation'));
+    // }
 
     public function payReservation(Request $request, Reservation $reservation)
     {
@@ -81,16 +102,12 @@ class PaymentController extends Controller
             'user_id' => Auth::id(),
             'order_id' => null,
             'reservation_id' => $reservation->id,
-            'amount' => $reservation->amount,
+            'amount' => $reservation->total,
             'method' => $request->method,
             'status' => 'paid',
             'transaction_id' => $transactionId,
             'paid_at' => now(),
         ]);
-
-        // $reservation->update([
-        //     'status' => 'paid',
-        // ]);
 
         return redirect()
             ->route('client.payment.success', $payment)

@@ -4,7 +4,6 @@
 
         <div class="login-container" data-aos="fade-up">
 
-            <!-- Logo et titre -->
             <div class="login-header">
                 <div class="login-logo">
                     <x-logo-layout />
@@ -13,17 +12,14 @@
                 <p class="login-subtitle">Connectez-vous pour commander chez les meilleurs restaurants</p>
             </div>
 
-            <!-- Message de succès -->
             <x-success-layout key="success" />
 
-            <!-- Formulaire de connexion -->
             <form action="{{ route('login') }}" method="POST" class="login-form">
                 @csrf
 
-                <!-- Email -->
-                <div class="form-group">
+                <div class="form-groupa">
 
-                    <label for="email" class="form-group-label">
+                    <label for="email" class="form-groupa-label">
                         <i class="fa-solid fa-envelope"></i>
                         Adresse email
                         <span class="required">*</span>
@@ -41,10 +37,9 @@
 
                 </div>
 
-                <!-- Mot de passe -->
-                <div class="form-group">
+                <div class="form-groupa">
 
-                    <label for="password" class="form-group-label">
+                    <label for="password" class="form-groupa-label">
                         <i class="fa-solid fa-lock"></i>
                         Mot de passe
                         <span class="required">*</span>
@@ -68,7 +63,6 @@
 
                 </div>
 
-                <!-- Bouton de connexion -->
                 <div class="form-btn">
                     <x-btnprimary-layout type="submit" icon="fa-solid fa-arrow-right-to-bracket" btn="Se connecter" />
                 </div>

@@ -46,10 +46,10 @@ Route::controller(ProfilController::class)
         Route::get('index', 'index')
             ->name('index');
 
-        Route::get('modifier', 'edit')
+        Route::get('modifier/{id}', 'edit')
             ->name('edit');
 
-        Route::put('update', 'update')
+        Route::put('modifier', 'update')
             ->name('update');
     });
 

@@ -14,7 +14,8 @@ class Notice extends Model
     protected $fillable = [
         'user_id',
         'resto_id',
-        'content'
+        'content',
+        'status'
     ];
 
     public function user(): BelongsTo {

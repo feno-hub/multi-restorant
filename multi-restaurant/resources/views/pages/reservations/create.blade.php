@@ -45,9 +45,10 @@
                 </div>
             @endif
 
-            <form action="{{ route('client.reservation.store', $resto) }}" method="POST" class="reservation-form">
+            <form action="{{ route('client.reservation.store', $resto->id) }}" method="POST" class="reservation-form">
 
                 @csrf
+                @method('POST')
 
                 <div class="">
 
@@ -99,7 +100,7 @@
                             </label>
 
                             <input type="text" id="phone" name="phone" value="{{ old('phone') }}"
-                                placeholder="034 00 000 00" required>
+                                placeholder="034 00 000 00">
 
                             @error('phone')
                                 <small class="error">
@@ -137,10 +138,10 @@
                             </label>
 
                             <input type="date" id="date" name="date" value="{{ old('date') }}"
-                                min="{{ date('Y-m-d') }}" required>
+                                min="{{ date('Y-m-d') }}">
 
                             @error('date')
-                                <small class="error">
+                                <small class="error bg-red-300 p-4 rounded-2xl">
                                     {{ $message }}
                                 </small>
                             @enderror
@@ -153,7 +154,7 @@
                                 Heure
                             </label>
 
-                            <input type="time" id="time" name="time" value="{{ old('time') }}" required>
+                            <input type="time" id="time" name="time" value="{{ old('time') }}">
 
                             @error('time')
                                 <small class="error">
@@ -199,7 +200,7 @@
 
                 <div class="reservation-actions">
 
-                    <a href="{{ url()->previous() }}" class="multi-button-secondary">
+                    <a href="{{ route('resto.show', $resto->id) }}" class="multi-button-secondary">
                         ← Retour
                     </a>
 

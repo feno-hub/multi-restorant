@@ -4,7 +4,6 @@
         $path = '/storage/';
     @endphp
 
-    <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="header-left">
             <h1><i class="fas fa-chart-pie"></i>Tableau de bord</h1>
@@ -43,7 +42,6 @@
 
     <div class="dashboard-superadmin">
 
-        <!-- ===== STATS ===== -->
         <div class="dashboard-superadmin-stats">
             <div class="stat-card">
                 <div class="stat-header">
@@ -58,7 +56,7 @@
 
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-label">Commandes (mois)</span>
+                    <span class="stat-label">Messages</span>
                     <span class="stat-icon blue"><i class="fas fa-shopping-bag"></i></span>
                 </div>
                 <div class="stat-value">1 284</div>
@@ -152,7 +150,6 @@
                 @endforeach
             </div>
 
-            <!-- ===== ACTIVITÉ RÉCENTE ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -215,10 +212,8 @@
 
         </div>
 
-        <!-- ===== BOTTOM GRID ===== -->
         <div class="dashboard-superadmin-bottom">
 
-            <!-- ===== GRAPHIQUE COMMANDES ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -264,7 +259,6 @@
                 </div>
             </div>
 
-            <!-- ===== RÉPARTITION RÉGIONALE ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -316,7 +310,6 @@
 
         </div>
 
-        <!-- ===== REVENUS PAR JOUR ===== -->
         <section style="margin-top: 28px;">
             <div class="card">
                 <div class="card-header">

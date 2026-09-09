@@ -19,7 +19,6 @@
 
         </div>
 
-
         <div class="client-edit-profile__card">
 
             <form action="{{ route('client.profil.update') }}" method="POST" enctype="multipart/form-data">
@@ -30,10 +29,16 @@
 
                 <div class="client-edit-profile__image-section">
 
-                    <div class="client-edit-profile__image">
+                    <div class="client-edit-profile__image flex justify-center items-center">
 
-                        <img src="{{ asset('assets/images/client.jpg') }}"
-                             alt="Photo de profil">
+                        @if ($user->image)
+                            <img src="{{ asset('assets/images/resto/resto1.jpg') }}"
+                                alt="Photo de profil">
+                        @else
+                            <h1 class="text-center font-bold text-2xl">
+                                {{ $user->name[0] }}{{ $user->last_name[0] }}
+                            </h1>
+                        @endif
 
                     </div>
 
@@ -58,7 +63,7 @@
                             type="file"
                             name="image"
                             id="image"
-                            accept="image/png, image/jpeg, image/jpg"
+                            value="{{ $user->image }}"
                             hidden
                         >
 
@@ -85,7 +90,7 @@
                                 type="text"
                                 name="name"
                                 id="name"
-                                value="{{ Auth::user()->name }}"
+                                value="{{ $user->name }}"
                                 placeholder="Votre nom"
                             >
 
@@ -110,7 +115,7 @@
                                 type="text"
                                 name="last_name"
                                 id="last_name"
-                                value="{{ Auth::user()->last_name }}"
+                                value="{{ $user->last_name }}"
                                 placeholder="Votre prénom"
                             >
 
@@ -138,7 +143,7 @@
                                 type="text"
                                 name="number"
                                 id="phone"
-                                value="{{ Auth::user()->phone }}"
+                                value="{{ $user->phone }}"
                                 placeholder="XX 87 977 29"
                             >
 
@@ -163,7 +168,7 @@
                                 type="text"
                                 name="address"
                                 id="address"
-                                value="{{ Auth::user()->address }}"
+                                value="{{ $user->address }}"
                                 placeholder="Antananarivo, Atsimondrano"
                             >
 
@@ -189,7 +194,7 @@
                             type="email"
                             name="email"
                             id="email"
-                            value="{{ Auth::user()->email }}"
+                            value="{{ $user->email }}"
                             placeholder="Votre adresse email"
                         >
 

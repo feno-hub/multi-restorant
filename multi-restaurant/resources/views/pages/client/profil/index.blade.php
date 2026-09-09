@@ -3,7 +3,6 @@
 
     <section class="client-profile">
 
-        {{-- En-tête du profil --}}
         <div class="client-profile__header">
 
             <div class="client-profile__header-content">
@@ -37,7 +36,7 @@
 
             <div class="client-profile__actions">
 
-                <a href="{{ route('client.profil.edit') }}" class="client-profile__btn client-profile__btn--edit">
+                <a href="{{ route('client.profil.edit', Auth::user()->id) }}" class="client-profile__btn client-profile__btn--edit">
                     <i class="fa-solid fa-pen"></i>
                     Modifier le profil
                 </a>

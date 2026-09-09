@@ -2,11 +2,11 @@
     position: relative;
 
     &-navresp {
-        position: fixed;
+        position: sticky;
         top: 0;
         left: 0;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(4px);
+        background: rgba(12, 2, 2, 0.477);
+        backdrop-filter: blur(8px);
         z-index: 3;
         width: 100%;
         padding: 1rem;
@@ -18,6 +18,7 @@
 
         &-parent {
             display: flex;
+            align-items: center;
             justify-content: space-around;
         }
         
@@ -93,22 +94,44 @@
             }
 
             &-link {
-                background: rgba(34, 28, 16, 0.421);
-                padding: 0rem .5rem;
-                border-radius: 10px;
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
+                flex-direction: column;
                 color: $color-free;
                 text-transform: capitalize;
                 font-weight: inherit;
-                transition: .3s;
+                transition: 1s;
                 box-shadow: 0 0 2px black;
+                border-bottom: 2px transparent solid;
 
+                .bord {
+                    display: none;
+                    animation: bord .3s linear;
+                }
+
+                @keyframes bord {
+                    0% {
+                        width: 0%;
+                    }
+                    25% {
+                        width: 25%;
+                    }
+                    75% {
+                        width: 75%;
+                    }
+                    100% {
+                        width: 100%;
+                    }
+                }
+
+                &:hover {
+                    border-bottom: none;
+                    .bord {
+                        display: block;
+                    }
+                }
                 
-
-                &-icon {
+                &:active {
+                    content: "";
                     color: $color;
                 }
 
@@ -158,11 +181,6 @@
 
     }
 
-}
-
-.container-nav-card-link:hover {
-    background: $color;
-    font-weight: 500;
 }
 
 .container-nav-card-link:hover .container-nav-card-link-icon {

@@ -8,20 +8,23 @@
         <header class="dashboard-restaurant-header">
             <div class="header-left">
                 @if (Auth::user()->resto)
-                    <h1 class="restaurant-name">
-                        @if (Auth::user()->resto->logo == '')
-                            <div class="restaurant-name-logo">
+                    <div class="restaurant-namer">
+                        
+                        <div class="restaurant-namer-logo">
+                            @if (Auth::user()->resto->logo == '')
                                 <h1>
                                     {{ Auth::user()->resto->name[0] }}{{ Auth::user()->resto->name[1] }}
                                 </h1>
-                            </div>
-                        @else
-                            <div class="restaurant-name-logo">
+                            @else
                                 <img src="{{ $path . Auth::user()->resto->logo }}" alt="">
-                            </div>
-                        @endif
-                        {{ Auth::user()->resto->name }}
-                    </h1>
+                            @endif
+                        </div>
+
+                        <div class="">
+                            {{ Auth::user()->resto->name }}
+                        </div>
+
+                    </div>
                     <div class="restaurant-subtitle">
                         <span>
                             <i class="fas fa-map-pin"></i>
@@ -74,7 +77,7 @@
                     <span class="stat-label">Chiffre d'affaires</span>
                     <span class="stat-icon green"><i class="fas fa-euro-sign"></i></span>
                 </div>
-                <div class="stat-value">4 280 €</div>
+                <div class="stat-value">{{ $totalprice }} Ar</div>
                 <span class="stat-change up"><i class="fas fa-arrow-up"></i> +8%</span>
             </div>
 
@@ -96,13 +99,15 @@
 
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-label">Plats en stock</span>
+                    <span class="stat-label">Total menues</span>
                     <span class="stat-icon purple">
                         <i class="fas fa-box"></i>
                     </span>
                 </div>
 
-                <div class="stat-value">342</div>
+                <div class="stat-value">
+                    {{ $menus->count() }}
+                </div>
                 <span class="stat-change down"><i class="fas fa-arrow-down"></i> -5%</span>
             </div>
 
@@ -136,35 +141,38 @@
                             </div>
                             <div class="order-meta">
                                 <span>
-                                    <i class="fas fa-user"></i> 
+                                    <i class="fas fa-user"></i>
                                     {{ $orders->user->name }} {{ $orders->user->last_name[0] }}.
                                 </span>
                                 <span>
-                                    <i class="fas fa-clock"></i> 
+                                    <i class="fas fa-clock"></i>
                                     {{ $orders->created_at->diffForHumans() }}
                                 </span>
                             </div>
+                        
                         </div>
+
+                        @if ($orders->payment)
+                            <span class="order-status delivered">Payée</span>
+
+                        @else
+                            <span class="order-status cancelled">Non payée</span>
+                        @endif
 
                         @if ($orders->status == 'pending')
                             <span class="order-status pending">En attente</span>
-                            
                         @elseif ($orders->status == 'preparing')
                             <span class="order-status preparing">En préparation</span>
-                        
                         @elseif ($orders->status == 'delivered')
                             <span class="order-status delivered">Livrée</span>
-
                         @elseif ($orders->status == 'cancelled')
-                            <span class="order-status cancelled">Annulée</span>
-
+                            <span class="order-status cancelled">Réfusée</span>
                         @elseif ($orders->status == 'confirmed')
-                            <span class="order-status delivered">Payée</span>
-
+                            <span class="order-status delivered">confirmée</span>
                         @endif
 
                         <span class="order-amount">
-                            {{-- {{ number_format($orders->items->subtotal, 0, ',', ' ') }} Ar --}}
+                            {{ number_format($orders->subtotal, 0, ',', ' ') }} Ar
                         </span>
                     </div>
                 @endforeach
@@ -343,8 +351,10 @@
                             </div>
 
                             @if ($menu->plat->count() <= 3)
+
                                 <span class="stock-status low"></span>
-                            @else
+
+                            @elseif ($menu->plat->count() <= 7)
                                 <span class="stock-status medium"></span>
                             @endif
 
@@ -398,12 +408,21 @@
                         </span>
                     </a>
 
-                    <a href="" class="quick-btn">
-                        <i class="fas fa-chart-line"></i>
-                        <span>
-                            Compléter l' information
-                        </span>
-                    </a>
+                    @if (!Auth::user()->resto->reservationInfo)
+                        <a href="{{ route('vendor.reservation.info.create') }}" class="quick-btn">
+                            <i class="fas fa-chart-line"></i>
+                            <span>
+                                Réservation désactive
+                            </span>
+                        </a>
+                    @else
+                        <a href="" class="quick-btn">
+                            <i class="fas fa-chart-line"></i>
+                            <span>
+                                Gérer la réservation
+                            </span>
+                        </a>
+                    @endif
 
                 </div>
 

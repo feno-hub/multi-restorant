@@ -98,10 +98,6 @@ background: $color-primary;
     }
 }
 
-.order-number {
-    color: #2c3e50;
-    font-weight: 700;
-}
 
 .customer {
     display: flex;
@@ -159,6 +155,11 @@ background: $color-primary;
         color: #c97610;
     }
 
+    &.status-confirmed {
+        background: #0bf5a3;
+        color: black;
+    }
+
     &.status-processing {
         background: #eaf5fc;
         color: #3498db;
@@ -196,6 +197,63 @@ background: $color-primary;
     border: 1px solid #e2e5e8;
     border-radius: 7px;
     color: #2c3e50;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .2s ease;
+
+    &:hover {
+        border-color: #c97610;
+        color: #c97610;
+    }
+}
+
+.order-accept {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border: 1px solid #e2e5e8;
+    border-radius: 7px;
+    color: green;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .2s ease;
+
+    &:hover {
+        border-color: #c97610;
+        color: #c97610;
+    }
+}
+
+.order-cancelled {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border: 1px solid #e2e5e8;
+    border-radius: 7px;
+    color: red;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .2s ease;
+
+    &:hover {
+        border-color: #c97610;
+        color: #c97610;
+    }
+}
+
+.order-delet {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px;
+    border: 1px solid #e2e5e8;
+    border-radius: 7px;
+    color: red;
     font-size: 13px;
     font-weight: 600;
     text-decoration: none;

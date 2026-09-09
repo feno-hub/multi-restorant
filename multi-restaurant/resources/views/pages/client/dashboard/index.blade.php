@@ -1,7 +1,7 @@
 <x-client-layout>
+
     <div class="dashboard-client">
 
-        <!-- ===== HEADER ===== -->
         <header class="dashboard-client-header">
             <a href="{{ route('client.profil.index') }}">
                 <div class="client-avatar">
@@ -39,16 +39,20 @@
 
         <x-success-layout key="success" />
 
-        <!-- ===== STATS ===== -->
         <div class="dashboard-client-stats">
             <div class="stat-card">
+                
                 <div class="stat-header">
                     <span class="stat-label">Commandes</span>
                     <span class="stat-icon orange">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </span>
                 </div>
-                <div class="stat-value">24</div>
+                
+                <div class="stat-value">
+                    {{ Auth::user()->orders->count() }}
+                </div>
+
                 <div class="stat-sub">Dernière commande il y a 2j</div>
             </div>
 
@@ -81,15 +85,15 @@
                         <i class="fas fa-pen"></i>
                     </span>
                 </div>
-                <div class="stat-value">12</div>
+                <div class="stat-value">
+                    {{ Auth::user()->notice->count() }}
+                </div>
                 <div class="stat-sub">Note moyenne : 4.7 ⭐</div>
             </div>
         </div>
 
-        <!-- ===== GRID PRINCIPAL ===== -->
         <div class="dashboard-client-grid">
 
-            <!-- ===== COMMANDES RÉCENTES ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -101,92 +105,57 @@
                     </a>
                 </div>
 
-                <div class="order-item">
-                    <div class="order-info">
-                        <div class="order-restaurant">
-                            <i class="fas fa-store"></i> 
-                            La Bella Vita
-                        </div>
-                        <div class="order-meta">
-                            <span>
-                                <i class="fas fa-calendar"></i> 
-                                28 juil. 2026
-                            </span>
-                            <span>
-                                <i class="fas fa-clock"></i>
-                                12:30
-                            </span>
-                        </div>
-                    </div>
-                    <span class="order-status preparing">En préparation</span>
-                    <span class="order-amount">32,50 €</span>
-                </div>
+                @if (!isset(Auth::user()->orders))
 
-                <div class="order-item">
-                    <div class="order-info">
-                        <div class="order-restaurant">
-                            <i class="fas fa-store"></i> 
-                            Sushi Omakase
-                        </div>
-                        <div class="order-meta">
-                            <span>
-                                <i class="fas fa-calendar"></i> 
-                                26 juil. 2026
+                    @foreach (Auth::user()->orders as $orders)
+                        
+                        <div class="order-item">
+                            <div class="order-info">
+                                <div class="order-restaurant">
+                                    <i class="fas fa-store"></i> 
+                                    {{ $orders->resto->name }}
+                                </div>
+                                <div class="order-meta">
+                                    <span>
+                                        <i class="fas fa-calendar"></i> 
+                                        {{ ucFirst($orders->created_at) }}
+                                    </span>
+                                    <span>
+                                        {{-- <i class="fas fa-clock"></i>
+                                        12:30 --}}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            @if ($orders->status == 'confirmed')
+                                <span class="order-status delivered">confirmée</span>
+                            @elseif ($orders->status == 'pending')
+                                <span class="order-status pending">en attent</span>
+                            @elseif ($orders->status == 'preparing')
+                                <span class="order-status preparing">En préparation</span>
+                            @elseif ($orders->status == 'delivered')
+                                <span class="order-status delivered">Livrée</span>
+                            @elseif ($orders->status == 'cancelled')
+                                <span class="order-status cancelled">Annulée</span>
+                            @endif
+                            
+                            <span class="text-blue-950 font-medium">
+                                {{ $orders->total }} Ar
                             </span>
-                            <span>
-                                <i class="fas fa-clock"></i> 
-                                19:15
-                            </span>
                         </div>
-                    </div>
-                    <span class="order-status delivered">Livrée</span>
-                    <span class="order-amount">58,20 €</span>
-                </div>
 
-                <div class="order-item">
-                    <div class="order-info">
-                        <div class="order-restaurant">
-                            <i class="fas fa-store"></i> 
-                            El Fuego
-                        </div>
-                        <div class="order-meta">
-                            <span>
-                                <i class="fas fa-calendar"></i> 
-                                24 juil. 2026
-                            </span>
-                            <span>
-                                <i class="fas fa-clock"></i> 
-                                20:00
-                            </span>
-                        </div>
-                    </div>
-                    <span class="order-status pending">En attente</span>
-                    <span class="order-amount">24,90 €</span>
-                </div>
+                    @endforeach
 
-                <div class="order-item">
-                    <div class="order-info">
-                        <div class="order-restaurant">
-                            <i class="fas fa-store"></i> 
-                            Burger House
-                        </div>
-                        <div class="order-meta">
-                            <span>
-                                <i class="fas fa-calendar"></i> 
-                                22 juil. 2026
-                            </span>
-                            <span>
-                                <i class="fas fa-clock"></i> 
-                                13:45
-                            </span>
-                        </div>
-                    </div>
-                    <span class="order-status cancelled">Annulée</span>
-                    <span class="order-amount">41,30 €</span>
-                </div>
+                @else 
+
+                    <h1 class="text-center font-bold text-red-800">
+                        Pas de commande fait
+                    </h1>
+
+                @endif
+
             </div>
 
-            <!-- ===== RESTAURANTS FAVORIS ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -300,7 +269,6 @@
                 </div>
             </div>
 
-            <!-- ===== ACTIVITÉ RÉCENTE ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -312,50 +280,29 @@
                     </a>
                 </div>
 
-                <div class="activity-item">
-                    <span class="activity-icon order"><i class="fas fa-shopping-bag"></i></span>
-                    <div class="activity-content">
-                        <div class="activity-text">
-                            <strong>Commande passée</strong> chez La Bella Vita
-                        </div>
-                        <div class="activity-time">Il y a 2h</div>
-                    </div>
-                </div>
+                @if (Auth::user()->activities)
 
-                <div class="activity-item">
-                    <span class="activity-icon review"><i class="fas fa-star"></i></span>
-                    <div class="activity-content">
-                        <div class="activity-text">
-                            Vous avez laissé un avis <strong>5 ⭐</strong> pour Sushi Omakase
+                    @foreach (Auth::user()->activities as $activites)
+                        <div class="activity-item">
+                            <span class="activity-icon order"><i class="fas fa-shopping-bag"></i></span>
+                            <div class="activity-content">
+                                <div class="activity-text">
+                                    <strong>
+                                        {{ $activites->content }}
+                                    </strong> 
+                                    {{ $activites->title }}
+                                </div>
+                                <div class="text-[10px] font-bold text-blue-950">
+                                    Il y a {{ $activites->created_at->diffForHumans() }}
+                                </div>
+                            </div>
                         </div>
-                        <div class="activity-time">Il y a 1j</div>
-                    </div>
-                </div>
-
-                <div class="activity-item">
-                    <span class="activity-icon favorite"><i class="fas fa-heart"></i></span>
-                    <div class="activity-content">
-                        <div class="activity-text">
-                            Vous avez ajouté <strong>El Fuego</strong> à vos favoris
-                        </div>
-                        <div class="activity-time">Il y a 3j</div>
-                    </div>
-                </div>
-
-                <div class="activity-item">
-                    <span class="activity-icon promo"><i class="fas fa-tag"></i></span>
-                    <div class="activity-content">
-                        <div class="activity-text">
-                            Nouvelle offre : <strong>20% de réduction</strong> disponible
-                        </div>
-                        <div class="activity-time">Il y a 5j</div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
 
         </div>
 
-        <!-- ===== ACTIONS RAPIDES ===== -->
         <section style="margin-top: 28px; margin-bottom: 20px;">
             <div class="card">
                 <div class="card-header">
@@ -377,7 +324,7 @@
                         <i class="fas fa-heart"></i>
                         <span>Crer un restaurant</span>
                     </a>
-                    <a href="{{ route('client.profil.edit') }}" class="quick-btn">
+                    <a href="{{ route('client.profil.edit', Auth::user()->id) }}" class="quick-btn">
                         <i class="fas fa-user-edit"></i>
                         <span>Modifier mon profil</span>
                     </a>

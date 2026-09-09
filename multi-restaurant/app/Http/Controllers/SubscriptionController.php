@@ -10,69 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
-    /**
-     * Afficher les plans d'abonnement
-     */
     public function index()
     {
         $user = Auth::user();
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Récupérer les plans disponibles
-        |--------------------------------------------------------------------------
-        */
 
         $plans = SubscriptionPlan::where('is_active', true)
             ->orderBy('price', 'asc')
             ->get();
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | Abonnement actuel
-        |--------------------------------------------------------------------------
-        */
-
-        $currentSubscription = $user
-            ->currentSubscription()
-            ->with('plan')
-            ->first();
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Vérifier l'état de l'abonnement
-        |--------------------------------------------------------------------------
-        */
-
-        if (
-            $currentSubscription &&
-            $currentSubscription->ends_at->isPast()
-        ) {
-
-            $currentSubscription->update([
-                'status' => 'expired',
-            ]);
-
-            $currentSubscription = null;
-        }
-
-
         return view(
-            'pages.subscription.index',
-            compact(
-                'plans',
-                'currentSubscription'
-            )
+            'pages.subscription.index', [
+                'plans' => $plans
+            ]
         );
     }
 
 
-    /**
-     * Souscrire à un abonnement
-     */
     public function subscribe(
         Request $request,
         SubscriptionPlan $plan
@@ -80,12 +33,6 @@ class SubscriptionController extends Controller
 
         $user = Auth::user();
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | Vérifier que le plan est actif
-        |--------------------------------------------------------------------------
-        */
 
         if (!$plan->is_active) {
 
@@ -96,44 +43,13 @@ class SubscriptionController extends Controller
         }
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | Annuler l'ancien abonnement
-        |--------------------------------------------------------------------------
-        */
-
-        $user->subscriptions()
-            ->where('status', 'active')
-            ->update([
-                'status' => 'cancelled',
-            ]);
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Date de début
-        |--------------------------------------------------------------------------
-        */
-
         $startDate = Carbon::today();
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | Date de fin
-        |--------------------------------------------------------------------------
-        */
 
         $endDate = $startDate
             ->copy()
             ->addDays($plan->duration);
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | Créer l'abonnement
-        |--------------------------------------------------------------------------
-        */
 
         Subscription::create([
             'user_id' => $user->id,
@@ -157,24 +73,20 @@ class SubscriptionController extends Controller
     }
 
 
-    /**
-     * Historique des abonnements
-     */
     public function history()
     {
         $user = Auth::user();
 
 
-        $subscriptions = $user
-            ->subscriptions()
-            ->with('plan')
+        $subscriptions = $user->subscriptions            
             ->latest()
             ->paginate(10);
 
 
         return view(
-            'pages.subscription.history',
-            compact('subscriptions')
+            'pages.subscription.history', [
+                'subscriptions' => $subscriptions
+            ]
         );
     }
 }

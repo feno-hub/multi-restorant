@@ -16,18 +16,12 @@ class SubscriptionController extends Controller
         ]);
     }
 
-    /**
-     * Formulaire d'ajout
-     */
     public function create()
     {
         return view('pages.admin.subscription.create');
     }
 
 
-    /**
-     * Enregistrer un nouvel abonnement
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -41,7 +35,6 @@ class SubscriptionController extends Controller
         ]);
 
 
-        // Transformer les fonctionnalités en tableau
         $features = null;
 
         if (!empty($validated['features'])) {
@@ -70,9 +63,6 @@ class SubscriptionController extends Controller
     }
 
 
-    /**
-     * Formulaire de modification
-     */
     public function edit(SubscriptionPlan $subscriptionPlan)
     {
         return view(
@@ -82,9 +72,6 @@ class SubscriptionController extends Controller
     }
 
 
-    /**
-     * Modifier un abonnement
-     */
     public function update(
         Request $request,
         SubscriptionPlan $subscriptionPlan
@@ -96,18 +83,13 @@ class SubscriptionController extends Controller
                 $subscriptionPlan->id,
 
             'description' => 'nullable|string',
-
             'price' => 'required|numeric|min:0',
-
             'duration' => 'required|integer|min:1',
-
             'features' => 'nullable|string',
-
             'is_active' => 'required|boolean',
         ]);
 
 
-        // Transformer les fonctionnalités en tableau
         $features = null;
 
         if (!empty($validated['features'])) {
@@ -139,9 +121,6 @@ class SubscriptionController extends Controller
     }
 
 
-    /**
-     * Supprimer un abonnement
-     */
     public function destroy(SubscriptionPlan $subscriptionPlan)
     {
         $subscriptionPlan->delete();

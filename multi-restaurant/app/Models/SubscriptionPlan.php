@@ -25,9 +25,6 @@ class SubscriptionPlan extends Model
     ];
 
 
-    /**
-     * Abonnements utilisant ce plan
-     */
     public function subscriptions(): HasMany
     {
         return $this->hasMany(

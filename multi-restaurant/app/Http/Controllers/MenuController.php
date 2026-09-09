@@ -21,7 +21,7 @@ class MenuController extends Controller
 
     public function search() {
         return view('pages.menu.index', [
-            'menus' => Menu::all()
+            'menus' => Menu::orderBy('id', 'desc')->simplepaginate(12)
         ]);
     }
 

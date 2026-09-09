@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
     <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css">
 </head>
 
@@ -45,35 +47,28 @@
 
             <ul class="container-nav-card">
                 <li>
-                    <a href="{{ route('home') }}" class="container-nav-card-link">
-                        <span class="container-nav-card-link-icon">
-                            <i class="fa-solid fa-house-chimney"></i>
-                        </span>
+                    <a href="{{ route('home') }}" class="container-nav-card-link font-bold">
                         accueil
+                        <div class="h-0.5 bg-yellow-500 bord"></div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('fonctionality') }}" class="container-nav-card-link">
-                        <span class="container-nav-card-link-icon">
-                            <i class="fa-solid fa-utensils"></i>
-                        </span>
+                    <a href="{{ route('fonctionality') }}" class="container-nav-card-link font-bold">
                         à propos
+                        <div class="h-0.5 bg-yellow-500 bord"></div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('menu.index') }}" class="container-nav-card-link">
-                        <span class="container-nav-card-link-icon">
-                            <i class="fa-solid fa-utensils"></i>
-                        </span>
+                    <a href="{{ route('menu.index') }}" class="container-nav-card-link font-bold">
                         menus
+                        <div class="h-0.5 bg-yellow-500 bord"></div>
                     </a>
                 </li>
                 <li>
+
                     <a href="{{ route('contact.index') }}" class="container-nav-card-link">
-                        <span class="container-nav-card-link-icon">
-                            <i class="fa-solid fa-mobile"></i>
-                        </span>
                         contact
+                        <div class="h-0.5 bg-yellow-500 bord"></div>
                     </a>
                 </li>
 

@@ -2,10 +2,6 @@
 
     <section class="subscription">
 
-        {{-- ========================================================= --}}
-        {{-- HEADER --}}
-        {{-- ========================================================= --}}
-
         <div class="subscription__header">
 
             <span class="subscription__header__subtitle">
@@ -22,11 +18,7 @@
             </p>
 
         </div>
-
-
-        {{-- ========================================================= --}}
-        {{-- MESSAGE SUCCESS --}}
-        {{-- ========================================================= --}}
+        
 
         @if (session('success'))
 
@@ -43,9 +35,6 @@
         @endif
 
 
-        {{-- ========================================================= --}}
-        {{-- MESSAGE ERROR --}}
-        {{-- ========================================================= --}}
 
         @if (session('error'))
 
@@ -62,11 +51,7 @@
         @endif
 
 
-        {{-- ========================================================= --}}
-        {{-- UTILISATEUR NON ABONNÉ --}}
-        {{-- ========================================================= --}}
-
-        @if (!$currentSubscription)
+        @if (!Auth::user()->subscriptions)
 
             <div class="subscription__current subscription__current--free">
 
@@ -99,11 +84,8 @@
         @endif
 
 
-        {{-- ========================================================= --}}
-        {{-- ABONNEMENT ACTUEL --}}
-        {{-- ========================================================= --}}
 
-        @if ($currentSubscription)
+        @if (Auth::user()->subscriptions)
 
             <div class="subscription__current">
 
@@ -120,17 +102,20 @@
                         Abonnement actuel
                     </span>
 
-                    <strong>
-                        {{ $currentSubscription->plan->name }}
-                    </strong>
-
-                    <small>
-
-                        Expire le
-
-                        {{ $currentSubscription->ends_at->format('d/m/Y') }}
-
-                    </small>
+                    @foreach (Auth::user()->subscriptions as $currentSubscription)
+                            
+                        <strong>
+                            {{ $currentSubscription->plan->name }}
+                        </strong>
+                        
+                        <small>
+                            
+                            Expire le
+                            
+                            {{ $currentSubscription->ends_at->format('d/m/Y') }}
+                            
+                        </small>
+                    @endforeach
 
                 </div>
 
@@ -139,10 +124,6 @@
         @endif
 
 
-        {{-- ========================================================= --}}
-        {{-- PLANS --}}
-        {{-- ========================================================= --}}
-
         <div class="subscription__plans">
 
             @forelse ($plans as $plan)
@@ -150,16 +131,11 @@
                 <article
                     class="
                         subscription__card
-                        {{ $plan->slug === 'premium'
-                            ? 'subscription__card--popular'
-                            : '' }}
-                    "
-                >
+                        {{ $plan->slug === 'premium' ? 'subscription__card--popular' : '' }}
+                    ">
 
-                    {{-- BADGE PREMIUM --}}
 
                     @if ($plan->slug === 'premium')
-
                         <div class="subscription__card__badge">
 
                             <i class="fa-solid fa-star"></i>
@@ -167,11 +143,9 @@
                             Populaire
 
                         </div>
-
                     @endif
 
 
-                    {{-- HEAD --}}
 
                     <div class="subscription__card__head">
 
@@ -191,28 +165,19 @@
                     </div>
 
 
-                    {{-- PRICE --}}
 
                     <div class="subscription__card__price">
 
                         @if ($plan->price == 0)
-
                             <span class="subscription__card__price__amount">
 
                                 Gratuit
 
                             </span>
-
                         @else
-
                             <span class="subscription__card__price__amount">
 
-                                {{ number_format(
-                                    $plan->price,
-                                    0,
-                                    ',',
-                                    ' '
-                                ) }}
+                                {{ number_format($plan->price, 0, ',', ' ') }}
 
                             </span>
 
@@ -222,7 +187,6 @@
                                 Ar
 
                             </span>
-
                         @endif
 
 
@@ -235,17 +199,14 @@
                     </div>
 
 
-                    {{-- SEPARATOR --}}
 
                     <div class="subscription__card__separator"></div>
 
 
-                    {{-- FEATURES --}}
 
                     <ul class="subscription__card__features">
 
                         @foreach ($plan->features ?? [] as $feature)
-
                             <li>
 
                                 <i class="fa-solid fa-check"></i>
@@ -255,45 +216,27 @@
                                 </span>
 
                             </li>
-
                         @endforeach
 
                     </ul>
 
 
-                    {{-- BOUTON --}}
 
                     <form
-                        action="{{ route(
-                            'subscription.subscribe',
-                            $plan
-                        ) }}"
-                        method="POST"
-                        class="subscription__card__form"
-                    >
+                        action="{{ route('subscription.subscribe', $plan) }}"
+                        method="POST" class="subscription__card__form">
 
                         @csrf
 
 
-                        <button
-                            type="submit"
-                            class="subscription__card__button"
-                        >
+                        <button type="submit" class="subscription__card__button">
 
                             <span>
 
-                                @if (
-                                    $currentSubscription &&
-                                    $currentSubscription->subscription_plan_id
-                                        === $plan->id
-                                )
-
+                                @if (Auth::user()->subscriptions = $plan)
                                     Abonnement actuel
-
                                 @else
-
                                     Choisir cette offre
-
                                 @endif
 
                             </span>
@@ -328,16 +271,10 @@
         </div>
 
 
-        {{-- ========================================================= --}}
-        {{-- HISTORIQUE --}}
-        {{-- ========================================================= --}}
 
         <div class="subscription__history">
 
-            <a
-                href="{{ route('subscription.history') }}"
-                class="subscription__history__link"
-            >
+            <a href="{{ route('subscription.history') }}" class="subscription__history__link">
 
                 <i class="fa-solid fa-clock-rotate-left"></i>
 

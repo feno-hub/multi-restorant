@@ -89,9 +89,11 @@
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea name="description" rows="5" placeholder="Description du restaurant">
-                            {{ old('description') }}
-                        </textarea>
+                        <textarea 
+                            name="description" 
+                            rows="5" 
+                            placeholder="Description du restaurant
+                        ">{{ old('description') }}</textarea>
                         <x-error-layout name="description" />
                     </div>
 

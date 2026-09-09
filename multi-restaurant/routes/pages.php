@@ -4,6 +4,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ClientCartController;
 use App\Http\Controllers\ConditionsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FonctionalityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegalController;
@@ -148,4 +149,14 @@ Route::middleware('auth')
         Route::get('/reservation/{reservation}', [ReservationController::class, 'show'])
             ->name('reservation.show');
 
-    });
+});
+
+Route::controller(FavoriteController::class)
+    ->middleware('auth')
+    ->prefix('client/')
+    ->group(function () {
+
+        Route::post('ajouter-favories', 'favoriteStore')
+            ->name('favorite');
+        
+});

@@ -1,53 +1,8 @@
-        /* ============================================================
-           STYLES COMPLÉMENTAIRES
-           ============================================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.container {
+    margin: 0 auto;
+    background: $color-primary;
+}
 
-        body {
-            background: #F4F6F9;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #2C3E50;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .container {
-            margin: 0 auto;
-            background: $color-primary;
-        }
-
-// Breakpoints
-$bp-320: 320px;
-$bp-375: 375px;
-$bp-480: 480px;
-$bp-576: 576px;
-$bp-768: 768px;
-$bp-992: 992px;
-$bp-1024: 1024px;
-$bp-1200: 1200px;
-$bp-1440: 1440px;
-$bp-1920: 1920px;
-$bp-2400: 2400px;
-
-// Mixins
 @mixin respond($breakpoint) {
     @media (max-width: $breakpoint) {
         @content;
@@ -91,17 +46,10 @@ $bp-2400: 2400px;
     align-items: center;
 }
 
-
-
-
-// ============================================================
-// DASHBOARD CLIENT
-// ============================================================
 .dashboard-client {
     animation: fadeInUp 0.8s ease;
     padding: 20px;
 
-    // ===== HEADER =====
     &-header {
         display: grid;
         grid-template-columns: auto 1fr auto;
@@ -262,7 +210,6 @@ $bp-2400: 2400px;
         }
     }
 
-    // ===== STATS =====
     &-stats {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -273,7 +220,6 @@ $bp-2400: 2400px;
             background: $color-free;
             padding: 18px 22px;
             border-radius: 16px;
-            border: 4px double $color;
             display: block;
             @include shadow(1);
             @include transition;
@@ -370,7 +316,6 @@ $bp-2400: 2400px;
         }
     }
 
-    // ===== GRID PRINCIPAL =====
     &-grid {
         display: grid;
         grid-template-columns: 1.2fr 0.8fr;
@@ -382,7 +327,6 @@ $bp-2400: 2400px;
         }
     }
 
-    // ===== BOTTOM GRID =====
     &-bottom {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -394,11 +338,9 @@ $bp-2400: 2400px;
         }
     }
 
-    // ===== CARD =====
     .card {
         background: $color-free;
         border-radius: 20px;
-        border: 4px double $color;
         padding: 20px 24px;
         @include shadow(1);
 
@@ -448,7 +390,6 @@ $bp-2400: 2400px;
         }
     }
 
-    // ===== COMMANDES RÉCENTES =====
     .order-item {
         display: flex;
         justify-content: space-between;
@@ -543,7 +484,6 @@ $bp-2400: 2400px;
         }
     }
 
-    // ===== RESTAURANTS FAVORIS =====
     .favorite-item {
         display: flex;
         justify-content: space-between;
@@ -612,7 +552,6 @@ $bp-2400: 2400px;
         }
     }
 
-    // ===== PROMOTIONS =====
     .promo-item {
         background: linear-gradient(135deg, $color-btn-add, darken($color-btn-add, 10%));
         border-radius: 14px;

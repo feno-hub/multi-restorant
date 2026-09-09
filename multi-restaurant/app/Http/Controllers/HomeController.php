@@ -16,9 +16,15 @@ class HomeController extends Controller
             ->limit(3)
             ->get();
 
+        $threePlat = Plat::where('qty', '!=', '0')
+            ->orderBy('id', 'desc')
+            ->limit(3)
+            ->get();
+
 
         return view('pages.home.index', [
             'restos' => $resto,
+            'threePlat' => $threePlat
         ]);
     }
 }

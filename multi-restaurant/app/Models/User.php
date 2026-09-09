@@ -67,47 +67,63 @@ class User extends Authenticatable
     }
 
 
-    public function currentSubscription(): HasOne
-    {
-        return $this->hasOne(Subscription::class)
-            ->where('status', 'active')
-            ->latestOfMany();
+    // public function currentSubscription(): HasOne
+    // {
+    //     return $this->hasOne(Subscription::class)
+    //         ->where('status', 'active')
+    //         ->latestOfMany();
+    // }
+
+
+    // public function hasActiveSubscription(): bool
+    // {
+    //     $subscription = $this->currentSubscription()->first();
+
+    //     if (!$subscription) {
+    //         return false;
+    //     }
+
+
+    //     if (
+    //         !$subscription->ends_at ||
+    //         $subscription->ends_at->isPast()
+    //     ) {
+
+    //         $subscription->update([
+    //             'status' => 'expired',
+    //         ]);
+
+    //         return false;
+    //     }
+
+
+    //     return true;
+    // }
+
+    // public function isFreeUser(): bool
+    // {
+    //     return !$this->hasActiveSubscription();
+    // }
+
+
+    // public function isSubscribed(): bool
+    // {
+    //     return $this->hasActiveSubscription();
+    // }
+
+    public function activities() : HasMany {
+        return $this->hasMany(
+            Activites::class,
+            'user_id',
+            'id'
+        );
     }
 
-
-    public function hasActiveSubscription(): bool
-    {
-        $subscription = $this->currentSubscription()->first();
-
-        if (!$subscription) {
-            return false;
-        }
-
-
-        if (
-            !$subscription->ends_at ||
-            $subscription->ends_at->isPast()
-        ) {
-
-            $subscription->update([
-                'status' => 'expired',
-            ]);
-
-            return false;
-        }
-
-
-        return true;
-    }
-
-    public function isFreeUser(): bool
-    {
-        return !$this->hasActiveSubscription();
-    }
-
-
-    public function isSubscribed(): bool
-    {
-        return $this->hasActiveSubscription();
+    public function favorie() : HasMany {
+        return $this->hasMany(
+            Favorite::class,
+            'user_id',
+            'id'
+        );
     }
 }

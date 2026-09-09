@@ -81,4 +81,20 @@ class Resto extends Model
         );
     }
 
+    public function favorite() : HasMany {
+        return $this->hasMany(
+            Favorite::class,
+            'resto_id',
+            'id'
+        );
+    }
+
+    public function reservationInfo() : HasOne {
+        return $this->hasOne(
+            Reservation_info::class,
+            'resto_id',
+            'id'
+        );
+    }
+
 }

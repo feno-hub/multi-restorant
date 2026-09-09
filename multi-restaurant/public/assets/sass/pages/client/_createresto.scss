@@ -2,7 +2,6 @@
     min-height: 100vh;
     padding: 3rem 1.5rem;
 
-    // Fond principal de la page
     background: $color-primary;
 
     font-family: Arial, Helvetica, sans-serif;
@@ -13,17 +12,12 @@
         margin: 0 auto;
         padding: 2.5rem;
 
-        // Formulaire blanc pour avoir un bon contraste
         background: $color-free;
 
         border-radius: 15px;
 
         box-shadow:
             0 15px 40px rgba(0, 0, 0, 0.25);
-
-        // ==========================
-        // BOUTON RETOUR
-        // ==========================
 
         .top-back {
             margin-bottom: 1.5rem;
@@ -57,10 +51,6 @@
             }
         }
 
-        // ==========================
-        // HEADER
-        // ==========================
-
         .form-header {
             margin-bottom: 2.5rem;
             padding-bottom: 1.5rem;
@@ -70,7 +60,7 @@
             h2 {
                 margin: 0 0 0.6rem;
 
-                color: $color-primary;
+                color: $color;
 
                 font-size: 2rem;
                 font-weight: 700;
@@ -84,10 +74,6 @@
                 font-size: 0.95rem;
             }
         }
-
-        // ==========================
-        // FORMULAIRE
-        // ==========================
 
         .form {
             display: grid;
@@ -193,14 +179,10 @@
             }
         }
 
-        // Description sur toute la largeur
         .form-group:has(textarea) {
             grid-column: span 2;
         }
 
-        // ==========================
-        // BOUTONS
-        // ==========================
 
         .button-group {
             display: flex;
@@ -236,7 +218,6 @@
                 }
             }
 
-            // Ajouter
             .btn-add {
                 background: $color-primary;
                 color: $color-free;
@@ -250,7 +231,6 @@
                 }
             }
 
-            // Annuler
             .btn-back {
                 background: $color-secondary;
                 color: $color-free;
@@ -271,9 +251,6 @@
         }
     }
 
-    // ==========================
-    // TABLETTE
-    // ==========================
 
     @media (max-width: 768px) {
 

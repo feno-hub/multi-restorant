@@ -74,7 +74,7 @@
 
             <div class="cart-layout">
 
-
+                
                 <div class="cart-items">
 
                     <div class="restaurant-info">

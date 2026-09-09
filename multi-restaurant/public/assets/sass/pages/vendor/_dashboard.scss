@@ -1,32 +1,3 @@
-// ============================================================
-// VARIABLES
-// ============================================================
-$color-secondary: #2C3E50;
-$color-free: #FFFFFF;
-$color-btn-add: #C0382B;
-$colore-btn-update: #3498DB;
-$colore-btn-delete: #E74C3C;
-$color-btn-back: #7F8C8D;
-$color-btn-success: #22C55E;
-$color-btn-warning: #F59E0B;
-$color-btn-info: #3B82F6;
-
-$font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-// Breakpoints
-$bp-320: 320px;
-$bp-375: 375px;
-$bp-480: 480px;
-$bp-576: 576px;
-$bp-768: 768px;
-$bp-992: 992px;
-$bp-1024: 1024px;
-$bp-1200: 1200px;
-$bp-1440: 1440px;
-
-// ============================================================
-// MIXINS
-// ============================================================
 @mixin respond($breakpoint) {
     @media (max-width: $breakpoint) {
         @content;
@@ -64,15 +35,11 @@ $bp-1440: 1440px;
     align-items: center;
 }
 
-// ============================================================
-// DASHBOARD RESTAURANT
-// ============================================================
 .dashboard-restaurant {
     animation: fadeInUp 0.8s ease;
     background: $color-primary;
     padding: 24px 24px;
 
-    // ===== HEADER =====
     &-header {
         @include flex-between;
         flex-wrap: wrap;
@@ -82,7 +49,7 @@ $bp-1440: 1440px;
         margin-bottom: 24px;
 
         .header-left {
-            .restaurant-name {
+            .restaurant-namer {
                 font-size: 28px;
                 font-weight: 700;
                 color: $color;

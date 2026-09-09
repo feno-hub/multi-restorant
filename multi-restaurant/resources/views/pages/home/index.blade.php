@@ -7,71 +7,60 @@
     <div class="container-home">
 
 
-        <header class="container-home-header">
+        <header class="hero">
+            <div class="hero-slider">
+                <div class="hero-slide">
+                    <img src="{{ asset('assets/images/resto/table1.jpg') }}" alt="Restaurant">
+                </div>
 
-            <div class="header-parent">
-                <h1 class="header-parent-title">
-                    Découvrez vos réstaurants préférer
-                </h1>
-                <p class="header-parent-para">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quas quidem exercitationem nemo
-                    aperiam vero, officia odio asperiores a quaerat?
-                </p>
-                <div class="header-parent-button">
-                    <a href="{{ route('resto.list') }}" class="button-resto">
-                        restaurants
-                    </a>
-                    <a href="{{ route('menu.index') }}" class="button-menu">
-                        menu
-                    </a>
+                <div class="hero-slide">
+                    <img src="{{ asset('assets/images/resto/menu1.jpg') }}" alt="Plat">
+                </div>
+
+                <div class="hero-slide">
+                    <img src="{{ asset('assets/images/resto/resto1.jpg') }}" alt="Cuisine">
                 </div>
             </div>
 
-            <div class="header-parent-image">
-                <img src="{{ asset('assets/images/resto/table1.jpg') }}" alt="">
+            <div class="hero-content">
+                <h1 class="font-bold title">Bienvenue sur MultiResto</h1>
+                <p>Découvrez les meilleurs restaurants</p>
+                <a href="{{ route('resto.list') }}" class="hero-btn">Découvrir</a>
             </div>
-
-            <div class="header-parent-overlay"></div>
-
-
         </header>
 
-        @if (isset($restos))
-            <section class="container-home-section1">
+
+        <section class="container-home-section1">
+            @if ($restos)
                 <h2 class="container-home-section1-title">Restaurants en vedette</h2>
 
                 <div class="container-home-section1-card">
 
                     @foreach ($restos as $resto)
-                        <div class="container-home-section1-card-link">
+                        <div class="m-h-[50vh] flex-1 rounded-2xl overflow-hidden shadow-2xl shadow-black">
 
-                            <div class="container-home-section1-card-link-image">
+                            <div class="h-[25vh]">
                                 <img src="{{ $path . $resto->cover }}" alt="Le Bistrot" loading="lazy"
-                                    class="container-home-section1-card-link-image-img">
+                                    class="h-full w-full object-cover">
                             </div>
 
-                            <div class="about">
+                            <div class="content">
 
-                                <div class="content">
-                                    <h1>
-                                        {{ $resto->name }}
-                                    </h1>
+                                <h1 class="text-white font-bold text-[1.5rem]">
+                                    {{ $resto->name }}
+                                </h1>
 
-                                    <p>
-                                        <i class="fa-solid fa-utensils"></i>
-                                        {{ $resto->category }}
-                                    </p>
+                                <p class="text-yellow-500">
+                                    <i class="fa-solid fa-utensils"></i>
+                                    {{ $resto->category }}
+                                </p>
 
-                                    <span>
-                                        {{ $resto->open_time }} =>
-                                        {{ $resto->close_time }}
-                                    </span>
+                                <p class="text-white">
+                                    {{ $resto->description }}
+                                </p>
 
-
-                                </div>
-
-                                <a href="{{ route('resto.show', $resto->id) }}">
-                                    <x-btnsecondary-layout btn="Voir profile" />
+                                <a href="{{ route('resto.show', $resto->id) }}" class="text-yellow-500 font-bold">
+                                    voir profile <i class="fa-solid fa-arrow-right"></i>
                                 </a>
 
                             </div>
@@ -85,8 +74,13 @@
                         <x-btnsecondary-layout btn="Explorer" icon="fa-solid fa-arrow-right" />
                     </a>
                 </div>
-            </section>
-        @endif
+            @else
+                <h1 class="">
+                    pas de restaurant disponible
+                </h1>
+            @endif
+        </section>
+
 
 
         <section class="container-home-section2">
@@ -124,34 +118,46 @@
         </section>
 
 
-        @if (isset($plats))
+        @if ($threePlat)
             <section class="container-home-section3">
                 <h2 class="container-home-section3-title">Les meilleurs plats</h2>
 
                 <div class="container-home-section3-card">
 
-                    @foreach ($plats as $plat)
-                        <div class="container-home-section3-card-link">
-                            <div class="container-home-section3-card-link-image">
+                    @foreach ($threePlat as $plat)
+                        <div class="content flex items-start h-[40vh] shadow-black rounded-2xl overflow-hidden flex-1">
+                            <div class="h-full flex-1">
                                 <a href="#">
                                     <img src="{{ $path . $plat->image }}" alt="Pizza Margherita"
-                                        class="container-home-section3-card-link-image-img">
+                                        class="w-full h-full object-cover">
                                 </a>
-                            </div>
-                            <div class="container-home-section3-card-link-content">
-                                <h3 class="container-home-section3-card-link-content-name">
-                                    {{ $plat->name }}
-                                </h3>
-                                <span class="container-home-section3-card-link-content-restaurant">
-                                    {{ $plat->description }}
-                                </span>
                             </div>
 
-                            <div class=""
-                                style="display: flex; justify-content:center;align-items:center; padding:1rem;">
-                                <a href="{{ route('menu.index') }}">
-                                    <x-btnprimary-layout btn='Voir détail' />
-                                </a>
+                            <div class="flex-1 info">
+                                <h3 class="font-bold text-white capitalize text-[1.5rem]">
+                                    {{ $plat->name }}
+                                </h3>
+
+                                <span class="text-white font-light text-[13px] mt-3 mb-5">
+                                    {{ $plat->description }}
+                                </span>
+
+                                <strong class="text-white block">
+                                    {{ $plat->price }} Ar
+                                </strong>
+
+                                <form action="{{ route('client.cart.add', $plat) }}" method="POST">
+
+                                    @csrf
+                                    @method('POST')
+
+                                    <button type="submit"
+                                        class="text-yellow-500 font-bold border-2 border-yellow-500 p-2 rounded-2xl lien cursore-pointer">
+                                        Ajouté au panier
+                                    </button>
+
+                                </form>
+
                             </div>
 
                         </div>
@@ -167,7 +173,7 @@
             </section>
         @endif
 
-        {{-- <section class="container-home-section4">
+        <section class="container-home-section4">
             <h1 class="container-home-section4-title"> Abonnez vous</h1>
             <div class="container-home-section4-content">
                 <strong class="container-home-section4-content-subtitle">
@@ -187,7 +193,7 @@
 
             </div>
 
-        </section> --}}
+        </section>
 
     </div>
 

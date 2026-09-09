@@ -4,7 +4,6 @@
 
         <div class="activities-container">
 
-            {{-- En-tête --}}
             <div class="activities-header">
 
                 <div class="activities-title">
@@ -31,183 +30,76 @@
             </div>
 
 
-            {{-- Liste des activités --}}
             <div class="activities-card">
 
                 <div class="activities-list">
 
 
-                    {{-- Activité 1 --}}
-                    <div class="activity-item">
+                    @if (Auth::user()->activities)
 
-                        <div class="activity-icon activity-success">
-                            <i class="fa-solid fa-plus"></i>
-                        </div>
+                        @foreach (Auth::user()->activities as $activities)
+                            <div class="activity-item">
 
-                        <div class="activity-content">
+                                @if ($activities->content == "Commande passée chez")
+                                    <div class="activity-icon activity-success">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                @else
+                                    <div class="activity-icon activity-success">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </div>
+                                @endif
 
-                            <h2>
-                                Restaurant ajouté
-                            </h2>
+                                <div class="activity-content">
 
-                            <p>
-                                Vous avez ajouté le restaurant
-                                <strong>Chez Mamy</strong>.
-                            </p>
+                                    <h2>
+                                        {{ $activities->content }}
+                                    </h2>
 
-                            <span class="activity-date">
-                                <i class="fa-regular fa-clock"></i>
-                                Aujourd'hui à 14:35
-                            </span>
+                                    @if ($activities->content == "Commande passée chez")
+                                        <p>
+                                            Vous avez une commande
+                                            <strong>Chez {{ $activities->title }}</strong>.
+                                        </p>
 
-                        </div>
+                                    @else
+                                        <p>
+                                            Vous avez envoyer une message à l' Admin
+                                            <strong>Chez {{ $activities->title }}</strong>.
+                                        </p>
+                                    @endif
 
+                                    <span class="activity-date">
+                                        <i class="fa-regular fa-clock"></i>
+                                        {{ $activities->created_at->diffForHumans() }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+                        @endforeach
+                        
+                    @endif
+
+
+                    {{-- <div class="activity-icon activity-warning">
+                        <i class="fa-solid fa-clock"></i>
                     </div>
-
-
-                    {{-- Activité 2 --}}
-                    <div class="activity-item">
-
-                        <div class="activity-icon activity-warning">
-                            <i class="fa-solid fa-clock"></i>
-                        </div>
-
-                        <div class="activity-content">
-
-                            <h2>
-                                Restaurant en attente de validation
-                            </h2>
-
-                            <p>
-                                Le restaurant
-                                <strong>Pizza House</strong>
-                                est actuellement en attente de validation.
-                            </p>
-
-                            <span class="activity-date">
-                                <i class="fa-regular fa-clock"></i>
-                                Aujourd'hui à 11:20
-                            </span>
-
-                        </div>
-
+                    <div class="activity-icon activity-success">
+                        <i class="fa-solid fa-circle-check"></i>
                     </div>
-
-
-                    {{-- Activité 3 --}}
-                    <div class="activity-item">
-
-                        <div class="activity-icon activity-success">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-
-                        <div class="activity-content">
-
-                            <h2>
-                                Restaurant validé
-                            </h2>
-
-                            <p>
-                                L'administrateur a validé votre restaurant
-                                <strong>Chez Mamy</strong>.
-                            </p>
-
-                            <span class="activity-date">
-                                <i class="fa-regular fa-clock"></i>
-                                Hier à 16:42
-                            </span>
-
-                        </div>
-
+                    <div class="activity-icon activity-info">
                     </div>
-
-
-                    {{-- Activité 4 --}}
-                    <div class="activity-item">
-
-                        <div class="activity-icon activity-info">
-                            <i class="fa-solid fa-pen"></i>
-                        </div>
-
-                        <div class="activity-content">
-
-                            <h2>
-                                Restaurant modifié
-                            </h2>
-
-                            <p>
-                                Vous avez modifié les informations du restaurant
-                                <strong>Chez Mamy</strong>.
-                            </p>
-
-                            <span class="activity-date">
-                                <i class="fa-regular fa-clock"></i>
-                                Hier à 10:15
-                            </span>
-
-                        </div>
-
+                    <div class="activity-icon activity-primary">
+                        <i class="fa-solid fa-utensils"></i>
                     </div>
-
-
-                    {{-- Activité 5 --}}
-                    <div class="activity-item">
-
-                        <div class="activity-icon activity-primary">
-                            <i class="fa-solid fa-utensils"></i>
-                        </div>
-
-                        <div class="activity-content">
-
-                            <h2>
-                                Menu mis à jour
-                            </h2>
-
-                            <p>
-                                Vous avez ajouté de nouveaux plats au menu de
-                                <strong>Chez Mamy</strong>.
-                            </p>
-
-                            <span class="activity-date">
-                                12 Août 2026 à 15:30
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    {{-- Activité 6 --}}
-                    <div class="activity-item">
-
-                        <div class="activity-icon activity-danger">
-                            <i class="fa-solid fa-circle-xmark"></i>
-                        </div>
-
-                        <div class="activity-content">
-
-                            <h2>
-                                Restaurant refusé
-                            </h2>
-
-                            <p>
-                                Le restaurant
-                                <strong>Grill 261</strong>
-                                n'a pas été validé par l'administrateur.
-                            </p>
-
-                            <span class="activity-date">
-                                10 Août 2026 à 09:45
-                            </span>
-
-                        </div>
-
-                    </div>
-
+                    <div class="activity-icon activity-danger">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </div> --}}
+                
                 </div>
 
 
-                {{-- Message fin de liste --}}
                 <div class="activities-end">
 
                     <i class="fa-solid fa-check"></i>

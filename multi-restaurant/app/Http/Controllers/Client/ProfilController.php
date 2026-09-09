@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\UserRegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilController extends Controller
 {
@@ -13,25 +14,42 @@ class ProfilController extends Controller
         return view('pages.client.profil.index');
     }
 
-    public function edit() {
-        return view('pages.client.profil.edit');
+    public function edit(string $id) {
+        $user = User::findOrFail($id);
+
+        if (!$user) {
+            return to_route('client.profil.index');
+        }
+
+        return view('pages.client.profil.edit', [
+            'user' => $user
+        ]);
     }
 
     public function update(UserRegisterRequest $request, string $id) {
-        $request->validated();
+        
+        dd('modification');
+        
+        // $user = User::findOrFail($id);
 
-        $profile = $request->file('image') == "" ? null : $request->file('image')->store('images/user/profile', "public");
 
-        User::update([
-            "name" => $request->name,
-            "last_name" => $request->last_name,
-            "email" => $request->email,
-            "password" => $request->password,
-            "image" => $profile,
-            "phone" => $request->phone
-        ]);
+        // $request->validated();
 
-        return to_route('client.profil.index')->with('success', 'Votre profile a été modifier');
+        // if($request->hasFile('photo')) {
+
+        //     if($user->photo && Storage::disk('public')->exists($user->photo)) {
+        //         Storage::disk('public')->delete($user->photo);
+        //     }
+
+        //     $path = $request->file('photo')->store('images/profils', 'public');
+
+        //     $user->photo = $path;
+
+        // }
+
+        // $user->save();
+
+        // return to_route('client.profil.index')->with('success', 'Votre profile a été modifier');
 
     }
 
