@@ -20,107 +20,128 @@
 
     <div class="container">
 
-        <div class="container-navresp">
-
-            <div class="container-navresp-parent">
-                <x-logo-layout />
-
-                <label for="burger" class="container-navresp-label">
-                    <i class="fa-solid fa-bars"></i>
-                </label>
-
-            </div>
-            
-        </div>
-
-
-        <input 
-            type="checkbox" 
-            name="burger" 
-            id="burger" 
-            class="container-input"
-        >
-
         <nav class="container-nav">
-            
-            <label for="burger" class="container-nav-label">
-                <i class="fa-solid fa-xmark"></i>
-            </label>
+
             <div class="container-nav-logo">
                 <x-logo-layout />
             </div>
 
-            <ul class="container-nav-card">
-                <li>
-                    <a href="{{ route('home') }}" class="container-nav-card-link font-bold">
-                        accueil
-                        <div class="h-0.5 bg-yellow-500 bord"></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('fonctionality') }}" class="container-nav-card-link font-bold">
-                        à propos
-                        <div class="h-0.5 bg-yellow-500 bord"></div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('menu.index') }}" class="container-nav-card-link font-bold">
-                        menus
-                        <div class="h-0.5 bg-yellow-500 bord"></div>
-                    </a>
-                </li>
-                <li>
+            <input type="checkbox" id="burger" class="container-nav-toggle">
 
-                    <a href="{{ route('contact.index') }}" class="container-nav-card-link">
-                        contact
-                        <div class="h-0.5 bg-yellow-500 bord"></div>
-                    </a>
-                </li>
+            <label for="burger" class="container-nav-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
 
-                @if (Auth::user())
-                    @if (Auth::user()->role == 'ADMIN')
-                        <li>
-                            <a href="{{ route('admin.dashboard') }}" class="container-nav-card-link">mon compte</a>
-                        </li>
-                    @endif
-                    @if (Auth::user()->role == 'USER')
-                        <li>
-                            <a href="{{ route('client.dashboard') }}" class="container-nav-card-link">mon compte</a>
-                        </li>
-                    @endif
-                    @if (Auth::user()->role == 'VENDEUR')
-                        <li>
-                            <a href="{{ route('vendeur.dashboard') }}" class="container-nav-card-link">mon compte</a>
-                        </li>
-                    @endif
-                @endif
-            </ul>
+            <div class="container-nav-menu">
 
-            @guest
-                <div class="container-nav-button">
-                    <a href="{{ route('client.cart.index') }}" class="container-nav-button-card">
-                        <span class="container-nav-button-card-notif">2</span>
-                        <i class="fa-solid fa-cart-shopping"> @class(['p-4', 'font-bold' => true])</i>
-                    </a>
-                    <a href="{{ route('login') }}">
-                        <x-btnprimary-layout icon="fa-solid fa-arrow-right-to-bracket" btn="Se connecter" />
-                    </a>
-                </div>
-            @endguest
+                <ul class="container-nav-card">
 
-            @auth
-                <div class="container-nav-button">
-                    <a href="{{ route('client.cart.index') }}" class="container-nav-button-card">
-                        <span class="container-nav-button-card-notif">2</span>
-                        <i class="fa-solid fa-cart-shopping"> @class(['p-4', 'font-bold' => true])</i>
-                    </a>
-                    <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        @method('POST')
-                        <x-btnsecondary-layout icon="fa-solid fa-arrow-right-from-bracket" btn="Déconnecter" />
-                    </form>
-                </div>
-            @endauth
+                    <li>
+                        <a href="{{ route('home') }}" class="container-nav-card-link">
+                            accueil
+                            <div class="bord"></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('fonctionality') }}" class="container-nav-card-link">
+                            à propos
+                            <div class="bord"></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('menu.index') }}" class="container-nav-card-link">
+                            menus
+                            <div class="bord"></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('contact.index') }}" class="container-nav-card-link">
+                            contact
+                            <div class="bord"></div>
+                        </a>
+                    </li>
+
+                    @auth
+
+                        @if (Auth::user()->role == 'ADMIN')
+                            <li>
+                                <a href="{{ route('admin.dashboard') }}" class="container-nav-card-link">
+                                    mon compte
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (Auth::user()->role == 'USER')
+                            <li>
+                                <a href="{{ route('client.dashboard') }}" class="container-nav-card-link">
+                                    mon compte
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (Auth::user()->role == 'VENDEUR')
+                            <li>
+                                <a href="{{ route('vendeur.dashboard') }}" class="container-nav-card-link">
+                                    mon compte
+                                </a>
+                            </li>
+                        @endif
+
+                    @endauth
+
+                </ul>
+
+                @guest
+                    <div class="container-nav-button">
+
+                        <a href="{{ route('client.cart.index') }}" class="container-nav-button-card">
+
+                            <span class="container-nav-button-card-notif">
+                                2
+                            </span>
+
+                            <i class="fa-solid fa-cart-shopping"></i>
+
+                        </a>
+
+                        <a href="{{ route('login') }}">
+                            <x-btnprimary-layout icon="fa-solid fa-arrow-right-to-bracket" btn="Se connecter" />
+                        </a>
+
+                    </div>
+                @endguest
+
+
+                @auth
+                    <div class="container-nav-button">
+
+                        <a href="{{ route('client.cart.index') }}" class="container-nav-button-card">
+
+                            <span class="container-nav-button-card-notif">
+                                2
+                            </span>
+
+                            <i class="fa-solid fa-cart-shopping"></i>
+
+                        </a>
+
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+
+                            <x-btnsecondary-layout icon="fa-solid fa-arrow-right-from-bracket" btn="Déconnecter" />
+
+                        </form>
+
+                    </div>
+                @endauth
+
+            </div>
+
         </nav>
 
         <hr>
