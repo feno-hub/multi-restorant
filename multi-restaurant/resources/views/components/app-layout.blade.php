@@ -13,8 +13,6 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
     <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css">
 </head>
 
@@ -30,11 +28,18 @@
                 <label for="burger" class="container-navresp-label">
                     <i class="fa-solid fa-bars"></i>
                 </label>
+
             </div>
+            
         </div>
 
 
-        <input type="checkbox" name="burger" id="burger" class="container-input">
+        <input 
+            type="checkbox" 
+            name="burger" 
+            id="burger" 
+            class="container-input"
+        >
 
         <nav class="container-nav">
             

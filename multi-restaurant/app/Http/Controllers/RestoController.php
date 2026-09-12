@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Client\ReservationRequest;
+use App\Models\Favorite;
 use App\Models\Menu;
 use App\Models\Notice;
 use App\Models\Resto;

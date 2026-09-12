@@ -14,8 +14,8 @@ Route::middleware('auth')
         Route::post('/commande/{order}/payer', [PaymentController::class, 'payOrder'])
             ->name('payment.order.process');
 
-        // Route::get('/reservation/{reservation}/payment', [PaymentController::class, 'showReservationPayment'])
-        //     ->name('payment.reservation.process');
+        Route::get('/reservation/{reservation}/payment', [PaymentController::class, 'showReservationPayment'])
+            ->name('payment.reservation.process');
 
         Route::post('/reservation/{reservation}/payer', [PaymentController::class, 'payReservation'])
             ->name('payment.reservation');

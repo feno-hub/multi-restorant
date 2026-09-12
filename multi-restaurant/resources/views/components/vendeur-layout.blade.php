@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>

@@ -49,6 +49,8 @@
 @import "./pages/vendor/create-plat";
 @import "./pages/vendor/menu/list";
 @import "./pages/vendor/menu/show";
+@import "./pages/vendor/reservations/index";
+@import "./pages/vendor/reservations/show";
 @import "./pages/vendor/info-reservation/create";
 
 @import "./pages/client/dashboard";
@@ -60,4 +62,5 @@
 @import "./pages/client/resto/show";
 @import "./pages/client/activities/index";
 @import "./pages/client/favorites/index";
+@import "./pages/client/reservation";
 

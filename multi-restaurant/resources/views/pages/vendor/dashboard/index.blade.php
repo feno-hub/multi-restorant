@@ -185,51 +185,37 @@
                         <i class="fas fa-bolt"></i>
                         Gérer la résérvation
                     </h3>
-                    <a href="#" class="card-link">
+                    <a href="{{ route('vendeur.reservations.index') }}" class="card-link">
                         Gérer
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
 
-                <div class="activity-item">
-                    <span class="activity-icon order"><i class="fas fa-shopping-bag"></i></span>
-                    <div class="activity-content">
-                        <div class="activity-text">
-                            <strong>Nouvelle commande</strong> #ORD-435
-                        </div>
-                        <div class="activity-time">Il y a 5 min</div>
-                    </div>
-                </div>
+                @if (Auth::user()->resto->reservation)
 
-                <div class="activity-item">
-                    <span class="activity-icon review"><i class="fas fa-star"></i></span>
-                    <div class="activity-content">
-                        <div class="activity-text">
-                            <strong>Nouvel avis</strong> 5 ⭐ de Marie D.
-                        </div>
-                        <div class="activity-time">Il y a 12 min</div>
-                    </div>
-                </div>
+                    @foreach (Auth::user()->resto->reservation as $reservations)
+                        <div class="activity-item">
+                            <span class="activity-icon order"><i class="fas fa-shopping-bag"></i></span>
+                            <div class="activity-content">
+                                <div class="activity-text">
+                                    <strong>
+                                        {{ $reservations->user->name }} {{ $reservations->user->last_name[0] }}.    
+                                    </strong>
+                                    
+                                    @if ($reservations->status == "pending")
+                                        <span>
+                                            En attente
+                                        </span>
+                                    @endif
 
-                <div class="activity-item">
-                    <span class="activity-icon user"><i class="fas fa-user-plus"></i></span>
-                    <div class="activity-content">
-                        <div class="activity-text">
-                            <strong>Nouveau client</strong> Jean P. s'est inscrit
+                                </div>
+                                <div class="activity-time">Il y a 5 min</div>
+                            </div>
                         </div>
-                        <div class="activity-time">Il y a 28 min</div>
-                    </div>
-                </div>
+                    @endforeach
 
-                <div class="activity-item">
-                    <span class="activity-icon warning"><i class="fas fa-exclamation-triangle"></i></span>
-                    <div class="activity-content">
-                        <div class="activity-text">
-                            <strong>Stock critique</strong> Pâtes fraîches
-                        </div>
-                        <div class="activity-time">Il y a 1h</div>
-                    </div>
-                </div>
+                @endif
+
             </div>
 
         </div>

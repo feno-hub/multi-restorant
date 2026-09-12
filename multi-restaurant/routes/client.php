@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Client\ActivitiesController;
+use App\Http\Controllers\Client\ClientReservationController;
 use App\Http\Controllers\Client\dashboardController;
 use App\Http\Controllers\Client\FavoritesController;
 use App\Http\Controllers\Client\OrdersController;
@@ -51,6 +52,18 @@ Route::controller(ProfilController::class)
 
         Route::put('modifier', 'update')
             ->name('update');
+    });
+
+Route::middleware(['auth'])
+    ->prefix('client')
+    ->name('client.')
+    ->group(function () {
+
+        Route::get('/reservations', [ClientReservationController::class, 'index'])
+            ->name('reservations.index');
+
+        Route::get('/reservations/{reservation}', [ClientReservationController::class, 'show'])
+            ->name('reservations.show');
     });
 
 Route::controller(OrdersController::class)

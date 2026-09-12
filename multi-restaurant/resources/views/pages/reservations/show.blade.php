@@ -223,7 +223,7 @@
                     </p>
 
                     <a
-                        href="{{ route('client.payment.reservation', $reservation) }}"
+                        href="{{ route('client.payment.reservation.process', $reservation) }}"
                         class="multi-button-primary"
                     >
                         Payer maintenant
