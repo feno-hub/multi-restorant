@@ -63,30 +63,30 @@ class PaymentController extends Controller
             ->with('success', 'Paiement simulé effectué avec succès.');
     }
 
-    // public function showReservationPayment(Reservation $reservation)
-    // {
-    //     abort_unless($reservation->user_id === Auth::id(), 403);
+    public function showReservationPayment(Reservation $reservation)
+    {
+        abort_unless($reservation->user_id === Auth::id(), 403);
 
-    //     $payment = Payment::where('order_id', $reservation->id)
-    //         ->where('user_id', Auth::id())
-    //         ->where('status', 'pending')
-    //         ->first();
+        $payment = Payment::where('order_id', $reservation->id)
+            ->where('user_id', Auth::id())
+            ->where('status', 'pending')
+            ->first();
 
-    //     if (!$payment) {
-    //         $payment = Payment::create([
-    //             'user_id' => Auth::id(),
-    //             'order_id' => null,
-    //             'reservation_id' => null,
-    //             'amount' => $reservation->total,
-    //             'method' => null,
-    //             'status' => 'pending',
-    //             'transaction_id' => null,
-    //             'paid_at' => null,
-    //         ]);
-    //     }
+        if (!$payment) {
+            $payment = Payment::create([
+                'user_id' => Auth::id(),
+                'order_id' => null,
+                'reservation_id' => null,
+                'amount' => $reservation->total,
+                'method' => null,
+                'status' => 'pending',
+                'transaction_id' => null,
+                'paid_at' => null,
+            ]);
+        }
 
-    //     return view('pages.payments.reservation-payment', compact('payment', 'reservation'));
-    // }
+        return view('pages.payments.reservation-payment', compact('payment', 'reservation'));
+    }
 
     public function payReservation(Request $request, Reservation $reservation)
     {

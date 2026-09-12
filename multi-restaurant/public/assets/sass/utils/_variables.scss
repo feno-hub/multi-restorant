@@ -1,4 +1,3 @@
-// ===== VARIABLES =====
 $color-primary: rgba(80, 11, 11, 0.996);
 $color-secondary: #2C3E50;
 $color-free: #FFFFFF;
@@ -10,7 +9,6 @@ $bg: linear-gradient(135deg, #667eea, #764ba2);
 
 $font: Arial, Helvetica, sans-serif;
 
-// Breakpoints (min-width based - mobile first)
 $bp-320: 320px;
 $bp-375: 375px;
 $bp-480: 480px;
@@ -23,7 +21,6 @@ $bp-1440: 1440px;
 $bp-1920: 1920px;
 $bp-2400: 2400px;
 
-// Mixin responsive
 @mixin respond($breakpoint) {
     @media (max-width: $breakpoint) {
         @content;

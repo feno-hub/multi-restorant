@@ -11,20 +11,23 @@ class HomeController extends Controller
 {
     public function index() {
 
-        $resto = Resto::where('status', 'accepter')
+        $findForresto = Resto::where('status', 'accepter')
             ->orderBy('id', 'desc')
-            ->limit(3)
+            ->limit(4)
             ->get();
 
         $threePlat = Plat::where('qty', '!=', '0')
             ->orderBy('id', 'desc')
-            ->limit(3)
+            ->limit(4)
             ->get();
+
+        $sixFiveCategory = Resto::limit(6)->get();
 
 
         return view('pages.home.index', [
-            'restos' => $resto,
-            'threePlat' => $threePlat
+            'forResto' => $findForresto,
+            'threePlat' => $threePlat,
+            'sixCategory' => $sixFiveCategory
         ]);
     }
 }

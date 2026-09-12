@@ -28,11 +28,7 @@ return new class extends Migration
             $table->time('time');
             $table->decimal('total', 10, 2);
 
-            $table->enum('status', [
-                'pending',
-                'accepted',
-                'refused'
-            ])->default('pending');
+            $table->string('status')->default('en attent');
 
             $table->timestamps();
         });

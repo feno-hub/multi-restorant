@@ -70,8 +70,6 @@ Route::controller(RestoController::class)
         Route::get('detaille/{id}', 'show')
             ->name('show');
 
-
-
     });
 
 Route::get('confidentialité', [PrivacyController::class, 'index'])
@@ -158,5 +156,8 @@ Route::controller(FavoriteController::class)
 
         Route::post('ajouter-favories', 'favoriteStore')
             ->name('favorite');
+
+        Route::delete('ajouter-favories/{id}', 'delete')
+            ->name('favorite.destroy');
         
 });

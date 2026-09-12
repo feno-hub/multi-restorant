@@ -30,12 +30,16 @@ class ReservationController extends Controller
 
         $resto_id = $resto->id;
         $reservation_info = Reservation_info::where('resto_id', $resto_id)->first(); 
-        // $total = $reservation_info->price * $validated['guests'];
+
+        $qty = $validated['guests'];
+        $prix = $reservation_info->price;
+
+        $total = $qty * $prix;
 
         $validated['user_id'] = Auth::id();
         $validated['resto_id'] = $resto_id;
         $validated['status'] = 'pending';
-        $validated['total'] = $reservation_info->price;
+        $validated['total'] = $total;
 
 
         $reservation = Reservation::create($validated);

@@ -89,6 +89,14 @@ class Resto extends Model
         );
     }
 
+    public function reservation() : HasMany {
+        return $this->hasMany(
+            Reservation::class,
+            'resto_id',
+            'id'
+        );
+    }
+
     public function reservationInfo() : HasOne {
         return $this->hasOne(
             Reservation_info::class,

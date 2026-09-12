@@ -38,7 +38,7 @@
                                 <i class="fas fa-circle"></i> Ouvert
                             </span>
                         </div>
-                        <h1 class="restaurant-name">
+                        <h1 class="restaurant-nom">
                             {{ $resto->name }}
                         </h1>
                         <div class="restaurant-meta">
@@ -72,26 +72,42 @@
 
             <ul class="menu-nav-list">
 
-                @foreach ($menu_resto as $menus)
+                @if ($menu_resto)
+                    @foreach ($menu_resto as $menus)
+                        <li class="menu-nav-item">
+                            <a href="#{{ $menus->name }}" class="menu-nav-link">
+                                <i class="fas fa-leaf"></i> {{ $menus->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                @else 
                     <li class="menu-nav-item">
-                        <a href="#{{ $menus->name }}" class="menu-nav-link">
-                            <i class="fas fa-leaf"></i> {{ $menus->name }}
+                        <a href="" class="menu-nav-link">
+                            Aucun menu disponible
                         </a>
                     </li>
-                @endforeach
+                @endif
 
-                <li class="menu-nav-item">
-                    <a href="{{ route('client.reservation.create', $resto->id) }}" class="menu-nav-link">
-                        <i class="fas fa-wine-glass-alt"></i> Tables
-                    </a>
-                </li>
+                @if ($resto->reservationInfo)
+                    <li class="menu-nav-item">
+                        <a href="{{ route('client.reservation.create', $resto->id) }}" class="menu-nav-link">
+                            <i class="fas fa-wine-glass-alt"></i> Réserver maintenant
+                        </a>
+                    </li>
+                @else
+                    <li class="menu-nav-item">
+                        <a href="" class="menu-nav-link">
+                            <i class="fas fa-wine-glass-alt"></i> Réservation indisponible
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
 
         <x-error-layout name="error" />
         <x-success-layout key="success" />
 
-        @if (isset($menu_resto))
+        @if ($menu_resto)
 
             @foreach ($menu_resto as $menus)
                 <section id="{{ $menus->name }}" class="menu-section" data-aos="fade-up">

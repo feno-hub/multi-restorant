@@ -1,0 +1,341 @@
+.reservation-show {
+    padding: 2rem 2rem 4rem 2rem;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    &__back {
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        margin-bottom: 1rem;
+        color: $color-free;
+        text-decoration: none;
+        font-weight: 600;
+        transition: .3s;
+
+        &:hover {
+            background: $color-secondary;
+            padding: .5rem;
+            border-radius: 10px;
+        }
+    }
+
+    h1 {
+        margin: 0;
+        color: $color;
+        font-size: 2rem;
+        font-weight: 700;
+
+        i {
+            color: $color-primary;
+            margin-right: .5rem;
+        }
+    }
+
+    &__header p {
+        margin: .5rem 0 0;
+        color: $color-free;
+    }
+
+    &__number {
+        min-width: 150px;
+        padding: 1rem 1.5rem;
+        background: $color-primary;
+        color: $color-free;
+        border-radius: 12px;
+        text-align: center;
+
+        span {
+            display: block;
+            font-size: .8rem;
+            opacity: .8;
+        }
+
+        strong {
+            display: block;
+            margin-top: .2rem;
+            font-size: 1.3rem;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+.reservation-alert {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+
+    &--success {
+        background: #eaf7ef;
+        color: #198754;
+    }
+
+    &--error {
+        background: #fdecec;
+        color: #dc3545;
+    }
+}
+
+.reservation-card {
+    padding: 1.5rem;
+    background: $color-free;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .07);
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding-bottom: 1.2rem;
+        margin-bottom: 1.2rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    &__icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: rgba(80, 11, 11, .08);
+        color: $color-primary;
+        border-radius: 12px;
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        margin: 0;
+        color: $color-secondary;
+        font-size: 1.15rem;
+    }
+
+    &__header p {
+        margin: .25rem 0 0;
+        color: #888;
+        font-size: .85rem;
+    }
+
+    &--actions {
+        grid-column: span 2;
+    }
+}
+
+.reservation-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    &__item {
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: .5rem;
+        color: #777;
+        font-size: .85rem;
+
+        i {
+            width: 20px;
+            color: $color-primary;
+        }
+    }
+
+    strong {
+        color: $color-secondary;
+        font-size: 1rem;
+    }
+}
+
+.reservation-status {
+    display: inline-block;
+    padding: .4rem .8rem;
+    border-radius: 20px;
+    font-size: .8rem;
+    font-weight: 700;
+
+    &--pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    &--confirmed {
+        background: #d1e7dd;
+        color: #0f5132;
+    }
+
+    &--refused {
+        background: #f8d7da;
+        color: #842029;
+    }
+
+    &--cancelled {
+        background: #e2e3e5;
+        color: #41464b;
+    }
+
+    &--finished {
+        background: #cfe2ff;
+        color: #084298;
+    }
+}
+
+.client-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &__avatar {
+        width: 65px;
+        height: 65px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: $color-primary;
+        color: $color-free;
+        border-radius: 50%;
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        margin: 0 0 .5rem;
+        color: $color-secondary;
+        font-size: 1.1rem;
+    }
+
+    p {
+        margin: .3rem 0;
+        color: #777;
+        font-size: .9rem;
+
+        i {
+            width: 20px;
+            color: $color-primary;
+        }
+    }
+}
+
+.restaurant-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &__logo {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 12px;
+
+        &--empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f1f1;
+            color: $color-primary;
+            font-size: 1.5rem;
+        }
+    }
+
+    h3 {
+        margin: 0 0 .5rem;
+        color: $color-secondary;
+        font-size: 1.1rem;
+    }
+
+    p {
+        margin: .3rem 0;
+        color: #777;
+        font-size: .9rem;
+
+        i {
+            width: 20px;
+            color: $color-primary;
+        }
+    }
+}
+
+.reservation-status-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+
+    label {
+        display: block;
+        margin-bottom: .5rem;
+        color: $color-secondary;
+        font-weight: 600;
+    }
+
+    select {
+        flex: 1;
+        height: 45px;
+        padding: 0 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        color: $color-secondary;
+        background: $color-free;
+
+        &:focus {
+            border-color: $color-primary;
+        }
+    }
+
+    .multi-button-primary {
+        height: 45px;
+        white-space: nowrap;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .reservation-show {
+
+        &__header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        &__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .reservation-card--actions {
+        grid-column: span 1;
+    }
+
+    .reservation-info {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-status-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .reservation-show__number {
+        width: 100%;
+    }
+}

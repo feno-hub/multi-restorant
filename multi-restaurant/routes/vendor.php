@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Vendor\DashboardController;
 use App\Http\Controllers\Vendor\ReservationInfoController;
+use App\Http\Controllers\Vendor\VendeurReservationController;
 use App\Http\Controllers\Vendor\VendorMenuController;
 use App\Http\Controllers\Vendor\VendorOrdersController;
 use App\Http\Controllers\Vendor\VendorPlatController;
@@ -79,6 +80,21 @@ Route::controller(VendorStockController::class)
             ->name('index')
             ->prefix('stock');
 
+});
+
+
+Route::middleware(['auth', 'vendeur'])
+    ->prefix('vendeur')
+    ->name('vendeur.')
+    ->group(function () {
+        Route::get('/reservations', [VendeurReservationController::class, 'index'])
+            ->name('reservations.index');
+
+        Route::get('/reservations/{reservation}', [VendeurReservationController::class, 'show'])
+            ->name('reservations.show');
+
+        Route::patch('/reservations/{reservation}/status', [VendeurReservationController::class, 'updateStatus'])
+            ->name('reservations.status');
 });
 
 Route::controller(ReservationInfoController::class)

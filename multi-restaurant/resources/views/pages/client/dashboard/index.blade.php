@@ -105,7 +105,7 @@
                     </a>
                 </div>
 
-                @if (!isset(Auth::user()->orders))
+                @if (Auth::user()->orders)
 
                     @foreach (Auth::user()->orders as $orders)
                         
@@ -223,17 +223,15 @@
 
         </div>
 
-        <!-- ===== BOTTOM GRID ===== -->
         <div class="dashboard-client-bottom">
 
-            <!-- ===== PROMOTIONS ===== -->
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-tag"></i>
                         Mes offres
                     </h3>
-                    <a href="" class="card-link">
+                    <a href="{{ route('client.reservations.index') }}" class="card-link">
                         <x-btnsecondary-layout btn="Voir tous" icon="fa-solid fa-arrow-right" />
                     </a>
                 </div>

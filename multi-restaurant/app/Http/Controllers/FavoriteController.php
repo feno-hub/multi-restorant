@@ -21,4 +21,12 @@ class FavoriteController extends Controller
         return redirect()->back();
 
     }
+
+    public function delete(string $id) {
+       
+        Favorite::find($id)->delete();
+
+        return redirect()->back();
+    }
+
 }
